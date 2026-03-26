@@ -52,6 +52,8 @@
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
+      position: relative;
+      z-index: 1;
     }
 
     /* ── Fixed Nav ── */
@@ -1699,7 +1701,7 @@
       <div class="nav-divider"></div>
       <span class="nav-subtitle">Coordination Partner Programme</span>
     </div>
-    <button class="presenter-btn" id="presenterBtn" title="Open presenter notes (P)">Present</button>
+    <button class="presenter-btn" id="presenterBtn" title="Open presenter notes (P)" style="display:inline-block !important; visibility:visible !important;">▶ PRESENT</button>
   </nav>
 
   <!-- ── Progress Dots ── -->
