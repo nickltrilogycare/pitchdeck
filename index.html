@@ -2312,220 +2312,113 @@
       // ── Presenter Notes Data ──
       const NOTES = {
         'hero': {
-          title: 'Title Slide',
-          talking: [
-            'Thanks for making the time. I know your calendar is packed.',
-            'Frame as exploration: "I want to show you something a lot of NDIS coordinators are doing, and see if it makes sense for you."',
-            'Point to the three proof pills: Support at Home, 300+ Partners, $500M+ funding.',
-            '"This isn\'t about leaving NDIS. It\'s about adding a second revenue stream alongside it."'
-          ],
-          questions: [
-            'How did you hear about Trilogy Care?',
-            'What made you take this meeting today?'
-          ],
-          doNot: ['Don\'t bash NDIS or say "NDIS is dying"', 'Don\'t use jargon yet (SaH, FUM, classification)'],
-          personas: ['All']
+          title: 'Opening',
+          onScreen: 'Title slide \u2014 headline, 3 credential pills, stock photo',
+          script: 'Thanks for making the time \u2014 I know how busy you are. I want to show you something that a lot of NDIS coordinators are exploring right now, and see if it makes sense for your business. This isn\'t about leaving NDIS. It\'s about whether there\'s a way to add a second revenue stream using the skills you already have. Sound fair?',
+          pivots: ['If they nod: "Great, let me start by introducing myself..."', 'If they seem rushed: "I\'ll keep this tight \u2014 20 minutes and you\'ll know if it\'s worth exploring further."'],
+          ifTheyAsk: ['"What is this about?" \u2192 "We help NDIS coordinators add aged care coordination as a second revenue stream. Same skills, growing market, no conflict with your NDIS work."', '"How long will this take?" \u2192 "20 minutes for the overview. Then you\'ll know if it\'s worth a deeper conversation."'],
+          nextUp: 'Your introduction \u2014 building rapport'
         },
         'rep-intro': {
           title: 'Introduction',
-          talking: [
-            'Introduce yourself warmly. First name. Something personal.',
-            'Mirror back what they said about why they took the meeting.',
-            'Position as guide, not salesperson: "My role is to help you figure out if this makes sense."',
-            'Mention how many partners you work with in their region.',
-            'SPEND TIME HERE. Rapport now determines the rest of the meeting.'
-          ],
-          questions: [
-            'Tell me about your background \u2014 how did you get into NDIS coordination?',
-            'How long have you been running your own practice?'
-          ],
-          doNot: ['Don\'t rush past this slide', 'Don\'t make it about Trilogy yet \u2014 make it about them and you'],
-          personas: ['All']
+          onScreen: 'Your photo, name, title, credentials, personal quote',
+          script: 'So a little about me \u2014 I\'m [Name], I\'m a Partnership Manager at Trilogy Care. My job isn\'t to sell you anything. It\'s to help you figure out if this makes sense for your business. I work with about 50 coordination partners around the country, many of whom started exactly where you are \u2014 running an NDIS practice and wondering what else is possible. Before I go any further though, I\'d love to hear about you...',
+          pivots: ['Transition to discovery: "But enough about me \u2014 I\'d love to understand where you\'re at..."', 'If they share their background: "That\'s really similar to a lot of our partners. Let me ask you a few things..."'],
+          ifTheyAsk: ['"How many partners do you have?" \u2192 "Over 300 nationally, managing $500M+ in client funding. Many started in NDIS."', '"How long have you been doing this?" \u2192 Share your genuine background.'],
+          nextUp: 'Discovery questions \u2014 learning about their business'
         },
         'discovery': {
-          title: 'Discovery Mode',
-          talking: [
-            '"I\'d love to learn about where you\'re at before I show you the details."',
-            'Use the visible cards as guides \u2014 don\'t ask all 6 robotically. Pick 2-3.',
-            'Listen for personas: Admin burden = Brenda. Revenue ceiling = Dave. Purpose = Mia.',
-            'Mirror technique: repeat their key phrases back to them.',
-            'Andrew\'s key insight: "Best meetings are 60% them talking, 40% you."',
-            'Take notes. Reference what they say later: "Remember you mentioned X?"'
-          ],
-          questions: [
-            'Pick 2-3 from the cards on screen',
-            'The big one: "If you could change one thing about your business, what would it be?"'
-          ],
-          doNot: ['Don\'t skip this slide \u2014 it\'s the most important one', 'Don\'t ask questions like a checklist'],
-          personas: ['Diagnose the persona here']
+          title: 'Discovery',
+          onScreen: 'Conversation photo + 4 open-ended questions',
+          script: 'I\'d love to understand where you\'re at before I show you anything else. There\'s no script here \u2014 just a genuine conversation. Start with: "How\'s your business tracking this year?" Then LISTEN. Let them talk. 60% them, 40% you. Mirror back what they say: "So it sounds like the admin is really eating into your time..." Take notes on what they say \u2014 you\'ll reference it later.',
+          pivots: ['After they share frustrations: "Yeah, I hear that from a lot of coordinators. Can I show you what some of them are doing about it?"', 'If they\'re positive about NDIS: "That\'s great \u2014 means you\'re well-run. Let me show you how that actually makes you perfect for what I\'m about to share."', 'After 5-7 minutes of conversation: "Thanks for sharing that. What I want to show you next is directly related to what you just told me..."'],
+          ifTheyAsk: ['"Is this a sales pitch?" \u2192 "Honestly? I\'m trying to figure out if this is a fit. If it\'s not, I\'ll tell you. But based on what you\'re telling me, I think you\'ll find it interesting."'],
+          nextUp: 'The aged care market opportunity'
         },
         'opportunity': {
-          title: 'The Opportunity',
-          talking: [
-            '$4.2 billion market, growing 28% year on year. Fastest-growing care sector.',
-            '320,000 active recipients \u2014 doubled in 5 years. 88,000 waiting for a provider.',
-            'For Brenda: "Clients who want to be in the system, families are grateful, complexity is lower."',
-            'For Dave: "Smart coordinators are diversifying now before this market gets crowded."',
-            'Government investment: $8.83B in FY24, up 29% YoY.',
-            'Don\'t lead with doom about NDIS. Frame aged care as additive.'
-          ],
-          questions: [
-            'Have you ever had NDIS clients whose parents needed aged care?',
-            'Have you looked at any other diversification options?'
-          ],
-          doNot: ['Don\'t say "NDIS is shrinking"', 'Don\'t overwhelm with stats \u2014 pick 2-3'],
-          personas: ['Dave (diversification)', 'Brenda (easier work)', 'Mia (impact)']
+          title: 'Market Opportunity',
+          onScreen: '3 stat cards ($4.2B, 320K, 83K+) + growth bullets + stock photo',
+          script: 'So here\'s what\'s happening in aged care right now. It\'s a <b>$4.2 billion</b> coordination market \u2014 and it\'s growing <b>28% year on year</b>. There are <b>320,000 people</b> receiving home care, and that number doubled in 5 years. Right now there are <b>83,000 new places</b> being released and <b>88,000 people</b> already approved and waiting for a provider. There literally aren\'t enough coordinators to meet demand. The government put <b>$8.83 billion</b> into this last year alone. Private equity firms are piling in \u2014 Prestige acquired 3 companies in 8 weeks. This market is moving fast.',
+          pivots: ['Connect to their situation: "Remember when you mentioned [their pain point]? This is the other side of that coin \u2014 a market that\'s growing, not shrinking."', 'For the skeptic: "I know that sounds like a lot of numbers. Let me show you who\'s behind this and why it matters to you specifically."'],
+          ifTheyAsk: ['"Why is it growing so fast?" \u2192 "Australia\'s ageing population. Plus the new Support at Home program launched Nov 2025 \u2014 completely reformed the system and unlocked massive demand."', '"Is it sustainable?" \u2192 "Government investment grew 29% last year. Demand is demographic \u2014 it only goes up."'],
+          nextUp: 'Who Trilogy Care is \u2014 credibility'
         },
         'credibility': {
-          title: 'Who\'s Behind This',
-          talking: [
-            '46th to 2nd in KPMG rankings in 2 years \u2014 fastest growth ever tracked.',
-            'Only top-10 provider at 100% coordination. No conflict of interest.',
-            '300+ coordinators from non-aged-care backgrounds already do this.',
-            '$500M+ in funding under management. This isn\'t a startup.',
-            'Read the testimonial. Let it land.'
-          ],
-          questions: [
-            'Have you heard of Trilogy Care before today?',
-            'What would make you trust a new partner like this?'
-          ],
-          doNot: ['Don\'t oversell Trilogy \u2014 let numbers speak', 'Don\'t name competitors'],
-          personas: ['All']
+          title: 'Trilogy Credibility',
+          onScreen: '5 stat cards + 2 feature cards + testimonial quote',
+          script: 'So who\'s behind this? Trilogy Care is <b>Australia\'s 2nd largest</b> Support at Home provider. We went from <b>46th to 2nd</b> in KPMG rankings in two years \u2014 the fastest growth they\'ve ever tracked. We manage over <b>$500 million</b> in funding with <b>15,000+ active clients</b>. And here\'s the key \u2014 we\'re the only top-10 provider that\'s <b>100% coordination</b>. We don\'t deliver services. We don\'t compete with you. We exist to make coordinators like you successful. <b>300+ partners</b> already do this.',
+          pivots: ['Let the testimonial land, then: "That\'s a real partner in Queensland. Similar background to yours."', 'Transition: "So the market is massive, and we\'re the #2 player. Let me show you why your skills are a perfect fit..."'],
+          ifTheyAsk: ['"Why haven\'t I heard of you?" \u2192 "We\'re B2B \u2014 we don\'t advertise to consumers directly. Our partners are our front line. That\'s why you\'re hearing about us now."', '"Who\'s #1?" \u2192 "Australian Unity. But we\'re the fastest growing by far, and the only pure-play coordinator."'],
+          nextUp: 'How NDIS and aged care are basically the same industry'
         },
         'crossover': {
           title: 'Industry Crossover',
-          talking: [
-            '"This is the slide that changes most people\'s minds."',
-            'Walk through: Same People, Same Core Work, Same Providers, Same Funding.',
-            'Andrew Wallace: "Nothing in aged care is harder than NDIS."',
-            'Key reframe: "You\'re not learning a new industry. You\'re applying existing skills to a simpler version."',
-            '"The physios, OTs, carers you already work with \u2014 they work across both sectors."'
-          ],
-          questions: [
-            'Does any of this surprise you?',
-            'Have any of your providers mentioned aged care work?'
-          ],
-          doNot: ['Don\'t diminish NDIS expertise \u2014 frame it as "you\'re overqualified"'],
-          personas: ['Brenda (simpler)', 'Dave (easy pivot)', 'Mia (same impact)']
+          onScreen: '4 cards: Same People, Same Core Work, Same Providers, Same Funding',
+          script: 'This is the slide that changes most people\'s minds. NDIS and aged care are basically two sides of the same coin. <b>Same people</b> \u2014 your NDIS clients have elderly parents who need aged care. <b>Same core work</b> \u2014 you coordinate care, manage budgets, liaise with providers, advocate for clients. <b>Same provider network</b> \u2014 the physios, OTs, nurses and carers you already work with operate across both sectors. And <b>same government funding</b> structure \u2014 individual budgets managed by a registered provider. The difference? Aged care is simpler. No behaviour support plans. No restrictive practices. No SIL.',
+          pivots: ['Key quote: "Nothing in aged care is harder than NDIS. If you can do NDIS, you\'re overqualified for this."', 'Connect to their network: "You mentioned you work with [physio/OT name] \u2014 they almost certainly have aged care clients too."'],
+          ifTheyAsk: ['"Is it really that similar?" \u2192 "The core job is identical. You\'re connecting people with services and making sure they get the care they need. It\'s just a different demographic and less complex."'],
+          nextUp: 'Your specific skills and how they transfer'
         },
         'skills': {
           title: 'Skills Transfer',
-          talking: [
-            'Walk through the table row by row. Emphasise the Complexity column.',
-            'Killer: "NDIS compliance = 18-month audit. Aged care = 45-minute phone call."',
-            '"No behaviour support. No restrictive practices. No SIL."',
-            '"300+ coordinators from non-aged-care backgrounds are doing this."',
-            'Families are the primary contact \u2014 they\'re grateful and cooperative.'
-          ],
-          questions: [
-            'Looking at this table, does anything feel like a stretch?',
-            'What\'s your current compliance burden like?'
-          ],
-          doNot: ['Don\'t make it sound too easy \u2014 "simpler, not simple"'],
-          personas: ['Brenda (less complexity)', 'Dave (low barrier)']
+          onScreen: 'Comparison table (NDIS \u2192 Aged Care) + 3 key differences + bold CTA text',
+          script: 'Let me make this concrete. Walk through the table \u2014 every row is something you already do. Support coordination becomes care coordination. Plan budgets become care budgets. Provider liaison, client advocacy \u2014 identical. The big difference is compliance. In NDIS you\'re doing <b>18-month audit cycles</b>, on-site, hundreds of hours of prep. In aged care through Trilogy? A <b>45-minute annual phone call</b>. That\'s it. And behaviour support, SIL, restrictive practices? Not in your scope \u2014 Trilogy handles the complex stuff.',
+          pivots: ['After the compliance comparison: "I saw your reaction there. Tell me about your current audit burden..."', 'Transition to money: "So you can do the work \u2014 it\'s simpler than what you do now. The question is: what\'s the financial opportunity? Let me show you..."'],
+          ifTheyAsk: ['"What about qualifications?" \u2192 "There are no mandated qualifications in either sector. Your NDIS experience is more than enough. 300+ partners from non-aged-care backgrounds already do this."'],
+          nextUp: 'The revenue opportunity \u2014 the showstopper slide'
         },
         'revenue': {
-          title: 'Revenue \u2014 THE KILLER SLIDE',
-          talking: [
-            'SPEND TIME HERE. This is the showstopper.',
-            '"In NDIS, you\'re capped at ~$120K. That\'s your ceiling."',
-            '"At 50 aged care clients: $188K-$282K. That\'s 50-135% ABOVE the ceiling."',
-            '"No cap. No rate freeze. Growing 28% a year."',
-            'For Dave: "At 100 clients \u2014 $377K to $565K. 3-5x your NDIS ceiling."',
-            '"And you can do both at the same time."'
-          ],
-          questions: [
-            'Where are you at with your NDIS revenue? Close to the ceiling?',
-            'What would an extra $90K-$150K a year mean for your business?'
-          ],
-          doNot: ['Don\'t guarantee specific income \u2014 use "potential"', 'Don\'t skip the comparison cards'],
-          personas: ['Dave (primary)', 'Brenda (escape grind)', 'Mia (sustainable income)']
+          title: 'Revenue \u2014 SHOWSTOPPER',
+          onScreen: 'Portfolio revenue table (50-client row highlighted in teal) + NDIS vs Aged Care comparison',
+          script: 'OK \u2014 this is the slide I want you to really look at. In NDIS, you\'re capped at about <b>$120K a year</b>. That\'s $100 an hour, 25 billable hours a week, 48 weeks. That\'s your ceiling. And at Level 2, the margin after staff costs is basically zero. Now look at aged care. At 50 clients \u2014 which our partners typically reach in 12-18 months \u2014 you\'re earning <b>$188K to $282K a year</b>. That\'s <b>50 to 135 percent above the NDIS ceiling</b>. At 100 clients, you\'re at <b>$377K to $565K</b>. And there\'s no cap, no rate freeze, and the market is growing 28% a year. You can do both at the same time.',
+          pivots: ['Let the numbers sink in. Then: "What would an extra $90 to $150K a year mean for your business?"', 'If they look interested: "Want to model your specific numbers? I\'ve got an interactive calculator on the next slide."', 'Connect back: "Remember you said [their revenue/ceiling frustration]? This is the answer to that."'],
+          ifTheyAsk: ['"Is that realistic?" \u2192 "These are based on our actual partner data. The average across 300+ partners is [X]. Some do more, some less. Want to model your specific situation?"', '"How long to get to 50 clients?" \u2192 "12-18 months is typical. Most start with 5-10 from their warm market in the first quarter."'],
+          nextUp: 'Interactive calculator to model their specific numbers'
         },
         'calculator': {
-          title: 'Interactive Calculator',
-          talking: [
-            '"Let\'s make this real. Let me plug in your numbers."',
-            'Use it live \u2014 input their likely starting client count (5-10).',
-            'Show the 24-month compounding effect.',
-            '"Most partners start with 5-10 clients from warm market in first 3 months."',
-            'If they mentioned a team: model the team scenario.'
-          ],
-          questions: [
-            'How many clients could you realistically start with in Q1?',
-            'Do you have contacts who might need aged care coordination?'
-          ],
-          doNot: ['Don\'t fumble the calculator \u2014 practice beforehand', 'Talk while iframe loads'],
-          personas: ['All \u2014 personalise inputs']
+          title: 'Calculator',
+          onScreen: 'Embedded interactive calculator \u2014 adjust clients, fees, utilisation',
+          script: 'Let\'s make this real for you. I\'m going to plug in some numbers based on what you told me. Start with \u2014 how many clients do you think you could realistically pick up in your first 3 months? Most partners say 5-10 from their warm market alone. Watch the 24-month projection \u2014 see how it compounds. Each new client adds recurring annual income.',
+          pivots: ['After showing their projection: "How does that feel? Worth exploring further?"', 'If the number is compelling: "And that\'s alongside your NDIS business \u2014 not instead of it."'],
+          ifTheyAsk: ['"What\'s the fee percentage?" \u2192 "Typically 10-15%, agreed in your price book. We\'ll set that up together in Week 2 of onboarding."'],
+          nextUp: 'How the partnership programme actually works'
         },
         'programme': {
           title: 'The Programme',
-          talking: [
-            'Three columns: Keep, Gain, Goes Away.',
-            'KEEP: "Your business, clients, independence, brand. Partnership, not a job."',
-            'GAIN: "Registration, Partnership Manager (that\'s me), automatic payments, training."',
-            'GONE: "No plan manager chasing, no audit prep, no rate freeze anxiety."',
-            'Jay\'s point: Emphasise PM role. "I\'m here for the long term."',
-            'Tiers: Bronze \u2192 Platinum as portfolio grows.'
-          ],
-          questions: [
-            'What jumps out from the "Goes Away" column?',
-            'Anything in "Keep" that\'s particularly important to you?'
-          ],
-          doNot: ['Don\'t gloss over Keep \u2014 they need to feel they maintain control', 'Don\'t say "work for Trilogy"'],
-          personas: ['Brenda (admin relief)', 'Dave (growth)', 'Mia (independence)']
+          onScreen: '3 pillar cards: What You Keep / What You Gain / What Goes Away + tier progression',
+          script: 'So here\'s how it works. Three columns. <b>What you keep</b> \u2014 your business, your clients, your independence, your brand. This is a partnership, not a job and definitely not an acquisition. <b>What you gain</b> \u2014 Trilogy\'s registration so you don\'t need your own, a dedicated Partnership Manager \u2014 that\'s me, automatic monthly payments, training and support. <b>What goes away</b> \u2014 chasing plan managers, invoicing, registration burden, hundreds of hours of audit prep, and that rate freeze anxiety. You progress through tiers \u2014 Bronze to Platinum \u2014 as your portfolio grows. More clients, more support, better rates.',
+          pivots: ['Point to the "Goes Away" column: "Which of these would make the biggest difference to your week?"', 'Transition: "Now the question everyone asks \u2014 how do you actually get clients? Let me show you..."'],
+          ifTheyAsk: ['"What does it cost?" \u2192 "There\'s no upfront cost. Trilogy earns when you earn \u2014 it\'s a percentage model. We\'re incentivised to make you successful."', '"Can I keep my NDIS business?" \u2192 "Absolutely. Most partners run both. NDIS Monday to Wednesday, aged care Thursday Friday. Or however you want to structure it."'],
+          nextUp: 'How you build your client base \u2014 the 3-step framework'
         },
         'acquisition': {
           title: 'Client Acquisition',
-          talking: [
-            'Jay\'s 3-step framework: Warm Market, Community Outreach, Events.',
-            '"Step 1 is the easiest. You already have 20+ warm leads."',
-            '"Your NDIS clients\' parents. One email to your therapist network."',
-            '"Step 2: Hospital discharge units. They\'re desperate for coordinators."',
-            '"Step 3: Retirement villages, RSLs, seniors groups."',
-            '"You\'re not starting from zero. You\'re starting from your network."'
-          ],
-          questions: [
-            'When I mentioned NDIS clients\' parents \u2014 did anyone come to mind?',
-            'Do you have relationships with any hospitals or GP practices?'
-          ],
-          doNot: ['Don\'t make it sound effortless \u2014 be honest it takes work', 'Don\'t skip warm market angle'],
-          personas: ['Dave (systematic)', 'Brenda (warm market)', 'Mia (community)']
+          onScreen: '3 numbered cards: Warm Market, Community Outreach, Local Events + resource links',
+          script: 'This is where the rubber meets the road. How do you actually get clients? Three steps. <b>Step 1 \u2014 your warm market.</b> This is the easiest and most people skip it. Your NDIS clients have elderly parents. Your therapist contacts work across both sectors. One email to your allied health network can generate 5-10 referrals. <b>Step 2 \u2014 community outreach.</b> Hospital discharge units are your #1 source. Every hospital has discharge planners who are desperate for coordinators. GPs, social workers, retirement villages \u2014 they all have aged care clients. <b>Step 3 \u2014 local events.</b> Talks at retirement villages, seniors groups. Trilogy gives you co-branded brochures, outreach playbooks, templates \u2014 everything.',
+          pivots: ['Reference their network: "You mentioned you work with [therapist name] \u2014 they\'d be a perfect first email."', 'If they seem overwhelmed: "You don\'t need to do all three at once. Most partners start with Step 1 \u2014 just their warm market \u2014 and get their first 5-10 clients from that alone."'],
+          ifTheyAsk: ['"Will Trilogy give me clients?" \u2192 "We support your client acquisition with tools, training, and marketing materials. Some clients come through Trilogy\'s pipeline, but the real growth comes from your local network \u2014 and that\'s where you have the advantage."'],
+          nextUp: 'The 4-week onboarding timeline'
         },
         'timeline': {
-          title: 'Timeline \u2014 4 Weeks',
-          talking: [
-            '"Handshake to first client in 4 weeks. Standard, not aspirational."',
-            'Walk through: Discovery Call \u2192 Price Book \u2192 Onboarding \u2192 Go Live.',
-            'Starter pack: playbook, brochures, templates, fee schedule.',
-            '"Day to day: you coordinate, Trilogy claims, you get paid monthly."',
-            'If hesitant, ACE framework: Acknowledge \u2192 Clarify \u2192 Evidence.'
-          ],
-          questions: [
-            'Does 4 weeks feel realistic for your situation?',
-            'What would need to be true for you to feel ready?'
-          ],
-          doNot: ['Don\'t pressure \u2014 if they need time, offer a follow-up'],
-          personas: ['All']
+          title: 'Timeline',
+          onScreen: 'Vertical timeline (Weeks 1-4) + Starter Pack card + Day-to-Day card',
+          script: 'From handshake to first client in 4 weeks. <b>Week 1</b> \u2014 we have our discovery call, which is basically what we\'re doing now. <b>Week 2</b> \u2014 we set up your price book and review the portfolio. <b>Week 3</b> \u2014 platform onboarding and training. <b>Week 4</b> \u2014 you\'re live. You\'ve got your starter pack \u2014 client acquisition playbook, brochure templates, email templates, the lot. Day to day: you coordinate, workers deliver, Trilogy claims from government, you get paid monthly via RCTI. And your annual compliance is a 45-minute phone call.',
+          pivots: ['If they\'re ready: "Does 4 weeks feel realistic for your situation? We could have you onboarded by [specific date]."', 'If hesitant: "What would need to be true for you to feel ready to start?"', 'ACE if "I\'m not ready": Acknowledge \u2014 "Completely understand." Clarify \u2014 "What specifically feels like it needs more time?" Evidence \u2014 "Most partners felt exactly the same way. Here\'s what they found..."'],
+          ifTheyAsk: ['"What if it doesn\'t work out?" \u2192 "There\'s no lock-in. You can step back any time. But in our experience, once partners see the first few clients and revenue coming in, they don\'t look back."'],
+          nextUp: 'The close \u2014 booking the next step'
         },
         'cta': {
-          title: 'Close \u2014 Discovery Call',
-          talking: [
-            'Reference their earlier answers: "Based on what you told me..."',
-            'Mirror: "You mentioned [X pain point]. This addresses that by [Y]."',
-            '"Next step: 30-min discovery call to dig into your specific numbers."',
-            'Urgency without pressure: "Coordinators joining now build portfolio before it gets crowded."',
-            'Ask: "On a scale of 1-10, how interested are you?"',
-            'Then: "What would make this a 10?"'
-          ],
-          questions: [
-            'What\'s your biggest remaining question?',
-            'On a scale of 1-10, how interested are you?',
-            'What would make this a 10?'
-          ],
-          doNot: ['Don\'t end without a clear next step \u2014 book the call', 'If it\'s a 3: "Thanks, I\'ll send info, reach out when ready"'],
-          personas: ['Brenda = "imagine the relief"', 'Dave = "imagine the revenue"', 'Mia = "imagine the impact"']
+          title: 'Close',
+          onScreen: 'Contact details + urgency box + Download PDF button',
+          script: 'So based on everything we\'ve talked about \u2014 [reference their specific situation]. You\'ve got the skills, the market is there, and the model works. The next step is simple: a <b>30-minute discovery call</b> where we dig into your specific numbers and see if the fit is right. I\'ll be honest \u2014 if it\'s not right for you, I\'ll tell you. But based on what you\'ve told me today, I think you\'d be great at this. What questions do you have?',
+          pivots: ['After questions: "On a scale of 1-10, how interested are you in exploring this further?"', 'Then: "What would make this a 10?"', 'Close by persona \u2014 Brenda: "Imagine the relief." Dave: "Imagine the revenue." Mia: "Imagine the impact."', 'ALWAYS book the next step before ending: "Let\'s lock in that discovery call \u2014 does [specific day] work?"'],
+          ifTheyAsk: ['"Can I think about it?" \u2192 "Of course. What I\'ll do is send you a link to everything we\'ve discussed \u2014 the deck, the resource hub, the calculator. Have a look in your own time and I\'ll check in [specific day]. Sound good?"'],
+          nextUp: 'End of presentation'
         }
       };
+
+      // ── Slide ID list for ordered navigation ──
+      const slideIds = Array.from(sections).map(s => s.id);
 
       function getCurrentSlide() {
         return Math.round(deck.scrollTop / window.innerHeight);
@@ -2549,11 +2442,48 @@
         counter.classList.toggle('on-dark', isDark);
         document.querySelector('.progress-dots')?.classList.toggle('on-dark', isDark);
 
-        // Sync presenter
+        // Sync presenter via BroadcastChannel
         if (presenterWin && !presenterWin.closed) {
-          channel.postMessage({ type: 'slideChanged', index: idx, id: currentId });
+          const notes = NOTES[currentId];
+          const nextIdx = idx + 1;
+          const nextId = slideIds[nextIdx];
+          const nextNotes = NOTES[nextId];
+          channel.postMessage({
+            type: 'slideUpdate',
+            index: idx,
+            id: currentId,
+            total: total,
+            notes: notes || null,
+            nextSlideTitle: nextNotes ? nextNotes.title : null
+          });
         }
       }
+
+      // ── SINGLE channel listener on main deck side ──
+      channel.addEventListener('message', (e) => {
+        const msg = e.data;
+        if (msg.type === 'navigate') {
+          // Popup requested navigation
+          const targetIdx = Math.max(0, Math.min(msg.index, total - 1));
+          sections[targetIdx]?.scrollIntoView({ behavior: 'smooth' });
+        } else if (msg.type === 'requestSlide') {
+          // Popup asking for current state (e.g. on initial load)
+          const idx = getCurrentSlide();
+          const currentId = sections[idx]?.id;
+          const notes = NOTES[currentId];
+          const nextIdx = idx + 1;
+          const nextId = slideIds[nextIdx];
+          const nextNotes = NOTES[nextId];
+          channel.postMessage({
+            type: 'slideUpdate',
+            index: idx,
+            id: currentId,
+            total: total,
+            notes: notes || null,
+            nextSlideTitle: nextNotes ? nextNotes.title : null
+          });
+        }
+      });
 
       // Scroll handler
       let ticking = false;
@@ -2585,13 +2515,6 @@
         }
       });
 
-      // Receive navigation from presenter popup
-      channel.addEventListener('message', (e) => {
-        if (e.data.type === 'navigateTo') {
-          sections[e.data.index]?.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-
       // Presenter mode
       function togglePresenter() {
         if (presenterWin && !presenterWin.closed) {
@@ -2604,135 +2527,181 @@
       }
 
       function openPresenter() {
-        presenterWin = window.open('', 'presenterNotes', 'width=480,height=720,left=50,top=50,scrollbars=yes');
+        presenterWin = window.open('', 'presenterNotes', 'width=520,height=800,left=50,top=50,scrollbars=yes');
         if (!presenterWin) { alert('Please allow popups for presenter mode.'); return; }
         document.getElementById('presenterBtn')?.classList.add('active');
 
         presenterWin.document.write(`<!DOCTYPE html><html><head>
-          <title>Presenter Notes</title>
+          <title>Presenter View</title>
           <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400;500;600;700&family=Roboto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
           <style>
             * { margin:0; padding:0; box-sizing:border-box; }
-            body { font-family:'Roboto Flex',system-ui,sans-serif; background:#0f2440; color:#E1EEFA; font-size:14px; line-height:1.6; padding:0; }
-            .header { background:#1F3B63; padding:12px 20px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:10; border-bottom:2px solid #027F7E; }
+            body { font-family:'Roboto Flex',system-ui,sans-serif; background:#0a1929; color:#E1EEFA; font-size:14px; line-height:1.6; padding:0; display:flex; flex-direction:column; height:100vh; }
+            .header { background:#1F3B63; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; flex-shrink:0; border-bottom:2px solid #027F7E; }
+            .header-left { display:flex; align-items:center; gap:12px; }
             .header h1 { font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#43C0BE; }
-            .header .close { background:none; border:none; color:#E07B5E; font-size:18px; cursor:pointer; padding:4px 8px; }
-            .slide-indicator { background:#1F3B63; padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.1); }
-            .slide-num { font-size:12px; color:#43C0BE; letter-spacing:1px; text-transform:uppercase; font-weight:600; }
-            .slide-title { font-family:'Roboto Serif',serif; font-size:22px; font-weight:700; color:#fff; margin-top:4px; }
-            .section { padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.06); }
-            .section-label { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; }
-            .section-label.talk { color:#43C0BE; }
-            .section-label.ask { color:#D4A537; }
-            .section-label.donot { color:#E07B5E; }
-            .section-label.persona { color:#999; }
-            ul { list-style:none; padding:0; }
-            li { padding:6px 0 6px 16px; position:relative; font-size:13px; line-height:1.5; }
-            li::before { content:''; position:absolute; left:0; top:12px; width:6px; height:6px; border-radius:50%; }
-            .talk li::before { background:#43C0BE; }
-            .ask li::before { background:#D4A537; }
-            .donot li::before { background:#E07B5E; }
-            .persona-pills { display:flex; gap:6px; flex-wrap:wrap; }
-            .persona-pill { font-size:11px; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,0.1); color:#ccc; }
-            .nav-btns { display:flex; gap:8px; padding:12px 20px; position:sticky; bottom:0; background:#0f2440; border-top:1px solid rgba(255,255,255,0.1); }
-            .nav-btn { flex:1; padding:10px; border:1px solid rgba(255,255,255,0.2); background:none; color:#fff; border-radius:8px; cursor:pointer; font-size:13px; font-weight:500; transition:all 0.2s; }
-            .nav-btn:hover { background:rgba(255,255,255,0.1); }
+            .slide-counter { font-size:13px; color:rgba(255,255,255,0.6); font-weight:500; }
+            .header .close-btn { background:none; border:1px solid rgba(224,123,94,0.4); color:#E07B5E; font-size:13px; cursor:pointer; padding:4px 12px; border-radius:6px; transition:all 0.2s; }
+            .header .close-btn:hover { background:rgba(224,123,94,0.15); }
+
+            .screen-preview { background:#142744; padding:14px 20px; border-bottom:1px solid rgba(255,255,255,0.08); flex-shrink:0; }
+            .screen-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#5b9bd5; margin-bottom:6px; }
+            .screen-title { font-family:'Roboto Serif',serif; font-size:20px; font-weight:700; color:#fff; margin-bottom:4px; }
+            .screen-desc { font-size:13px; color:rgba(255,255,255,0.55); line-height:1.4; }
+
+            .content-scroll { flex:1; overflow-y:auto; }
+
+            .script-section { padding:18px 20px; border-bottom:1px solid rgba(255,255,255,0.06); }
+            .section-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+            .section-label.script-label { color:#43C0BE; }
+            .script-text { font-size:15px; line-height:1.7; color:rgba(255,255,255,0.92); }
+            .script-text b { color:#43C0BE; font-weight:600; }
+
+            .pivot-section { padding:14px 20px; border-bottom:1px solid rgba(255,255,255,0.06); }
+            .section-label.pivot-label { color:#43C0BE; }
+            .pivot-list { list-style:none; padding:0; }
+            .pivot-list li { padding:5px 0 5px 14px; position:relative; font-size:13px; line-height:1.5; color:rgba(255,255,255,0.75); }
+            .pivot-list li::before { content:''; position:absolute; left:0; top:11px; width:5px; height:5px; border-radius:50%; background:#43C0BE; }
+
+            .ask-section { padding:14px 20px; border-bottom:1px solid rgba(255,255,255,0.06); }
+            .section-label.ask-label { color:#D4A537; }
+            .ask-list { list-style:none; padding:0; }
+            .ask-list li { padding:5px 0 5px 14px; position:relative; font-size:13px; line-height:1.5; color:rgba(255,255,255,0.75); }
+            .ask-list li::before { content:''; position:absolute; left:0; top:11px; width:5px; height:5px; border-radius:50%; background:#D4A537; }
+
+            .next-section { padding:10px 20px; border-bottom:1px solid rgba(255,255,255,0.06); flex-shrink:0; }
+            .next-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.35); }
+            .next-value { font-size:13px; color:rgba(255,255,255,0.5); margin-top:2px; }
+
+            .nav-btns { display:flex; gap:8px; padding:12px 20px; flex-shrink:0; background:#0a1929; border-top:1px solid rgba(255,255,255,0.1); }
+            .nav-btn { flex:1; padding:12px; border:1px solid rgba(255,255,255,0.2); background:none; color:#fff; border-radius:8px; cursor:pointer; font-size:14px; font-weight:600; transition:all 0.2s; }
+            .nav-btn:hover { background:rgba(67,192,190,0.15); border-color:#43C0BE; }
+            .nav-btn:active { background:rgba(67,192,190,0.25); }
+
+            .empty-state { padding:40px 20px; text-align:center; color:rgba(255,255,255,0.4); font-size:15px; }
           </style>
         </head><body>
           <div class="header">
-            <h1>Presenter Notes</h1>
-            <button class="close" onclick="window.close()">&#10005;</button>
+            <div class="header-left">
+              <h1>Presenter View</h1>
+              <span class="slide-counter" id="slideCounter"></span>
+            </div>
+            <button class="close-btn" onclick="window.close()">Close</button>
           </div>
-          <div id="content"></div>
+          <div class="content-scroll" id="contentScroll">
+            <div id="screenPreview" class="screen-preview"></div>
+            <div id="scriptSection"></div>
+            <div id="pivotSection"></div>
+            <div id="askSection"></div>
+            <div id="nextSection" class="next-section"></div>
+          </div>
           <div class="nav-btns">
-            <button class="nav-btn" id="prevBtn">\u2190 Previous</button>
-            <button class="nav-btn" id="nextBtn">Next \u2192</button>
+            <button class="nav-btn" id="prevBtn">&larr; PREV</button>
+            <button class="nav-btn" id="nextBtn">NEXT &rarr;</button>
           </div>
           <script>
             const ch = new BroadcastChannel('deck-presenter');
             let currentIdx = 0;
-            const totalSlides = ${total};
+            let totalSlides = 0;
 
-            ch.addEventListener('message', (e) => {
-              if (e.data.type === 'slideChanged') {
-                currentIdx = e.data.index;
-                updateNotes(e.data.id);
+            // SINGLE channel listener on popup side
+            ch.addEventListener('message', function(e) {
+              var msg = e.data;
+              if (msg.type === 'slideUpdate') {
+                currentIdx = msg.index;
+                totalSlides = msg.total;
+                renderSlide(msg);
               }
-              if (e.data.type === 'notesData') {
-                renderNotes(e.data);
+            });
+
+            document.getElementById('prevBtn').addEventListener('click', function() {
+              ch.postMessage({ type: 'navigate', index: Math.max(0, currentIdx - 1) });
+            });
+            document.getElementById('nextBtn').addEventListener('click', function() {
+              ch.postMessage({ type: 'navigate', index: Math.min(totalSlides - 1, currentIdx + 1) });
+            });
+
+            function renderSlide(msg) {
+              var n = msg.notes;
+              // Counter
+              document.getElementById('slideCounter').textContent = '[' + (msg.index + 1) + '/' + msg.total + ']';
+
+              // Screen preview
+              var sp = document.getElementById('screenPreview');
+              if (n) {
+                sp.innerHTML = '<div class="screen-label">ON SCREEN</div>' +
+                  '<div class="screen-title">' + n.title + '</div>' +
+                  '<div class="screen-desc">' + (n.onScreen || '') + '</div>';
+              } else {
+                sp.innerHTML = '<div class="screen-label">ON SCREEN</div><div class="screen-title">Slide ' + (msg.index + 1) + '</div>';
               }
-            });
 
-            document.getElementById('prevBtn').addEventListener('click', () => {
-              ch.postMessage({ type: 'navigateTo', index: Math.max(0, currentIdx - 1) });
-            });
-            document.getElementById('nextBtn').addEventListener('click', () => {
-              ch.postMessage({ type: 'navigateTo', index: Math.min(totalSlides - 1, currentIdx + 1) });
-            });
+              // Script
+              var ss = document.getElementById('scriptSection');
+              if (n && n.script) {
+                ss.innerHTML = '<div class="script-section"><div class="section-label script-label">YOUR SCRIPT</div><div class="script-text">' + n.script + '</div></div>';
+              } else {
+                ss.innerHTML = '<div class="script-section"><div class="section-label script-label">YOUR SCRIPT</div><div class="script-text" style="color:rgba(255,255,255,0.4);">No script for this slide.</div></div>';
+              }
 
-            function updateNotes(id) {
-              ch.postMessage({ type: 'requestNotes', id: id, index: currentIdx });
+              // Pivots
+              var ps = document.getElementById('pivotSection');
+              if (n && n.pivots && n.pivots.length > 0) {
+                var ph = '<div class="pivot-section"><div class="section-label pivot-label">PIVOT PHRASES</div><ul class="pivot-list">';
+                n.pivots.forEach(function(p) { ph += '<li>' + p + '</li>'; });
+                ph += '</ul></div>';
+                ps.innerHTML = ph;
+              } else {
+                ps.innerHTML = '';
+              }
+
+              // If they ask
+              var as = document.getElementById('askSection');
+              if (n && n.ifTheyAsk && n.ifTheyAsk.length > 0) {
+                var ah = '<div class="ask-section"><div class="section-label ask-label">IF THEY ASK</div><ul class="ask-list">';
+                n.ifTheyAsk.forEach(function(q) { ah += '<li>' + q + '</li>'; });
+                ah += '</ul></div>';
+                as.innerHTML = ah;
+              } else {
+                as.innerHTML = '';
+              }
+
+              // Next up
+              var ns = document.getElementById('nextSection');
+              if (msg.nextSlideTitle) {
+                ns.innerHTML = '<div class="next-label">NEXT UP</div><div class="next-value">' + (n ? n.nextUp || msg.nextSlideTitle : msg.nextSlideTitle) + '</div>';
+              } else {
+                ns.innerHTML = '<div class="next-label">NEXT UP</div><div class="next-value">End of presentation</div>';
+              }
+
+              // Scroll content back to top
+              document.getElementById('contentScroll').scrollTop = 0;
             }
 
-            function renderNotes(data) {
-              const c = document.getElementById('content');
-              let html = '<div class="slide-indicator"><div class="slide-num">Slide ' + (data.index + 1) + ' of ' + totalSlides + '</div><div class="slide-title">' + data.title + '</div></div>';
-
-              html += '<div class="section talk"><div class="section-label talk">\ud83d\udcac TALKING POINTS</div><ul>';
-              data.talking.forEach(t => html += '<li>' + t + '</li>');
-              html += '</ul></div>';
-
-              html += '<div class="section ask"><div class="section-label ask">\u2753 DISCOVERY QUESTIONS</div><ul>';
-              data.questions.forEach(q => html += '<li>' + q + '</li>');
-              html += '</ul></div>';
-
-              html += '<div class="section donot"><div class="section-label donot">\ud83d\udeab DO NOT</div><ul>';
-              data.doNot.forEach(d => html += '<li>' + d + '</li>');
-              html += '</ul></div>';
-
-              html += '<div class="section"><div class="section-label persona">\ud83d\udc64 PERSONA FIT</div><div class="persona-pills">';
-              data.personas.forEach(p => html += '<span class="persona-pill">' + p + '</span>');
-              html += '</div></div>';
-
-              c.innerHTML = html;
-            }
-
-            // Request initial notes
-            ch.postMessage({ type: 'requestNotes', id: null, index: 0 });
+            // Request current slide on load
+            ch.postMessage({ type: 'requestSlide' });
           <\/script>
         </body></html>`);
         presenterWin.document.close();
 
-        // Send initial notes
+        // Send initial slide data after a brief delay for the popup to initialize
         setTimeout(() => {
           const idx = getCurrentSlide();
-          const id = sections[idx]?.id;
-          sendNotes(id, idx);
-        }, 500);
+          const currentId = sections[idx]?.id;
+          const notes = NOTES[currentId];
+          const nextIdx = idx + 1;
+          const nextId = slideIds[nextIdx];
+          const nextNotes = NOTES[nextId];
+          channel.postMessage({
+            type: 'slideUpdate',
+            index: idx,
+            id: currentId,
+            total: total,
+            notes: notes || null,
+            nextSlideTitle: nextNotes ? nextNotes.title : null
+          });
+        }, 600);
       }
-
-      function sendNotes(id, index) {
-        const n = NOTES[id] || { title: 'Unknown', talking: ['No notes'], questions: [], doNot: [], personas: [] };
-        channel.postMessage({ type: 'notesData', ...n, index: index });
-      }
-
-      // Listen for notes requests from popup
-      channel.addEventListener('message', (e) => {
-        if (e.data.type === 'requestNotes') {
-          const idx = e.data.index || getCurrentSlide();
-          const id = e.data.id || sections[idx]?.id;
-          sendNotes(id, idx);
-        }
-      });
-
-      // Also send notes on every slide change
-      deck.addEventListener('scroll', () => {
-        if (presenterWin && !presenterWin.closed) {
-          const idx = getCurrentSlide();
-          const id = sections[idx]?.id;
-          sendNotes(id, idx);
-        }
-      });
 
       // Present button
       document.getElementById('presenterBtn')?.addEventListener('click', togglePresenter);
