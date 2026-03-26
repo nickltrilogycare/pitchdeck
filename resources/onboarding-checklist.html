@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner Onboarding Checklist — Trilogy Care Partner Resource Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,400;1,8..144,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1F3B63;
+      --navy-dark: #0f2440;
+      --teal: #027F7E;
+      --light-teal: #43C0BE;
+      --coral: #E07B5E;
+      --gold: #D4A537;
+      --slate: #4A5565;
+      --charcoal: #4B5563;
+      --light-blue-bg: #E1EEFA;
+      --light-teal-bg: #dff4f4;
+      --white: #FFFFFF;
+      --off-white: #F9FAFB;
+      --font-heading: 'Roboto Serif', Georgia, serif;
+      --font-body: 'Roboto Flex', 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--slate);
+      font-size: 17px;
+      line-height: 1.8;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Fixed Nav ── */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.95);
+    }
+    .top-nav img { height: 32px; }
+    .top-nav a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: var(--navy); }
+    .top-nav a svg { width: 16px; height: 16px; }
+
+    /* ── Hero ── */
+    .hero {
+      margin-top: 61px;
+      background: linear-gradient(135deg, var(--light-teal) 0%, var(--teal) 100%);
+      padding: 80px 32px 64px;
+      text-align: center;
+    }
+    .hero .category-pill {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .hero .read-time {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 56px;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    h2:first-child { margin-top: 0; }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--teal);
+      margin-top: 36px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    p { margin-bottom: 18px; }
+
+    strong { color: var(--charcoal); font-weight: 600; }
+
+    /* ── Progress Bar ── */
+    .progress-bar {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 32px 0 48px;
+      position: relative;
+    }
+    .progress-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .progress-step .step-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+      position: relative;
+      z-index: 2;
+    }
+    .progress-step .step-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .progress-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: calc(50% + 20px);
+      right: calc(-50% + 20px);
+      height: 3px;
+      background: var(--light-teal);
+      z-index: 1;
+    }
+    .progress-step.ongoing .step-dot {
+      background: var(--gold);
+    }
+
+    /* ── Week Card ── */
+    .week-card {
+      background: var(--white);
+      border: 1px solid #E5E7EB;
+      border-radius: 16px;
+      padding: 32px;
+      margin: 28px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .week-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+    }
+    .week-card.week-1::before { background: var(--teal); }
+    .week-card.week-2::before { background: var(--light-teal); }
+    .week-card.week-3::before { background: var(--navy); }
+    .week-card.week-4::before { background: var(--gold); }
+    .week-card.ongoing::before { background: var(--coral); }
+
+    .week-card .week-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .week-card .week-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .week-card.week-1 .week-number { background: var(--teal); }
+    .week-card.week-2 .week-number { background: var(--light-teal); }
+    .week-card.week-3 .week-number { background: var(--navy); }
+    .week-card.week-4 .week-number { background: var(--gold); }
+    .week-card.ongoing .week-number { background: var(--coral); font-size: 16px; }
+
+    .week-card .week-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .week-card .week-subtitle {
+      font-size: 14px;
+      color: var(--slate);
+      font-weight: 400;
+    }
+
+    /* ── Checklist Items ── */
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid #F3F4F6;
+      margin-bottom: 0;
+    }
+    .checklist li:last-child { border-bottom: none; }
+
+    .checkbox {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      border: 2px solid #D1D5DB;
+      border-radius: 6px;
+      margin-top: 2px;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .checklist li:hover .checkbox {
+      border-color: var(--teal);
+      background: var(--light-teal-bg);
+    }
+
+    .check-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--slate);
+    }
+    .check-text strong {
+      color: var(--navy);
+    }
+
+    /* ── Callout ── */
+    .callout {
+      background: var(--light-teal-bg);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 16px 16px 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .callout p:last-child { margin-bottom: 0; }
+    .callout-label {
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    /* ── Bottom Section ── */
+    .bottom-section {
+      border-top: 1px solid #E5E7EB;
+      margin-top: 56px;
+      padding-top: 40px;
+    }
+    .bottom-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-pdf:hover { background: #026968; }
+    .btn-pdf svg { width: 18px; height: 18px; }
+
+    .link-back {
+      font-size: 15px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .link-back:hover { color: var(--navy); }
+
+    .next-resources h3 {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .next-resources ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .next-resources li { margin-bottom: 12px; }
+    .next-resources a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+    .next-resources a:hover { color: var(--navy); }
+    .next-resources a svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .hero { padding: 60px 20px 48px; }
+      .hero h1 { font-size: 32px; }
+      .content { padding: 40px 18px 60px; }
+      h2 { font-size: 24px; }
+      .week-card { padding: 24px 20px; }
+      .progress-bar { display: none; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      .top-nav, .btn-pdf, .bottom-actions, .next-resources { display: none !important; }
+      .hero { margin-top: 0; padding: 40px 20px; }
+      .content { padding: 20px 0; }
+      .hero h1 { font-size: 32px; }
+      body { font-size: 14px; }
+      .week-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+      .callout { break-inside: avoid; }
+      h2 { break-after: avoid; }
+      .bottom-section { border-top: none; margin-top: 24px; padding-top: 0; }
+      .progress-bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Nav -->
+  <nav class="top-nav">
+    <img src="../assets/tc-logo.svg" alt="Trilogy Care" height="32">
+    <a href="../hub.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to Resource Hub
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <span class="category-pill">Getting Started</span>
+    <h1>Partner Onboarding Checklist</h1>
+    <p class="read-time">5 min read</p>
+  </header>
+
+  <!-- Content -->
+  <main class="content">
+
+    <h2>Your Onboarding Journey</h2>
+    <p>This checklist walks you through your first four weeks as a Trilogy Care Coordination Partner, plus the ongoing monthly rhythm that keeps your business growing.</p>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="progress-step">
+        <div class="step-dot">1</div>
+        <div class="step-label">Discovery</div>
+      </div>
+      <div class="progress-step">
+        <div class="step-dot">2</div>
+        <div class="step-label">Learning</div>
+      </div>
+      <div class="progress-step">
+        <div class="step-dot">3</div>
+        <div class="step-label">Training</div>
+      </div>
+      <div class="progress-step">
+        <div class="step-dot">4</div>
+        <div class="step-label">Go Live</div>
+      </div>
+      <div class="progress-step ongoing">
+        <div class="step-dot">&#8734;</div>
+        <div class="step-label">Ongoing</div>
+      </div>
+    </div>
+
+    <!-- ── Week 1 ── -->
+    <div class="week-card week-1">
+      <div class="week-header">
+        <div class="week-number">1</div>
+        <div>
+          <div class="week-title">Discovery &amp; Setup</div>
+          <div class="week-subtitle">Lay the foundations for your partnership</div>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Complete discovery call with your Partnership Manager</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Review and sign the partnership agreement</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Submit your business details (ABN, business name, contact info)</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Submit your logo for co-branded brochure</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Receive Trilogy Care Portal login credentials</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Read the <strong>Getting Started Guide</strong></span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ── Week 2 ── -->
+    <div class="week-card week-2">
+      <div class="week-header">
+        <div class="week-number">2</div>
+        <div>
+          <div class="week-title">Learning &amp; Pricing</div>
+          <div class="week-subtitle">Understand the programme and your revenue model</div>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Read <strong>Support at Home Explained</strong> guide</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Review and finalise your price book with PM</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Understand the Fully Coordinated fee structure</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Read <strong>Roles &amp; Responsibilities</strong> guide</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Read <strong>Revenue &amp; Pricing Guide</strong></span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Familiarise yourself with the SAH funding classifications</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ── Week 3 ── -->
+    <div class="week-card week-3">
+      <div class="week-header">
+        <div class="week-number">3</div>
+        <div>
+          <div class="week-title">Training &amp; Systems</div>
+          <div class="week-subtitle">Get hands-on with the platform and your marketing assets</div>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Complete Trilogy Care platform onboarding training</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Practice creating a care plan in the portal</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Review compliance requirements with PM</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Receive your co-branded brochure (digital + print-ready)</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Read <strong>Client Acquisition Playbook</strong></span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Read <strong>Your Brand in Market</strong> guide</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ── Week 4 ── -->
+    <div class="week-card week-4">
+      <div class="week-header">
+        <div class="week-number">4</div>
+        <div>
+          <div class="week-title">Go Live</div>
+          <div class="week-subtitle">Start building your pipeline and landing your first clients</div>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Begin warm market outreach (parents of NDIS clients)</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Send therapist network email (template in Client Acquisition Playbook)</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Schedule your first hospital discharge unit visit</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Drop brochures at 3&ndash;5 GP practices</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Set up your first social media posts (templates in Brand guide)</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Complete your first client referral (if applicable)</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ── Ongoing ── -->
+    <div class="week-card ongoing">
+      <div class="week-header">
+        <div class="week-number">&#8734;</div>
+        <div>
+          <div class="week-title">Ongoing Monthly Checklist</div>
+          <div class="week-subtitle">The rhythm that sustains and grows your business</div>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Monthly business review with Partnership Manager</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Update pipeline tracker</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Monthly hospital visit (maintain discharge planner relationships)</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Review client statements and payments</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Post 2x LinkedIn + 3x Facebook per week</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Quarterly GP practice visits</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Continue community outreach cadence</span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text">Review revenue vs targets</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Pro Tip</div>
+      <p>Print this checklist and stick it on your wall for the first month. The partners who follow this sequence consistently are the ones who hit 10 clients fastest. Your Partnership Manager will check in on your progress at each step.</p>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+
+    <div class="bottom-section">
+      <div class="bottom-actions">
+        <button class="btn-pdf" onclick="window.print()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Download as PDF
+        </button>
+        <a href="../hub.html" class="link-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          Back to Resource Hub
+        </a>
+      </div>
+
+      <div class="next-resources">
+        <h3>What to Read Next</h3>
+        <ul>
+          <li>
+            <a href="getting-started.html">
+              Getting Started Guide &mdash; Your orientation to the Coordination Partner programme
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="switching-providers.html">
+              Switching Providers Guide &mdash; How to help clients transfer to Trilogy Care
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Outreach Playbook — Trilogy Care Partner Resource Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,400;1,8..144,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1F3B63;
+      --navy-dark: #0f2440;
+      --teal: #027F7E;
+      --light-teal: #43C0BE;
+      --coral: #E07B5E;
+      --gold: #D4A537;
+      --slate: #4A5565;
+      --charcoal: #4B5563;
+      --light-blue-bg: #E1EEFA;
+      --light-teal-bg: #dff4f4;
+      --white: #FFFFFF;
+      --off-white: #F9FAFB;
+      --font-heading: 'Roboto Serif', Georgia, serif;
+      --font-body: 'Roboto Flex', 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--slate);
+      font-size: 17px;
+      line-height: 1.8;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Fixed Nav ── */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.95);
+    }
+    .top-nav img { height: 32px; }
+    .top-nav a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: var(--navy); }
+    .top-nav a svg { width: 16px; height: 16px; }
+
+    /* ── Hero ── */
+    .hero {
+      margin-top: 61px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--teal) 100%);
+      padding: 80px 32px 64px;
+      text-align: center;
+    }
+    .hero .category-pill {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .hero .read-time {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 56px;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    h2:first-child { margin-top: 0; }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--teal);
+      margin-top: 36px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    h4 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+
+    p { margin-bottom: 18px; }
+
+    strong { color: var(--charcoal); font-weight: 600; }
+
+    /* ── Lists ── */
+    ul, ol {
+      margin-bottom: 18px;
+      padding-left: 24px;
+    }
+    li { margin-bottom: 8px; }
+
+    /* ── Ordered list (steps) ── */
+    ol.steps {
+      list-style: none;
+      padding-left: 0;
+      counter-reset: step;
+    }
+    ol.steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 48px;
+      margin-bottom: 16px;
+    }
+    ol.steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Callout / Tip Card ── */
+    .callout {
+      background: var(--light-teal-bg);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 16px 16px 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .callout.info {
+      background: var(--light-blue-bg);
+      border-left-color: var(--navy);
+    }
+    .callout.gold {
+      background: #FFF8E7;
+      border-left-color: var(--gold);
+    }
+    .callout.coral {
+      background: #FFF0EB;
+      border-left-color: var(--coral);
+    }
+    .callout p:last-child { margin-bottom: 0; }
+    .callout-label {
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .callout.info .callout-label { color: var(--navy); }
+    .callout.gold .callout-label { color: var(--gold); }
+    .callout.coral .callout-label { color: var(--coral); }
+
+    /* ── Template Box ── */
+    .template-box {
+      background: #F3F4F6;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 20px 0;
+      font-size: 15px;
+      line-height: 1.7;
+      position: relative;
+    }
+    .template-box .template-label {
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .template-box p:last-child { margin-bottom: 0; }
+    .template-box .copy-hint {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 11px;
+      color: #9CA3AF;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Priority badge ── */
+    .priority-banner {
+      background: linear-gradient(135deg, var(--coral) 0%, #C0624A 100%);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin: 28px 0;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .priority-banner .pb-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .priority-banner .pb-icon svg { width: 28px; height: 28px; }
+    .priority-banner h3 {
+      color: var(--white);
+      font-style: normal;
+      font-weight: 700;
+      margin: 0 0 4px;
+      font-size: 18px;
+    }
+    .priority-banner p { margin-bottom: 0; font-size: 15px; color: rgba(255,255,255,0.9); }
+
+    /* ── Channel Cards ── */
+    .channel-card {
+      background: var(--white);
+      border: 1px solid #E5E7EB;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 20px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .channel-card .channel-label {
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    /* ── Table ── */
+    .table-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin: 28px 0;
+      border: 1px solid #E5E7EB;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+    thead th {
+      background: var(--navy);
+      color: var(--white);
+      text-align: left;
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    tbody td {
+      padding: 12px 18px;
+      border-bottom: 1px solid #E5E7EB;
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: var(--off-white); }
+    tbody tr:last-child td { border-bottom: none; }
+
+    /* ── Contact Card ── */
+    .contact-card {
+      background: linear-gradient(135deg, var(--navy) 0%, #27476F 100%);
+      border-radius: 16px;
+      padding: 32px;
+      margin: 36px 0;
+      color: var(--white);
+    }
+    .contact-card h3 {
+      color: var(--light-teal);
+      font-style: normal;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+    .contact-card p { color: rgba(255,255,255,0.9); margin-bottom: 10px; }
+    .contact-card strong { color: var(--white); }
+
+    /* ── Checklist ── */
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+    .checklist li {
+      position: relative;
+      padding-left: 32px;
+      margin-bottom: 12px;
+    }
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 2px solid var(--teal);
+      background: var(--white);
+    }
+
+    /* ── Bottom Section ── */
+    .bottom-section {
+      border-top: 1px solid #E5E7EB;
+      margin-top: 56px;
+      padding-top: 40px;
+    }
+    .bottom-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-pdf:hover { background: #026968; }
+    .btn-pdf svg { width: 18px; height: 18px; }
+
+    .link-back {
+      font-size: 15px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .link-back:hover { color: var(--navy); }
+
+    .next-resources h3 {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .next-resources ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .next-resources li {
+      margin-bottom: 12px;
+    }
+    .next-resources a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+    .next-resources a:hover { color: var(--navy); }
+    .next-resources a svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .hero { padding: 60px 20px 48px; }
+      .hero h1 { font-size: 32px; }
+      .content { padding: 40px 18px 60px; }
+      h2 { font-size: 24px; }
+      .priority-banner { flex-direction: column; text-align: center; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      .top-nav, .btn-pdf, .bottom-actions, .next-resources { display: none !important; }
+      .hero { margin-top: 0; padding: 40px 20px; }
+      .content { padding: 20px 0; }
+      .hero h1 { font-size: 32px; }
+      body { font-size: 14px; }
+      .table-wrap { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      .template-box { break-inside: avoid; }
+      .channel-card { break-inside: avoid; }
+      .priority-banner { break-inside: avoid; }
+      h2 { break-after: avoid; }
+      .bottom-section { border-top: none; margin-top: 24px; padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Nav -->
+  <nav class="top-nav">
+    <img src="../assets/tc-logo.svg" alt="Trilogy Care" height="32">
+    <a href="../hub.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to Resource Hub
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <span class="category-pill">Marketing &amp; Brand</span>
+    <h1>Community Outreach Playbook</h1>
+    <p class="read-time">14 min read</p>
+  </header>
+
+  <!-- Content -->
+  <main class="content">
+
+    <h2>Hospital Discharge Units &mdash; Your #1 Referral Source</h2>
+
+    <div class="priority-banner">
+      <div class="pb-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div>
+        <h3>Highest-Value Relationship</h3>
+        <p>A single hospital discharge planner might refer 5&ndash;10 clients per month. This is the most important relationship you can build.</p>
+      </div>
+    </div>
+
+    <h3>How to identify the right contact</h3>
+    <ul>
+      <li>Call the hospital switchboard</li>
+      <li>Ask for: <strong>"Discharge planning team"</strong> or <strong>"Patient flow coordinator"</strong> or <strong>"Social work department"</strong></li>
+      <li>Some hospitals call it <strong>"Transitional care"</strong> or <strong>"Hospital in the Home coordination"</strong></li>
+      <li>Large hospitals have dedicated discharge planners for aged care patients</li>
+    </ul>
+
+    <h3>First visit approach</h3>
+    <ol class="steps">
+      <li><strong>Call ahead</strong> to introduce yourself and ask when's a good time to visit</li>
+      <li><strong>Bring:</strong> Co-branded brochures (10+), a box of quality chocolates (Cadbury Favourites, Lindt &mdash; this genuinely works)</li>
+      <li><strong>What to say:</strong> "I'm [Name], a care coordinator with Trilogy Care. I help patients transitioning home from hospital get the home care services they need &mdash; everything from personal care to nursing to physio. I'd love to be on your referral list."</li>
+      <li><strong>Leave</strong> your card and brochures</li>
+      <li><strong>Ask:</strong> "What's the best way for you to send me a referral?"</li>
+    </ol>
+
+    <h3>Building the ongoing relationship</h3>
+    <div class="callout gold">
+      <div class="callout-label">Relationship Rules</div>
+      <p><strong>Visit monthly</strong> &mdash; same day each month if possible</p>
+      <p><strong>Bring something small</strong> each time (morning tea, chocolates)</p>
+      <p><strong>Ask how their week has been</strong> &mdash; be a human, not just a business contact</p>
+      <p><strong>Close the loop on referrals:</strong> "Just wanted to let you know Mrs Smith is settled and her services are all set up. Thanks for the referral."</p>
+      <p><strong>Be responsive</strong> &mdash; when they call, answer or call back within the hour</p>
+    </div>
+
+    <h3>Monthly visit schedule (example)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Hospital/Facility</th>
+            <th>Contact</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Week 1</strong></td>
+            <td>Royal Brisbane</td>
+            <td>Sarah (discharge)</td>
+            <td>Morning visit, bring brochures</td>
+          </tr>
+          <tr>
+            <td><strong>Week 2</strong></td>
+            <td>PA Hospital</td>
+            <td>James (social work)</td>
+            <td>Afternoon visit</td>
+          </tr>
+          <tr>
+            <td><strong>Week 3</strong></td>
+            <td>Mater Hospital</td>
+            <td>Lisa (transitional care)</td>
+            <td>Morning, bring morning tea</td>
+          </tr>
+          <tr>
+            <td><strong>Week 4</strong></td>
+            <td>Wesley Hospital</td>
+            <td>Kim (patient flow)</td>
+            <td>Follow up on referrals</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>GP Practices</h2>
+
+    <h3>How GPs refer to aged care</h3>
+    <p>GPs don't usually refer directly &mdash; the <strong>practice manager</strong> or <strong>practice nurse</strong> is your key contact. They handle referrals and can recommend you to patients asking about home care.</p>
+
+    <h3>Approach</h3>
+    <ol class="steps">
+      <li><strong>Visit the practice</strong> (without appointment is fine for leaving materials)</li>
+      <li><strong>Ask to speak</strong> with the practice manager</li>
+      <li><strong>Introduce yourself:</strong> "I coordinate home care services for people over 65 in [suburb]. Can I leave some information?"</li>
+      <li><strong>Leave 10 brochures</strong> at reception</li>
+      <li><strong>Follow up</strong> in 4 weeks</li>
+    </ol>
+
+    <h3>What to leave at reception</h3>
+    <ul>
+      <li>Co-branded brochures (in a neat stack or stand)</li>
+      <li>Your business card</li>
+      <li>A one-page flyer: <strong>"Are your patients getting the most from their Support at Home funding?"</strong></li>
+    </ul>
+
+    <h2>Allied Health Home-Visit Practices</h2>
+    <p>Physios, OTs, and podiatrists who do home visits are gold. They see clients at home and can spot when someone needs more care support.</p>
+
+    <h3>Why they're valuable</h3>
+    <ul>
+      <li>They <strong>visit clients at home</strong> &mdash; they see the reality of someone's living situation</li>
+      <li>They <strong>build trust over time</strong> with their patients</li>
+      <li>They naturally have <strong>conversations about care needs</strong></li>
+      <li>Many already <strong>work across NDIS and aged care</strong></li>
+    </ul>
+
+    <h3>Email template for first contact</h3>
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">Email &mdash; Allied Health Cross-Referral</div>
+      <p><strong>Subject:</strong> Home care coordination &mdash; potential cross-referral opportunity</p>
+      <p>Hi [Name],</p>
+      <p>I'm [Your Name], a home care coordinator working with Trilogy Care in the [suburb/region] area.</p>
+      <p>I'm reaching out because I know you see a lot of elderly patients at home, and I'm looking to build cross-referral relationships with quality allied health professionals.</p>
+      <p>If you ever come across patients who might benefit from help coordinating their Support at Home services &mdash; whether they're new to the system or looking to switch providers &mdash; I'd welcome the referral.</p>
+      <p>Happy to return the favour and refer my clients your way for [their specialty].</p>
+      <p>Coffee sometime?</p>
+      <p>[Your Name]<br>[Your Business]<br>Coordination Partner &mdash; Trilogy Care<br>[Phone] | [Email]</p>
+    </div>
+
+    <h2>Retirement Villages and Lifestyle Communities</h2>
+
+    <h3>The opportunity</h3>
+    <p>Retirement villages (Ingenia, HomeTown, Aveo, Lendlease, local independents) are full of people in the aged care demographic. <strong>Village managers are your gateway.</strong></p>
+
+    <h3>Village manager introduction</h3>
+    <div class="channel-card">
+      <div class="channel-label">Script &mdash; Village Manager</div>
+      <p>Call or visit the village office:</p>
+      <p>"I'm [Name], I coordinate home care services for older Australians in the area. Would it be possible to leave some information for your residents, or perhaps host a short information session about Support at Home?"</p>
+      <p>Most village managers welcome this &mdash; it adds value for their residents.</p>
+    </div>
+
+    <h3>Hosting a talk at a village</h3>
+    <ul>
+      <li><strong>Duration:</strong> 20&ndash;30 minutes + Q&amp;A</li>
+      <li><strong>Best time:</strong> Mid-morning (10am), mid-week</li>
+      <li><strong>Content:</strong> "Getting the Most from Your Support at Home Funding" (see Client Acquisition Playbook for talk template)</li>
+      <li><strong>Bring:</strong> Brochures, a sign-up sheet for "free care assessment chat"</li>
+      <li><strong>Follow up:</strong> Call everyone on the sign-up sheet within 3 days</li>
+    </ul>
+
+    <h3>Noticeboard materials</h3>
+    <p>If the village has a noticeboard, ask permission to place:</p>
+    <ul>
+      <li>Your co-branded brochure</li>
+      <li>A simple A4 flyer: <strong>"Support at Home &mdash; Are you getting the most from your home care funding? Free consultation with [Your Name]. Call [number]."</strong></li>
+    </ul>
+
+    <h2>RSLs and Community Clubs</h2>
+
+    <h3>Approach</h3>
+    <ul>
+      <li>Contact the <strong>sub-branch secretary</strong> or <strong>club manager</strong></li>
+      <li>Ask about <strong>noticeboard placement</strong> and <strong>event opportunities</strong></li>
+      <li>Offer to <strong>sponsor a morning tea or social event</strong> (cost: $50&ndash;100 for catering)</li>
+      <li>These clubs have strong community networks &mdash; <strong>word of mouth is powerful</strong></li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-label">Pro Tip</div>
+      <p>RSL clubs and bowling clubs often have large senior memberships. A $75 morning tea can put you in front of 30&ndash;50 potential clients in a single session. Bring brochures and a sign-up sheet.</p>
+    </div>
+
+    <h2>Local Council and Community Centres</h2>
+
+    <h3>Seniors programs coordinators</h3>
+    <p>Every local council has a community services team. Contact them and ask about:</p>
+    <ul>
+      <li><strong>Seniors groups and programs</strong></li>
+      <li><strong>CALD</strong> (culturally and linguistically diverse) community groups</li>
+      <li><strong>Carer support groups</strong></li>
+      <li><strong>Council-run seniors events and expos</strong></li>
+    </ul>
+
+    <h3>CALD communities</h3>
+    <p>Many culturally diverse communities have their own seniors groups, community centres, and leaders. Approach with cultural sensitivity and offer to present through a community leader.</p>
+
+    <div class="callout info">
+      <div class="callout-label">Cultural Sensitivity</div>
+      <p>When engaging with CALD communities, always work through a trusted community leader. Offer translated materials if possible. Ask your Partnership Manager about Trilogy's multilingual resources.</p>
+    </div>
+
+    <h2>Tracking Your Relationships &mdash; CRM-Lite</h2>
+    <p>You don't need expensive software. Keep a simple spreadsheet of your referral contacts and review it monthly.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Contact Name</th>
+            <th>Organisation</th>
+            <th>Type</th>
+            <th>Last Visit</th>
+            <th>Next Visit</th>
+            <th>Referrals</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sarah M</td>
+            <td>Royal Brisbane</td>
+            <td>Discharge planner</td>
+            <td>15 Mar</td>
+            <td>15 Apr</td>
+            <td>3</td>
+            <td>Prefers morning visits</td>
+          </tr>
+          <tr>
+            <td>Dr Chen's Practice</td>
+            <td>Smith St Medical</td>
+            <td>GP Practice</td>
+            <td>1 Mar</td>
+            <td>1 Jun</td>
+            <td>0</td>
+            <td>Left brochures at reception</td>
+          </tr>
+          <tr>
+            <td>Maria K</td>
+            <td>Ingenia Village</td>
+            <td>Village Manager</td>
+            <td>20 Mar</td>
+            <td>20 Apr</td>
+            <td>1</td>
+            <td>Talk scheduled 15 Apr</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Monthly review checklist</h3>
+    <ul class="checklist">
+      <li>Who is sending referrals? Nurture those relationships first.</li>
+      <li>Who hasn't been visited recently? Schedule a visit this week.</li>
+      <li>Where are the gaps in your network? Identify new contacts to approach.</li>
+      <li>Are brochures stocked at all locations? Replenish as needed.</li>
+      <li>Have you followed up on every referral with the referrer? Close the loop.</li>
+    </ul>
+
+    <div class="contact-card">
+      <h3>Your Outreach Target</h3>
+      <p><strong>Month 1:</strong> Identify and visit 3 hospitals, 5 GP practices, 2 retirement villages</p>
+      <p><strong>Month 2:</strong> Add allied health contacts, RSLs, and community groups</p>
+      <p><strong>Month 3+:</strong> Maintain monthly cadence. Aim for 10+ active referral relationships</p>
+      <p style="margin-bottom: 0;"><strong>Remember:</strong> Consistency beats intensity. A monthly visit is worth more than a one-off blitz.</p>
+    </div>
+
+    <!-- Bottom -->
+    <div class="bottom-section">
+      <div class="bottom-actions">
+        <button class="btn-pdf" onclick="window.print()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download as PDF
+        </button>
+        <a href="../hub.html" class="link-back">&larr; Back to Resource Hub</a>
+      </div>
+
+      <div class="next-resources">
+        <h3>Continue Reading</h3>
+        <ul>
+          <li>
+            <a href="sales-conversations.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              Next: Sales Conversations Guide
+            </a>
+          </li>
+          <li>
+            <a href="brand-and-marketing.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              Your Brand in Market
+            </a>
+          </li>
+          <li>
+            <a href="getting-started.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              Getting Started Guide
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

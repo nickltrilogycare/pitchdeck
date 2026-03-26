@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordination Partner Programme | Trilogy Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;600;700&family=Roboto+Serif:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1F3B63;
+      --navy-dark: #0f2440;
+      --teal: #027F7E;
+      --light-teal: #43C0BE;
+      --coral: #E07B5E;
+      --gold: #D4A537;
+      --slate: #4A5565;
+      --charcoal: #4B5563;
+      --light-blue-bg: #E1EEFA;
+      --light-teal-bg: #dff4f4;
+      --white: #FFFFFF;
+      --off-white: #F9FAFB;
+      --font-heading: 'Roboto Serif', Georgia, serif;
+      --font-body: 'Roboto Flex', 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--slate);
+      font-size: 18px;
+      line-height: 1.7;
+      overflow: hidden;
+      background: var(--navy-dark);
+      height: 100vh;
+    }
+
+    /* ── Presentation Container ── */
+    .deck {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    /* ── Fixed Nav ── */
+    .fixed-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 48px;
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-logo-img {
+      height: 32px;
+      width: auto;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(31, 59, 99, 0.15);
+    }
+
+    .nav-subtitle {
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    /* ── Progress Dots ── */
+    .progress-dots {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(31, 59, 99, 0.2);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      padding: 0;
+    }
+
+    .progress-dot.active {
+      background: var(--teal);
+      transform: scale(1.3);
+    }
+
+    .progress-dot:hover {
+      background: var(--navy);
+      transform: scale(1.2);
+    }
+
+    /* ── Slide Base ── */
+    section {
+      height: 100vh;
+      min-height: 100vh;
+      max-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Slide Number Indicator ── */
+    section::after {
+      content: attr(data-slide-num);
+      position: absolute;
+      bottom: 24px;
+      left: 48px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(74, 85, 101, 0.3);
+      font-family: var(--font-body);
+      letter-spacing: 1px;
+    }
+
+    section[data-dark]::after {
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ── Scroll Indicator (hero only) ── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: pulse-down 2s ease-in-out infinite;
+    }
+
+    .scroll-indicator span {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+    }
+
+    .scroll-indicator svg {
+      width: 20px;
+      height: 20px;
+      stroke: rgba(255,255,255,0.4);
+    }
+
+    @keyframes pulse-down {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+      50% { transform: translateX(-50%) translateY(8px); opacity: 0.5; }
+    }
+
+    /* ── Slide Counter ── */
+    .slide-counter {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(74, 85, 101, 0.4);
+      z-index: 998;
+      font-family: var(--font-body);
+      transition: color 0.3s;
+    }
+
+    .slide-counter.on-dark {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .section-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 72px 48px 48px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--teal);
+      margin-bottom: 48px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 32px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-teal {
+      background: var(--teal);
+      color: var(--white);
+    }
+
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      color: var(--white);
+    }
+
+    .btn-outline-white:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--teal);
+    }
+
+    /* ── Stat Card ── */
+    .stat-card {
+      text-align: center;
+      padding: 36px 24px;
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--teal);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+
+    /* ── Pill Badge ── */
+    .pill {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+    }
+
+    .pill-teal {
+      background: var(--teal);
+      color: var(--white);
+    }
+
+    .pill-navy {
+      background: rgba(31, 59, 99, 0.1);
+      color: var(--navy);
+    }
+
+    .pill-light {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 1 — HERO
+    ══════════════════════════════════════════ */
+    #hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 48px 80px;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-family: var(--font-heading);
+      font-size: 44px;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.3;
+      margin: 24px 0;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-confidential {
+      position: absolute;
+      bottom: 24px;
+      left: 48px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 1px;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 2 — OPPORTUNITY
+    ══════════════════════════════════════════ */
+    #opportunity {
+      background: var(--light-teal-bg);
+    }
+
+    .opportunity-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .bullet-card {
+      padding: 36px;
+    }
+
+    .bullet-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bullet-card li {
+      padding: 10px 0;
+      padding-left: 28px;
+      position: relative;
+      font-size: 17px;
+      color: var(--charcoal);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .bullet-card li:last-child {
+      border-bottom: none;
+    }
+
+    .bullet-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .opportunity-bottom {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .opportunity-photo {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .opportunity-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ── TC Logo on every slide ── */
+    .slide-logo {
+      position: absolute;
+      top: 24px;
+      right: 48px;
+      height: 40px;
+      width: auto;
+      opacity: 0.85;
+      z-index: 10;
+    }
+
+    section[data-dark] .slide-logo {
+      filter: brightness(0) invert(1);
+      opacity: 0.6;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 3 — CREDIBILITY
+    ══════════════════════════════════════════ */
+    #credibility {
+      background: var(--white);
+    }
+
+    .cred-stats {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .cred-stat {
+      text-align: center;
+      padding: 28px 16px;
+    }
+
+    .cred-stat .stat-number {
+      font-size: 36px;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .feature-card {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 28px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--light-teal-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 22px;
+    }
+
+    .feature-card h4 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 15px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    .testimonial-card {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 40px;
+    }
+
+    .testimonial-card blockquote {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-card cite {
+      font-style: normal;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 4 — SKILLS TRANSFER
+    ══════════════════════════════════════════ */
+    #skills {
+      background: var(--light-blue-bg);
+    }
+
+    .skills-table-wrapper {
+      overflow-x: auto;
+      margin-bottom: 32px;
+    }
+
+    .skills-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      background: var(--white);
+    }
+
+    .skills-table thead th {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 12px 20px;
+      text-align: left;
+    }
+
+    .skills-table tbody td {
+      padding: 10px 20px;
+      font-size: 15px;
+      color: var(--charcoal);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .skills-table tbody tr:nth-child(even) {
+      background: var(--off-white);
+    }
+
+    .skills-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .skill-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .skill-pill {
+      font-size: 14px;
+      padding: 8px 18px;
+      border-radius: 50px;
+      background: var(--white);
+      color: var(--navy);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      font-weight: 500;
+    }
+
+    .skills-cta {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 5 — REVENUE
+    ══════════════════════════════════════════ */
+    #revenue {
+      background: var(--white);
+    }
+
+    .revenue-table-wrapper {
+      overflow-x: auto;
+      margin-bottom: 36px;
+    }
+
+    .revenue-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      background: var(--white);
+    }
+
+    .revenue-table thead th {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 18px 24px;
+      text-align: left;
+    }
+
+    .revenue-table tbody td {
+      padding: 16px 24px;
+      font-size: 16px;
+      color: var(--charcoal);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .revenue-table tbody tr:nth-child(even) {
+      background: var(--off-white);
+    }
+
+    .revenue-table tbody tr.highlight {
+      background: var(--teal);
+      color: var(--white);
+      box-shadow: 0 0 20px rgba(2, 127, 126, 0.3);
+    }
+
+    .revenue-table tbody tr.highlight td {
+      color: var(--white);
+      font-weight: 600;
+      border-bottom-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .comparison-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .comparison-card {
+      padding: 28px;
+      border-top: 3px solid;
+    }
+
+    .comparison-card.ndis {
+      border-top-color: var(--coral);
+    }
+
+    .comparison-card.aged-care {
+      border-top-color: var(--teal);
+    }
+
+    .comparison-card h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .comparison-card p {
+      font-size: 15px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 6 — CALCULATOR
+    ══════════════════════════════════════════ */
+    #calculator {
+      background: var(--light-blue-bg);
+    }
+
+    .calculator-embed {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      background: var(--white);
+    }
+
+    .calculator-embed iframe {
+      width: 100%;
+      height: 65vh;
+      border: none;
+      border-radius: 16px;
+    }
+
+    .calculator-link {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .calculator-link a {
+      color: var(--teal);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .calculator-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 7 — PROGRAMME (TEAL)
+    ══════════════════════════════════════════ */
+    #programme {
+      background: var(--teal);
+    }
+
+    #programme .section-title {
+      color: var(--white);
+    }
+
+    #programme .section-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .pillar-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .pillar-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .pillar-card.keep {
+      border-top: 4px solid var(--gold);
+    }
+
+    .pillar-card.gain {
+      border-top: 4px solid var(--navy);
+    }
+
+    .pillar-card.gone {
+      border-top: 4px solid var(--coral);
+    }
+
+    .pillar-card h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .pillar-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .pillar-card li {
+      padding: 8px 0;
+      font-size: 16px;
+      color: var(--charcoal);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .pillar-card li:last-child {
+      border-bottom: none;
+    }
+
+    .pillar-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 16px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .pillar-card.keep li::before {
+      background: var(--gold);
+    }
+
+    .pillar-card.gain li::before {
+      background: var(--navy);
+    }
+
+    .pillar-card.gone li::before {
+      background: var(--coral);
+    }
+
+    .programme-footer {
+      text-align: center;
+    }
+
+    .programme-footer .pill {
+      margin-bottom: 20px;
+      font-size: 14px;
+      padding: 10px 24px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 8 — CLIENT ACQUISITION
+    ══════════════════════════════════════════ */
+    #acquisition {
+      background: var(--white);
+    }
+
+    .acq-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .acq-card {
+      padding: 32px;
+    }
+
+    .acq-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .acq-card h4 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .acq-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .acq-card li {
+      padding: 6px 0;
+      font-size: 15px;
+      color: var(--slate);
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .acq-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--light-teal);
+    }
+
+    .acq-support {
+      font-size: 17px;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .acq-buttons {
+      text-align: center;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 9 — TIMELINE
+    ══════════════════════════════════════════ */
+    #timeline {
+      background: var(--light-teal-bg);
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .timeline-track {
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 15px;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: rgba(2, 127, 126, 0.2);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -33px;
+      top: 24px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--teal);
+    }
+
+    .timeline-item.active .timeline-dot {
+      background: var(--teal);
+      box-shadow: 0 0 12px rgba(2, 127, 126, 0.4);
+    }
+
+    .timeline-week {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+
+    .timeline-item.active .timeline-week {
+      color: var(--teal);
+    }
+
+    .timeline-label {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .timeline-item.active .timeline-label {
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .timeline-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .starter-card {
+      padding: 28px;
+    }
+
+    .starter-card h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .starter-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .starter-card li {
+      padding: 6px 0;
+      font-size: 15px;
+      color: var(--charcoal);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .starter-card li::before {
+      content: '\2192';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .day-card {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .day-card h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+
+    .day-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .day-card li {
+      padding: 6px 0;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.85);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .day-card li::before {
+      content: '\2192';
+      position: absolute;
+      left: 0;
+      color: var(--light-teal);
+      font-weight: 700;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 10 — CTA
+    ══════════════════════════════════════════ */
+    #cta {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+      text-align: center;
+    }
+
+    #cta .section-inner {
+      max-width: 800px;
+    }
+
+    #cta .section-title {
+      font-family: var(--font-heading);
+      font-size: 44px;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .cta-subtitle {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .cta-btn.email {
+      background: var(--teal);
+      color: var(--white);
+    }
+
+    .cta-btn.phone {
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      color: var(--white);
+    }
+
+    .cta-btn.phone:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .urgency-card {
+      background: rgba(255, 255, 255, 0.07);
+      border-left: 4px solid var(--gold);
+      border-radius: 12px;
+      padding: 24px 32px;
+      margin: 32px auto;
+      max-width: 600px;
+      text-align: left;
+    }
+
+    .urgency-card p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.85);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .cta-calc-link {
+      margin-top: 24px;
+    }
+
+    .cta-calc-link a {
+      color: var(--light-teal);
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .cta-calc-link a:hover {
+      text-decoration: underline;
+    }
+
+    .cta-brand {
+      margin-top: 48px;
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-image img {
+        height: 360px;
+      }
+
+      .cred-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .pillar-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-inner {
+        padding: 80px 24px 60px;
+      }
+
+      .hero-inner {
+        padding: 100px 24px 60px;
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+
+      .hero-text h1 {
+        font-size: 32px;
+      }
+
+      #cta .section-title {
+        font-size: 32px;
+      }
+
+      .card-grid,
+      .feature-cards,
+      .comparison-cards,
+      .acq-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .cred-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .opportunity-bottom {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-number {
+        font-size: 36px;
+      }
+
+      .fixed-nav {
+        padding: 12px 20px;
+      }
+
+      .nav-subtitle {
+        display: none;
+      }
+
+      .nav-divider {
+        display: none;
+      }
+
+      .progress-dots {
+        display: none;
+      }
+
+      .hero-confidential {
+        left: 24px;
+      }
+    }
+
+    /* ══════════════════════════════════════════
+       PRINT STYLESHEET
+    ══════════════════════════════════════════ */
+    @media print {
+      body {
+        overflow: visible !important;
+        height: auto !important;
+        font-size: 12px;
+      }
+
+      .deck {
+        overflow: visible !important;
+        height: auto !important;
+        scroll-snap-type: none !important;
+      }
+
+      section {
+        height: auto !important;
+        min-height: 100vh;
+        max-height: none !important;
+        scroll-snap-align: none !important;
+        page-break-inside: avoid;
+        page-break-after: always;
+      }
+
+      .fixed-nav,
+      .progress-dots,
+      .pdf-btn,
+      .slide-counter,
+      .scroll-indicator {
+        display: none !important;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .hero-inner,
+      .section-inner {
+        padding: 40px 32px !important;
+      }
+
+      .calculator-embed {
+        display: none;
+      }
+
+      #calculator::after {
+        content: 'Visit the online calculator at: https://future-focus-phi.vercel.app/calculator.html';
+        display: block;
+        text-align: center;
+        padding: 40px;
+        font-style: italic;
+        color: var(--slate);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Fixed Navigation ── -->
+  <nav class="fixed-nav" id="mainNav">
+    <div class="nav-left">
+      <a href="#hero"><img src="assets/tc-logo.svg" alt="Trilogy Care" class="nav-logo-img" onerror="this.parentElement.innerHTML='TRILOGY CARE'"></a>
+      <div class="nav-divider"></div>
+      <span class="nav-subtitle">Coordination Partner Programme</span>
+    </div>
+  </nav>
+
+  <!-- ── Progress Dots ── -->
+  <div class="progress-dots" id="progressDots">
+    <button class="progress-dot active" data-section="hero" title="Hero"></button>
+    <button class="progress-dot" data-section="opportunity" title="Opportunity"></button>
+    <button class="progress-dot" data-section="credibility" title="Credibility"></button>
+    <button class="progress-dot" data-section="crossover" title="Industry Crossover"></button>
+    <button class="progress-dot" data-section="skills" title="Skills Transfer"></button>
+    <button class="progress-dot" data-section="revenue" title="Revenue"></button>
+    <button class="progress-dot" data-section="calculator" title="Calculator"></button>
+    <button class="progress-dot" data-section="programme" title="Programme"></button>
+    <button class="progress-dot" data-section="acquisition" title="Client Acquisition"></button>
+    <button class="progress-dot" data-section="timeline" title="Timeline"></button>
+    <button class="progress-dot" data-section="cta" title="Get Started"></button>
+  </div>
+
+  <div class="slide-counter" id="slideCounter">1 / 11</div>
+
+  <div class="deck" id="deck">
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════════════ -->
+  <section id="hero" data-dark data-slide-num="01">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="pill pill-teal">Coordination Partner Programme</span>
+        <h1>Your Coordination Skills.<br>A Growing Market.<br>A Better Model.</h1>
+        <p>A second revenue stream in Australia's fastest-growing care sector</p>
+        <div style="margin-top:32px; display:flex; gap:12px; flex-wrap:wrap;">
+          <span class="pill pill-light" style="font-size:11px;">Support at Home</span>
+          <span class="pill pill-light" style="font-size:11px;">300+ Partners</span>
+          <span class="pill pill-light" style="font-size:11px;">$500M+ Funding</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.pexels.com/photos/6972771/pexels-photo-6972771.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Happy older couple enjoying life together" loading="lazy">
+      </div>
+    </div>
+    <div class="hero-confidential">Confidential | March 2026</div>
+    <div class="scroll-indicator">
+      <span>Scroll to explore</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 2 — THE OPPORTUNITY
+  ══════════════════════════════════════════════════ -->
+  <section id="opportunity" data-slide-num="02">
+    <div class="section-inner">
+      <h2 class="section-title">Aged Care Is Australia's Fastest-Growing Sector</h2>
+      <p class="section-subtitle">The market needs people with your exact skills</p>
+
+      <div class="card-grid" style="margin-bottom: 36px;">
+        <div class="card stat-card">
+          <div class="stat-number">$4.2B</div>
+          <div class="stat-label">Annual coordination market</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-number">320,000</div>
+          <div class="stat-label">Active recipients &mdash; doubled in 5 years</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-number">83,000+</div>
+          <div class="stat-label">New places being released now</div>
+        </div>
+      </div>
+
+      <div class="opportunity-bottom">
+        <div class="card bullet-card">
+          <ul>
+            <li>Government investment: $8.83B in FY24 (up 29% YoY)</li>
+            <li>Sector growing 28%+, projected to double</li>
+            <li>88,000+ people approved and waiting for a provider</li>
+            <li>Smart NDIS coordinators are already diversifying into this market</li>
+          </ul>
+        </div>
+        <div class="opportunity-photo">
+          <img src="https://images.pexels.com/photos/8795582/pexels-photo-8795582.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Active seniors enjoying outdoor activities" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 3 — TRILOGY CREDIBILITY
+  ══════════════════════════════════════════════════ -->
+  <section id="credibility" data-slide-num="03">
+    <div class="section-inner">
+      <h2 class="section-title">Who's Behind This</h2>
+      <p class="section-subtitle">Trilogy Care &mdash; Australia's fastest-growing Support at Home provider</p>
+
+      <div class="cred-stats">
+        <div class="card cred-stat">
+          <div class="stat-number">2nd</div>
+          <div class="stat-label">Largest SaH provider</div>
+        </div>
+        <div class="card cred-stat">
+          <div class="stat-number">$500M+</div>
+          <div class="stat-label">Funding under management</div>
+        </div>
+        <div class="card cred-stat">
+          <div class="stat-number">300+</div>
+          <div class="stat-label">Coordination Partners</div>
+        </div>
+        <div class="card cred-stat">
+          <div class="stat-number">14,000+</div>
+          <div class="stat-label">Active clients</div>
+        </div>
+        <div class="card cred-stat">
+          <div class="stat-number" style="font-size: 28px;">46th &rarr; 2nd</div>
+          <div class="stat-label">KPMG ranking in 2 years</div>
+        </div>
+      </div>
+
+      <div class="feature-cards">
+        <div class="card feature-card">
+          <div class="feature-icon">&#9670;</div>
+          <div>
+            <h4>Only Pure-Play Provider</h4>
+            <p>Only top-10 at 100% coordination. No conflict of interest.</p>
+          </div>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon">&#9650;</div>
+          <div>
+            <h4>Proven Scalable Model</h4>
+            <p>300+ coordinators today. Fastest KPMG growth ever.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <blockquote>&ldquo;I was running a 4-person SC practice. Within 6 months I had 30 aged care clients alongside my NDIS work.&rdquo;</blockquote>
+        <cite>&mdash; Coordination Partner, QLD</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 4 — INDUSTRY CROSSOVER
+  ══════════════════════════════════════════════════ -->
+  <section id="crossover" data-slide-num="04" style="background: var(--white);">
+    <div class="section-inner">
+      <h2 class="section-title">Two Industries, One Skillset</h2>
+      <p class="section-subtitle">NDIS and aged care are closer than you think</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px;">
+
+        <!-- Card 1: Same People -->
+        <div class="card" style="border-top:4px solid var(--teal); padding:28px 32px;">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:12px; background:var(--light-teal-bg); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#128101;</div>
+            <h4 style="font-family:var(--font-heading); font-size:17px; font-weight:700; color:var(--navy); margin:0;">Same People, Different Stage of Life</h4>
+          </div>
+          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">Your NDIS participants have parents and grandparents who need aged care. Many aged care clients previously had disability support. You already understand the people — it's the same community, at a different life stage.</p>
+        </div>
+
+        <!-- Card 2: Same Core Work -->
+        <div class="card" style="border-top:4px solid var(--gold); padding:28px 32px;">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:12px; background:#FDF5E6; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#128260;</div>
+            <h4 style="font-family:var(--font-heading); font-size:17px; font-weight:700; color:var(--navy); margin:0;">Same Core Work, Less Complexity</h4>
+          </div>
+          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">Both roles coordinate care, manage budgets, liaise with providers, and advocate for clients. Aged care is a connection service — no behaviour support plans, no restrictive practices, no SIL. Andrew Wallace: <em>&ldquo;Nothing in aged care is harder than NDIS.&rdquo;</em></p>
+        </div>
+
+        <!-- Card 3: Same Provider Network -->
+        <div class="card" style="border-top:4px solid var(--coral); padding:28px 32px;">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:12px; background:#FDF0EC; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#127760;</div>
+            <h4 style="font-family:var(--font-heading); font-size:17px; font-weight:700; color:var(--navy); margin:0;">Same Provider Network</h4>
+          </div>
+          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">Physios, OTs, nurses, personal carers, cleaners — the allied health and support worker network you already use operates across both NDIS and aged care. Your existing relationships transfer directly.</p>
+        </div>
+
+        <!-- Card 4: Same Government Funding Model -->
+        <div class="card" style="border-top:4px solid var(--navy); padding:28px 32px;">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:12px; background:var(--light-blue-bg); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#127970;</div>
+            <h4 style="font-family:var(--font-heading); font-size:17px; font-weight:700; color:var(--navy); margin:0;">Same Government Funding Structure</h4>
+          </div>
+          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">Both are government-funded individual budgets managed by a registered provider. You already understand plan budgets, service bookings, compliance, and claiming. The system works the same way — just different legislation.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 5 — SKILLS TRANSFER
+  ══════════════════════════════════════════════════ -->
+  <section id="skills" data-slide-num="05">
+    <div class="section-inner">
+      <h2 class="section-title">You Already Have the Skills</h2>
+      <p class="section-subtitle">Aged care coordination = Level 1 Support Coordination</p>
+
+      <div class="skills-table-wrapper">
+        <table class="skills-table">
+          <thead>
+            <tr>
+              <th>Your NDIS Skill</th>
+              <th>Aged Care Equivalent</th>
+              <th>Complexity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Support Coordination (L2)</td>
+              <td>Care Coordination</td>
+              <td>Lower</td>
+            </tr>
+            <tr>
+              <td>Plan budget management</td>
+              <td>Care budget (8 classifications)</td>
+              <td>Similar</td>
+            </tr>
+            <tr>
+              <td>Provider liaison</td>
+              <td>Service provider coordination</td>
+              <td>Same</td>
+            </tr>
+            <tr>
+              <td>Participant advocacy</td>
+              <td>Client advocacy</td>
+              <td>Same</td>
+            </tr>
+            <tr>
+              <td>NDIS compliance (18-mo audit)</td>
+              <td>45-min annual phone call</td>
+              <td>Much simpler</td>
+            </tr>
+            <tr>
+              <td>Behaviour support, SIL</td>
+              <td>N/A &mdash; Trilogy handles</td>
+              <td>N/A</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="skill-pills">
+        <span class="skill-pill">You deal with family, not recipients</span>
+        <span class="skill-pill">Capped by classification, but demand growing</span>
+        <span class="skill-pill">No mandated quals &mdash; experience counts</span>
+      </div>
+
+      <p class="skills-cta">300+ coordinators from non-aged-care backgrounds already do this.</p>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 5 — REVENUE OPPORTUNITY
+  ══════════════════════════════════════════════════ -->
+  <section id="revenue" data-slide-num="06">
+    <div class="section-inner">
+      <h2 class="section-title">The Revenue Opportunity</h2>
+      <p class="section-subtitle">What if you earned more than your NDIS revenue &mdash; with half the complexity?</p>
+
+      <div class="revenue-table-wrapper">
+        <table class="revenue-table">
+          <thead>
+            <tr>
+              <th>Active Clients</th>
+              <th>Annual FUM</th>
+              <th>Your Fee (10&ndash;15%)</th>
+              <th>vs NDIS Ceiling (~$120K)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10</td>
+              <td>$377K</td>
+              <td>$38K &ndash; $57K</td>
+              <td>Part-time income</td>
+            </tr>
+            <tr>
+              <td>25</td>
+              <td>$942K</td>
+              <td>$94K &ndash; $141K</td>
+              <td>Approaching ceiling</td>
+            </tr>
+            <tr class="highlight">
+              <td><strong>50</strong></td>
+              <td><strong>$1.88M</strong></td>
+              <td><strong>$188K &ndash; $282K</strong></td>
+              <td><strong>50&ndash;135% ABOVE</strong></td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>$3.77M</td>
+              <td>$377K &ndash; $565K</td>
+              <td>3&ndash;5x ceiling</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="comparison-cards">
+        <div class="card comparison-card ndis">
+          <h4>NDIS</h4>
+          <p>$100.14/hr &times; 25 hrs/wk &times; 48 wks = <strong>~$120K ceiling</strong></p>
+        </div>
+        <div class="card comparison-card aged-care">
+          <h4>Aged Care</h4>
+          <p>% of SaH package. <strong>No cap, no freeze</strong>, growing 28%+</p>
+        </div>
+      </div>
+
+      <div style="text-align: center;">
+        <a href="#calculator" class="btn btn-teal">Model your own numbers &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 6 — CALCULATOR
+  ══════════════════════════════════════════════════ -->
+  <section id="calculator" data-slide-num="07">
+    <div class="section-inner">
+      <h2 class="section-title">Model Your Own Numbers</h2>
+      <p class="section-subtitle">Interactive calculator &mdash; project your 24-month revenue</p>
+
+      <div class="calculator-embed">
+        <iframe src="https://future-focus-phi.vercel.app/calculator.html" title="Revenue Calculator" loading="lazy"></iframe>
+      </div>
+
+      <div class="calculator-link">
+        <a href="https://future-focus-phi.vercel.app/calculator.html" target="_blank" rel="noopener">Open full calculator &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 7 — THE PROGRAMME
+  ══════════════════════════════════════════════════ -->
+  <section id="programme" data-dark data-slide-num="08">
+    <div class="section-inner">
+      <h2 class="section-title">The Coordination Partner Programme</h2>
+      <p class="section-subtitle">A partnership &mdash; not a job, not an acquisition</p>
+
+      <div class="pillar-cards">
+        <div class="pillar-card keep">
+          <h3>What You Keep</h3>
+          <ul>
+            <li>Your business</li>
+            <li>Your clients</li>
+            <li>Your independence</li>
+            <li>Your brand</li>
+            <li>Your team</li>
+            <li>Your NDIS business alongside</li>
+          </ul>
+        </div>
+        <div class="pillar-card gain">
+          <h3>What You Gain</h3>
+          <ul>
+            <li>Client acquisition support</li>
+            <li>Trilogy's registration</li>
+            <li>Automatic monthly payments</li>
+            <li>Dedicated Partnership Manager</li>
+            <li>Training + knowledge uplift</li>
+            <li>Growing market</li>
+          </ul>
+        </div>
+        <div class="pillar-card gone">
+          <h3>What Goes Away</h3>
+          <ul>
+            <li>Chasing plan managers</li>
+            <li>Invoicing admin</li>
+            <li>Registration burden</li>
+            <li>Audit prep</li>
+            <li>Rate freeze anxiety</li>
+            <li>Revenue ceiling</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="programme-footer">
+        <div><span class="pill" style="background: rgba(255,255,255,0.15); color: #fff;">Bronze &rarr; Silver &rarr; Gold &rarr; Platinum as you grow</span></div>
+        <div style="margin-top: 20px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="hub.html" class="btn btn-white">Explore the Resource Hub &rarr;</a>
+          <a href="resources/brand-and-marketing.html" class="btn btn-outline-white">See marketing materials &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 8 — CLIENT ACQUISITION
+  ══════════════════════════════════════════════════ -->
+  <section id="acquisition" data-slide-num="09">
+    <div class="section-inner">
+      <h2 class="section-title">How You Build Your Client Base</h2>
+      <p class="section-subtitle">Dedicated support, proven playbooks, and your existing network</p>
+
+      <div class="acq-cards">
+        <div class="card acq-card">
+          <div class="acq-number">1</div>
+          <h4>Your Warm Market</h4>
+          <ul>
+            <li>NDIS clients' elderly parents &mdash; one degree from 20+ prospects</li>
+            <li>Allied health network works across both sectors</li>
+            <li>One email to therapist contacts opens referrals</li>
+          </ul>
+        </div>
+        <div class="card acq-card">
+          <div class="acq-number">2</div>
+          <h4>Community Outreach</h4>
+          <ul>
+            <li>Hospital discharge units and planners</li>
+            <li>GPs, social workers, allied health</li>
+            <li>RSLs, retirement villages, community centres</li>
+          </ul>
+        </div>
+        <div class="card acq-card">
+          <div class="acq-number">3</div>
+          <h4>Local Events &amp; Presence</h4>
+          <ul>
+            <li>Talks at retirement villages</li>
+            <li>Seniors groups, carer support groups</li>
+            <li>Community expos, networking events</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="acq-support">Trilogy equips you with co-branded brochures, outreach playbooks, and marketing support.</p>
+
+      <div class="acq-buttons">
+        <a href="resources/client-acquisition.html" class="btn btn-teal">See the playbook &rarr;</a>
+        <a href="resources/brand-and-marketing.html" class="btn btn-navy">See example materials &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 9 — TIMELINE
+  ══════════════════════════════════════════════════ -->
+  <section id="timeline" data-slide-num="10">
+    <div class="section-inner">
+      <h2 class="section-title">From Handshake to First Client in 4 Weeks</h2>
+      <p class="section-subtitle">You coordinate care. Trilogy handles everything else.</p>
+
+      <div class="timeline-grid">
+        <div class="timeline-track">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-week">Week 1</div>
+            <div class="timeline-label">Discovery Call</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-week">Week 2</div>
+            <div class="timeline-label">Portfolio Review + Price Book</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-week">Week 3</div>
+            <div class="timeline-label">Platform Onboarding</div>
+          </div>
+
+          <div class="timeline-item active">
+            <div class="timeline-dot"></div>
+            <div class="timeline-week">Week 4</div>
+            <div class="timeline-label">Go Live</div>
+          </div>
+        </div>
+
+        <div class="timeline-cards">
+          <div class="card starter-card">
+            <h4>Your Starter Pack</h4>
+            <ul>
+              <li>Playbook</li>
+              <li>Brochure template</li>
+              <li>Email templates</li>
+              <li>Discharge playbook</li>
+              <li>Fee schedule</li>
+            </ul>
+          </div>
+
+          <div class="day-card">
+            <h4>Day-to-Day</h4>
+            <ul>
+              <li>You coordinate</li>
+              <li>Workers deliver</li>
+              <li>Trilogy claims</li>
+              <li>You get paid monthly</li>
+              <li>45-min annual audit</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 10 — CTA
+  ══════════════════════════════════════════════════ -->
+  <section id="cta" data-dark data-slide-num="11">
+    <div class="section-inner">
+      <h2 class="section-title">Book Your Discovery Call</h2>
+      <p class="cta-subtitle">In 30 minutes, you'll know exactly what your aged care revenue could look like &mdash; and whether this partnership makes sense.</p>
+
+      <div class="cta-buttons">
+        <a href="mailto:partnerships@trilogycare.com.au" class="cta-btn email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          partnerships@trilogycare.com.au
+        </a>
+        <a href="tel:1300784564" class="cta-btn phone">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          1300 784 564
+        </a>
+      </div>
+
+      <div class="urgency-card">
+        <p>Coordinators joining now are building their portfolio before the market gets crowded.</p>
+      </div>
+
+      <div class="cta-calc-link">
+        <a href="#calculator">Model your numbers &rarr;</a>
+      </div>
+
+      <button onclick="window.print()" style="margin-top:24px; font-family:var(--font-body); font-size:14px; font-weight:500; padding:10px 28px; border-radius:10px; border:1.5px solid rgba(255,255,255,0.3); background:transparent; color:rgba(255,255,255,0.6); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Download as PDF</button>
+
+      <div class="cta-brand">TRILOGY CARE</div>
+    </div>
+  </section>
+
+  </div><!-- /.deck -->
+
+  <!-- ══════════════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      const deck = document.getElementById('deck');
+      const nav = document.getElementById('mainNav');
+      const dots = document.querySelectorAll('.progress-dot');
+      const sections = deck.querySelectorAll('section');
+      const counter = document.getElementById('slideCounter');
+      const total = sections.length;
+
+      function getCurrentSlide() {
+        return Math.round(deck.scrollTop / window.innerHeight);
+      }
+
+      // Nav scroll effect + active dot + counter
+      function updateState() {
+        const idx = getCurrentSlide();
+        const current = sections[idx];
+        const isDark = current?.hasAttribute('data-dark');
+
+        // Nav
+        if (idx > 0) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+
+        // Dots
+        const currentId = current?.id;
+        dots.forEach(dot => {
+          dot.classList.toggle('active', dot.dataset.section === currentId);
+        });
+
+        // Counter
+        counter.textContent = `${idx + 1} / ${total}`;
+        counter.classList.toggle('on-dark', isDark);
+
+        // Dot colors on dark slides
+        document.querySelector('.progress-dots')?.classList.toggle('on-dark', isDark);
+      }
+
+      // Throttled scroll handler
+      let ticking = false;
+      deck.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateState();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      // Progress dot click
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const target = document.getElementById(dot.dataset.section);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        const idx = getCurrentSlide();
+        if (['ArrowDown', 'ArrowRight', ' '].includes(e.key)) {
+          e.preventDefault();
+          sections[Math.min(idx + 1, total - 1)]?.scrollIntoView({ behavior: 'smooth' });
+        } else if (['ArrowUp', 'ArrowLeft'].includes(e.key)) {
+          e.preventDefault();
+          sections[Math.max(idx - 1, 0)]?.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+
+      // PDF download
+      document.querySelector('.pdf-btn')?.addEventListener('click', () => window.print());
+
+      // Initial state
+      updateState();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Brand in Market — Trilogy Care Partner Resource Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,400;1,8..144,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1F3B63;
+      --navy-dark: #0f2440;
+      --teal: #027F7E;
+      --light-teal: #43C0BE;
+      --coral: #E07B5E;
+      --gold: #D4A537;
+      --slate: #4A5565;
+      --charcoal: #4B5563;
+      --light-blue-bg: #E1EEFA;
+      --light-teal-bg: #dff4f4;
+      --white: #FFFFFF;
+      --off-white: #F9FAFB;
+      --font-heading: 'Roboto Serif', Georgia, serif;
+      --font-body: 'Roboto Flex', 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--slate);
+      font-size: 17px;
+      line-height: 1.8;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Fixed Nav ── */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.95);
+    }
+    .top-nav img { height: 32px; }
+    .top-nav a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: var(--navy); }
+    .top-nav a svg { width: 16px; height: 16px; }
+
+    /* ── Hero ── */
+    .hero {
+      margin-top: 61px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%);
+      padding: 80px 32px 64px;
+      text-align: center;
+    }
+    .hero .category-pill {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .hero .read-time {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 56px;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    h2:first-child { margin-top: 0; }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--teal);
+      margin-top: 36px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    h4 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+
+    p { margin-bottom: 18px; }
+
+    strong { color: var(--charcoal); font-weight: 600; }
+
+    /* ── Lists ── */
+    ul, ol {
+      margin-bottom: 18px;
+      padding-left: 24px;
+    }
+    li { margin-bottom: 8px; }
+
+    /* ── Callout / Tip Card ── */
+    .callout {
+      background: var(--light-teal-bg);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 16px 16px 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .callout.info {
+      background: var(--light-blue-bg);
+      border-left-color: var(--navy);
+    }
+    .callout.gold {
+      background: #FFF8E7;
+      border-left-color: var(--gold);
+    }
+    .callout.coral {
+      background: #FFF0EB;
+      border-left-color: var(--coral);
+    }
+    .callout p:last-child { margin-bottom: 0; }
+    .callout-label {
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .callout.info .callout-label { color: var(--navy); }
+    .callout.gold .callout-label { color: var(--gold); }
+    .callout.coral .callout-label { color: var(--coral); }
+
+    /* ── Template Box ── */
+    .template-box {
+      background: #F3F4F6;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 20px 0;
+      font-size: 15px;
+      line-height: 1.7;
+      position: relative;
+    }
+    .template-box .template-label {
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .template-box p:last-child { margin-bottom: 0; }
+    .template-box .copy-hint {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 11px;
+      color: #9CA3AF;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Table ── */
+    .table-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin: 28px 0;
+      border: 1px solid #E5E7EB;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+    thead th {
+      background: var(--navy);
+      color: var(--white);
+      text-align: left;
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    tbody td {
+      padding: 12px 18px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    tbody tr:nth-child(even) { background: var(--off-white); }
+    tbody tr:last-child td { border-bottom: none; }
+
+    /* ── Social Tile Mockups ── */
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .social-tile {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+      border-radius: 16px;
+      padding: 28px 24px;
+      color: var(--white);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .social-tile .tile-num {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      opacity: 0.5;
+    }
+    .social-tile:nth-child(2) { background: linear-gradient(135deg, var(--teal) 0%, var(--light-teal) 100%); }
+    .social-tile:nth-child(3) { background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%); }
+    .social-tile:nth-child(4) { background: linear-gradient(135deg, var(--coral) 0%, #C0624A 100%); }
+    .social-tile:nth-child(5) { background: linear-gradient(135deg, #27476F 0%, var(--navy) 100%); }
+    .social-tile:nth-child(6) { background: linear-gradient(135deg, var(--light-teal) 0%, var(--teal) 100%); }
+
+    /* ── Brochure Mockup ── */
+    .brochure-mock {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin: 28px 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      border: 1px solid #E5E7EB;
+    }
+    .brochure-panel {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .brochure-panel.front {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+      color: var(--white);
+      text-align: center;
+    }
+    .brochure-panel.front h4 {
+      color: var(--white);
+      font-size: 20px;
+      margin-top: 0;
+    }
+    .brochure-panel.front p {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-bottom: 0;
+    }
+    .brochure-panel.inside {
+      background: var(--white);
+    }
+    .brochure-panel.inside h4 {
+      font-size: 14px;
+      color: var(--navy);
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .brochure-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: var(--slate);
+    }
+    .brochure-item .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* ── Email Banner Mockup ── */
+    .email-banner-mock {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 20px 28px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .email-banner-mock .eb-left {
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .email-banner-mock .eb-right {
+      color: var(--light-teal);
+      font-size: 13px;
+    }
+
+    /* ── Ordered list (steps) ── */
+    ol.steps {
+      list-style: none;
+      padding-left: 0;
+      counter-reset: step;
+    }
+    ol.steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 48px;
+      margin-bottom: 16px;
+    }
+    ol.steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Bottom Section ── */
+    .bottom-section {
+      border-top: 1px solid #E5E7EB;
+      margin-top: 56px;
+      padding-top: 40px;
+    }
+    .bottom-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-pdf:hover { background: #026968; }
+    .btn-pdf svg { width: 18px; height: 18px; }
+
+    .link-back {
+      font-size: 15px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .link-back:hover { color: var(--navy); }
+
+    .next-resources h3 {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .next-resources ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .next-resources li {
+      margin-bottom: 12px;
+    }
+    .next-resources a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+    .next-resources a:hover { color: var(--navy); }
+    .next-resources a svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .hero { padding: 60px 20px 48px; }
+      .hero h1 { font-size: 32px; }
+      .content { padding: 40px 18px 60px; }
+      h2 { font-size: 24px; }
+      .social-grid { grid-template-columns: 1fr; }
+      .brochure-mock { grid-template-columns: 1fr; }
+      .email-banner-mock { flex-direction: column; text-align: center; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      .top-nav, .btn-pdf, .bottom-actions, .next-resources { display: none !important; }
+      .hero { margin-top: 0; padding: 40px 20px; }
+      .content { padding: 20px 0; }
+      .hero h1 { font-size: 32px; }
+      body { font-size: 14px; }
+      .social-grid { break-inside: avoid; }
+      .brochure-mock { break-inside: avoid; }
+      .table-wrap { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      .template-box { break-inside: avoid; }
+      h2 { break-after: avoid; }
+      .bottom-section { border-top: none; margin-top: 24px; padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Nav -->
+  <nav class="top-nav">
+    <img src="../assets/tc-logo.svg" alt="Trilogy Care" height="32">
+    <a href="../hub.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to Resource Hub
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <span class="category-pill">Marketing &amp; Brand</span>
+    <h1>Your Brand in Market</h1>
+    <p class="read-time">10 min read</p>
+  </header>
+
+  <!-- Content -->
+  <main class="content">
+
+    <h2>Your Brand Identity as a Coordination Partner</h2>
+    <p>As a Trilogy Care Coordination Partner, you're not an employee &mdash; you're an independent business with your own brand. The partnership is positioned as:</p>
+
+    <div class="callout gold">
+      <div class="callout-label">Your positioning</div>
+      <p><strong>"[Your Business Name] &mdash; Support at Home Coordinator, partnered with Trilogy Care"</strong></p>
+    </div>
+
+    <p>This gives you the best of both worlds: your personal brand and local relationships, backed by the credibility of Australia's 2nd largest Support at Home provider.</p>
+
+    <h2>Approved Messaging</h2>
+    <p>Use these pre-approved messages in your marketing materials, social media, and conversations:</p>
+
+    <h3>About Trilogy Care</h3>
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <p>"Trilogy Care supports older Australians to live well at home for longer, by helping them build the Support at Home plan they want and need."</p>
+    </div>
+
+    <h3>About your partnership</h3>
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <p>"[Your Business Name] partners with Trilogy Care, a registered Support at Home provider, to coordinate and manage your Support at Home. Our role is to support you in managing your home care so you can continue to live confidently at home."</p>
+    </div>
+
+    <h3>About the value</h3>
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <p>"Working with [Your Business Name] and Trilogy Care means you'll spend less on management fees, so more of your budget goes to care and services that help you stay at home longer."</p>
+    </div>
+
+    <h3>Key selling points to use</h3>
+    <ul>
+      <li><strong>Affordable care management</strong> &mdash; less on fees, more on care</li>
+      <li><strong>Transparent pricing</strong> &mdash; no hidden fees or surprises</li>
+      <li><strong>Flexibility and control</strong> &mdash; choose your own workers and services</li>
+      <li><strong>Dedicated care partner</strong> at Trilogy Care for every client</li>
+      <li><strong>Compliance and reliability</strong> &mdash; zero sanctions history</li>
+    </ul>
+
+    <h2>Co-Branded Brochure</h2>
+    <p>Trilogy creates a professionally designed brochure featuring your business name, logo, and contact details alongside Trilogy Care's branding.</p>
+
+    <div class="brochure-mock">
+      <div class="brochure-panel front">
+        <h4>[Your Business Name]<br>&amp; Trilogy Care</h4>
+        <p style="margin-top: 12px; font-size: 16px; font-weight: 500;">Support at Home Coordination</p>
+        <p style="margin-top: 16px; font-size: 12px; opacity: 0.7;">Your logo here &nbsp;|&nbsp; Trilogy Care logo</p>
+      </div>
+      <div class="brochure-panel inside">
+        <h4>Inside panels include:</h4>
+        <div class="brochure-item"><span class="dot"></span> What is Support at Home?</div>
+        <div class="brochure-item"><span class="dot"></span> How we work together</div>
+        <div class="brochure-item"><span class="dot"></span> What's included in your plan</div>
+        <div class="brochure-item"><span class="dot"></span> How to get started</div>
+        <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid #E5E7EB;">
+          <h4 style="margin-bottom: 6px;">Back panel:</h4>
+          <div class="brochure-item"><span class="dot"></span> Your contact details</div>
+          <div class="brochure-item"><span class="dot"></span> Trilogy Care contact &amp; 1300 number</div>
+          <div class="brochure-item"><span class="dot"></span> Both logos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">How to order</div>
+      <p>Submit your business details and logo to your Partnership Manager. Your co-branded brochure will be ready in <strong>5&ndash;7 business days</strong>.</p>
+    </div>
+
+    <h2>Social Media Toolkit</h2>
+
+    <h3>6 Ready-to-Use Social Tile Concepts</h3>
+    <p>Use these tiles across LinkedIn, Facebook, and Instagram. Customise with your business name where indicated.</p>
+
+    <div class="social-grid">
+      <div class="social-tile">
+        <span class="tile-num">TILE 1</span>
+        <p>Supporting older Australians to live well at home &mdash; <strong>[Your Business Name]</strong> &amp; Trilogy Care</p>
+      </div>
+      <div class="social-tile">
+        <span class="tile-num">TILE 2</span>
+        <p>Did you know? Under Support at Home, you can choose your own care coordinator and workers.</p>
+      </div>
+      <div class="social-tile">
+        <span class="tile-num">TILE 3</span>
+        <p>More care hours, less fees. Find out how Support at Home works. Contact <strong>[Your Business Name]</strong>.</p>
+      </div>
+      <div class="social-tile">
+        <span class="tile-num">TILE 4</span>
+        <p>Looking for a better home care experience? We help you get more from your funding.</p>
+      </div>
+      <div class="social-tile">
+        <span class="tile-num">TILE 5</span>
+        <p>Your home, your choice, your care team. <strong>[Your Business Name]</strong> &mdash; partnered with Trilogy Care.</p>
+      </div>
+      <div class="social-tile">
+        <span class="tile-num">TILE 6</span>
+        <p>Need help managing aged care for a loved one? We coordinate everything so you don't have to.</p>
+      </div>
+    </div>
+
+    <h3>LinkedIn Post Templates</h3>
+    <p>Five ready-to-copy posts. Personalise the bracketed fields and post.</p>
+
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">LinkedIn Post 1 &mdash; Partnership Announcement</div>
+      <p>I'm excited to announce that I've expanded into aged care coordination through a partnership with @Trilogy Care. If you know anyone over 65 who could benefit from help managing their Support at Home services, I'd love to chat. #agedcare #supportathome</p>
+    </div>
+
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">LinkedIn Post 2 &mdash; NDIS Crossover</div>
+      <p>After [X] years in NDIS support coordination, I've seen how much families juggle when a loved one needs care. That's why I've partnered with Trilogy Care to offer aged care coordination &mdash; helping older Australians get more from their Support at Home funding. #agedcare</p>
+    </div>
+
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">LinkedIn Post 3 &mdash; Health Professional Referral</div>
+      <p>Did you know Support at Home clients can choose their own care coordinator? If you're a health professional who sees elderly patients, I'd welcome the opportunity to be your go-to referral for home care coordination. DM me. #healthprofessionals</p>
+    </div>
+
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">LinkedIn Post 4 &mdash; Industry Growth</div>
+      <p>The aged care sector is growing fast &mdash; 83,000 new home care places being released right now. I'm proud to be part of the solution, coordinating care for older Australians through Trilogy Care. #supportathome</p>
+    </div>
+
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">LinkedIn Post 5 &mdash; Personal Purpose</div>
+      <p>What I love about aged care coordination: helping people stay in their homes, independently, with the right support around them. If that resonates, let's connect. #agedcare #coordination</p>
+    </div>
+
+    <h3>Facebook Post Templates</h3>
+    <p>Five community-focused posts for your Facebook page or profile.</p>
+
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">Facebook Post 1 &mdash; Introduction</div>
+      <p>Big news! I'm now helping older Australians in our community get more from their home care funding. If you or someone you know is over 65 and receiving (or waiting for) home care, I'd love to have a chat about how I can help. I'm working with Trilogy Care, one of Australia's largest Support at Home providers. Send me a message or call [your number].</p>
+    </div>
+
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">Facebook Post 2 &mdash; Family Focused</div>
+      <p>Are you helping a parent or grandparent manage their home care? It can be a lot to juggle. I coordinate Support at Home services so families can focus on being family &mdash; not admin. If you'd like to know more, drop me a message.</p>
+    </div>
+
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">Facebook Post 3 &mdash; Value Message</div>
+      <p>Did you know that with the right provider, you can get more care hours from the same home care budget? Some of my clients are getting 15&ndash;20% more actual care than they were before. Less fees = more help at home. Ask me how.</p>
+    </div>
+
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">Facebook Post 4 &mdash; Educational</div>
+      <p>A lot of people don't realise that under Support at Home, you get to choose who coordinates your care AND who delivers it. You're not locked in. If you're not happy, you can switch &mdash; and it's easier than you think. Happy to explain if anyone has questions!</p>
+    </div>
+
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <div class="template-label">Facebook Post 5 &mdash; Community</div>
+      <p>I'm on a mission to help older people in [your suburb/region] live well at home for longer. If you know someone who could use a hand navigating the aged care system, point them my way. No cost for a chat, and I'll always give honest advice &mdash; even if I'm not the right fit.</p>
+    </div>
+
+    <h3>Posting Schedule</h3>
+    <div class="callout gold">
+      <div class="callout-label">Recommended cadence</div>
+      <p><strong>LinkedIn:</strong> 2x per week &mdash; Tuesday + Thursday</p>
+      <p><strong>Facebook:</strong> 3x per week &mdash; Monday, Wednesday, Friday</p>
+      <p style="margin-top: 10px;"><strong>Content mix:</strong> Educational posts (how Support at Home works), personal stories, client wins (de-identified), and industry news.</p>
+    </div>
+
+    <h2>Email Marketing</h2>
+
+    <h3>Email Signature Banner</h3>
+    <p>Add this banner to your email signature to promote your partnership in every email you send.</p>
+
+    <div class="email-banner-mock">
+      <div class="eb-left"><strong>[Your Business Name]</strong> &mdash; Proud Coordination Partner of Trilogy Care</div>
+      <div class="eb-right">1300 459 190 &nbsp;|&nbsp; trilogycare.com.au</div>
+    </div>
+
+    <h3>Newsletter Template</h3>
+    <p>Send a monthly email to your contacts covering:</p>
+    <ul>
+      <li><strong>"Did you know?"</strong> aged care fact of the month</li>
+      <li><strong>Client success story</strong> (de-identified)</li>
+      <li><strong>Upcoming local events</strong> relevant to your audience</li>
+      <li><strong>How to contact you</strong> &mdash; phone, email, and website</li>
+    </ul>
+
+    <h3>Email Footer Addition</h3>
+    <div class="template-box">
+      <span class="copy-hint">Copy &amp; paste</span>
+      <p>Now offering Support at Home coordination in partnership with Trilogy Care. Helping older Australians get more care hours, more choice, and more value from their home care funding.</p>
+    </div>
+
+    <h2>Website Guidance</h2>
+    <p>If you have a website, add a new section or page about aged care coordination.</p>
+
+    <h3>Recommended page title</h3>
+    <p><strong>Aged Care Coordination &mdash; Support at Home</strong></p>
+
+    <h3>Key content to include</h3>
+    <ul>
+      <li>What Support at Home is</li>
+      <li>How your partnership with Trilogy Care works</li>
+      <li>What clients get: choice, flexibility, more care hours</li>
+      <li>How to get started (call you or Trilogy)</li>
+      <li>Your contact details</li>
+    </ul>
+
+    <h3>SEO keywords to include</h3>
+    <div class="callout info">
+      <div class="callout-label">SEO Tip</div>
+      <p>Include these keywords naturally throughout your page copy and in your page title, meta description, and headings:</p>
+      <p><strong>support at home coordinator</strong> &middot; <strong>aged care coordination</strong> &middot; <strong>home care provider</strong> &middot; <strong>support at home services [your suburb/region]</strong> &middot; <strong>trilogy care partner</strong></p>
+    </div>
+
+    <h2>Marketing Support by Tier</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Marketing Support You Receive</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bronze</strong><br><span style="font-size: 13px; color: #9CA3AF;">0&ndash;10 clients</span></td>
+            <td>Co-branded brochure, social tiles, approved messaging, marketing approval support</td>
+          </tr>
+          <tr>
+            <td><strong>Silver</strong><br><span style="font-size: 13px; color: #9CA3AF;">11&ndash;25 clients</span></td>
+            <td>Bronze + featured listing on Trilogy partner page, quarterly marketing review</td>
+          </tr>
+          <tr>
+            <td><strong>Gold</strong><br><span style="font-size: 13px; color: #9CA3AF;">26&ndash;50 clients</span></td>
+            <td>Silver + dedicated marketing support, priority collateral, co-branded materials</td>
+          </tr>
+          <tr>
+            <td><strong>Platinum</strong><br><span style="font-size: 13px; color: #9CA3AF;">50+ clients</span></td>
+            <td>Gold + social media management, event support, content creation, speaking opportunities</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Marketing Approval Process</h2>
+    <p>All references to Trilogy Care must be approved before publishing. This includes:</p>
+    <ul>
+      <li>Use of Trilogy Care logos</li>
+      <li>References to the Trilogy Care brand</li>
+      <li>References to Trilogy Care services</li>
+      <li>Any marketing materials mentioning the partnership</li>
+    </ul>
+
+    <h3>Process</h3>
+    <ol class="steps">
+      <li><strong>Send your draft</strong> to your Partnership Manager (your first point of contact)</li>
+      <li><strong>If PM unavailable:</strong> email <strong>marketing@trilogycare.com.au</strong></li>
+      <li><strong>Typical turnaround:</strong> 2&ndash;3 business days</li>
+      <li><strong>You'll receive</strong> either approval or suggested edits</li>
+    </ol>
+
+    <div class="callout coral">
+      <div class="callout-label">Important</div>
+      <p>Do not publish any materials referencing Trilogy Care without written approval. This protects both your brand and the partnership.</p>
+    </div>
+
+    <!-- Bottom -->
+    <div class="bottom-section">
+      <div class="bottom-actions">
+        <button class="btn-pdf" onclick="window.print()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download as PDF
+        </button>
+        <a href="../hub.html" class="link-back">&larr; Back to Resource Hub</a>
+      </div>
+
+      <div class="next-resources">
+        <h3>Continue Reading</h3>
+        <ul>
+          <li>
+            <a href="sales-conversations.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              Next: Sales Conversations Guide
+            </a>
+          </li>
+          <li>
+            <a href="community-outreach.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              Community Outreach Playbook
+            </a>
+          </li>
+          <li>
+            <a href="getting-started.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              Getting Started Guide
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

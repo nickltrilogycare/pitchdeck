@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner Resource Hub — Trilogy Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;600;700&family=Roboto+Serif:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1F3B63;
+      --navy-dark: #0f2440;
+      --teal: #027F7E;
+      --light-teal: #43C0BE;
+      --coral: #E07B5E;
+      --gold: #D4A537;
+      --slate: #4A5565;
+      --light-blue-bg: #E1EEFA;
+      --light-teal-bg: #dff4f4;
+      --white: #FFFFFF;
+      --off-white: #F9FAFB;
+      --font-heading: 'Roboto Serif', Georgia, serif;
+      --font-body: 'Roboto Flex', 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--off-white);
+      color: var(--slate);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Nav Bar ── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-logo img {
+      height: 32px;
+      display: block;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(0,0,0,0.12);
+    }
+
+    .nav-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--teal);
+    }
+
+    .nav-back {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--teal);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      margin-top: 64px;
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, #1a4a6e 100%);
+      padding: 72px 32px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(2,127,126,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      right: -10%;
+      width: 50%;
+      height: 180%;
+      background: radial-gradient(ellipse, rgba(67,192,190,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-weight: 300;
+      font-size: 38px;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 32px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .stat-pills {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 8px 20px;
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+    }
+
+    .stat-pill strong {
+      color: var(--light-teal);
+      font-weight: 700;
+    }
+
+    /* ── Filter Section ── */
+    .filter-section {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 24px 32px;
+      position: sticky;
+      top: 64px;
+      z-index: 50;
+    }
+
+    .filter-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      border: none;
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: transparent;
+      position: relative;
+    }
+
+    .filter-pill[data-filter="all"] {
+      border: 1.5px solid var(--teal);
+      color: var(--teal);
+    }
+    .filter-pill[data-filter="getting-started"] {
+      border: 1.5px solid var(--teal);
+      color: var(--teal);
+    }
+    .filter-pill[data-filter="sales"] {
+      border: 1.5px solid var(--navy);
+      color: var(--navy);
+    }
+    .filter-pill[data-filter="marketing"] {
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+    }
+    .filter-pill[data-filter="operations"] {
+      border: 1.5px solid var(--coral);
+      color: var(--coral);
+    }
+
+    .filter-pill.active[data-filter="all"],
+    .filter-pill.active[data-filter="getting-started"] {
+      background: var(--teal);
+      color: var(--white);
+      border-color: var(--teal);
+    }
+    .filter-pill.active[data-filter="sales"] {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+    .filter-pill.active[data-filter="marketing"] {
+      background: var(--gold);
+      color: var(--white);
+      border-color: var(--gold);
+    }
+    .filter-pill.active[data-filter="operations"] {
+      background: var(--coral);
+      color: var(--white);
+      border-color: var(--coral);
+    }
+
+    .filter-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    /* ── Card Grid ── */
+    .grid-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 32px 80px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    @media (max-width: 960px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .card-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+      .nav-subtitle { display: none; }
+      .nav-divider { display: none; }
+    }
+
+    /* ── Card ── */
+    .hub-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hub-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+      border-color: rgba(67,192,190,0.2);
+    }
+
+    .hub-card.card-hidden {
+      opacity: 0;
+      transform: translateY(12px) scale(0.97);
+      pointer-events: none;
+      position: absolute;
+      visibility: hidden;
+    }
+
+    .hub-card.card-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      position: relative;
+      visibility: visible;
+    }
+
+    .card-thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.05);
+      background-image: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.08) 0%, transparent 60%);
+    }
+
+    .card-icon {
+      font-size: 48px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+    }
+
+    .card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-category {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .card-time {
+      color: var(--slate);
+      opacity: 0.7;
+    }
+
+    .card-arrow {
+      color: var(--teal);
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+
+    .hub-card:hover .card-arrow {
+      transform: translateX(3px);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 40px 32px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      background: var(--white);
+    }
+
+    .footer p {
+      font-size: 14px;
+      color: var(--slate);
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    .footer a {
+      font-size: 14px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a href="index.html" class="nav-logo">
+          <img src="assets/tc-logo.svg" height="32" alt="Trilogy Care">
+        </a>
+        <div class="nav-divider"></div>
+        <span class="nav-subtitle">Partner Resource Hub</span>
+      </div>
+      <a href="index.html" class="nav-back">&larr; Back to Presentation</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Coordination Partner Resource Hub</h1>
+      <p>Everything you need to build a successful aged care coordination business</p>
+      <div class="stat-pills">
+        <span class="stat-pill"><strong>10</strong>&ensp;Guides</span>
+        <span class="stat-pill"><strong>4</strong>&ensp;Categories</span>
+        <span class="stat-pill"><strong>Ready</strong>&ensp;to Download</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filters -->
+  <div class="filter-section">
+    <div class="filter-inner">
+      <button class="filter-pill active" data-filter="all">All Resources</button>
+      <button class="filter-pill" data-filter="getting-started">Getting Started</button>
+      <button class="filter-pill" data-filter="sales">Sales &amp; Revenue</button>
+      <button class="filter-pill" data-filter="marketing">Marketing &amp; Brand</button>
+      <button class="filter-pill" data-filter="operations">Operations</button>
+    </div>
+  </div>
+
+  <!-- Card Grid -->
+  <div class="grid-section">
+    <div class="card-grid">
+
+      <!-- 1. Getting Started Guide -->
+      <a href="resources/getting-started.html" class="hub-card card-visible" data-category="getting-started">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #027F7E, #43C0BE);">
+          <span class="card-icon">&#x1F680;</span>
+        </div>
+        <div class="card-body">
+          <span class="card-category" style="color: #027F7E;">Getting Started</span>
+          <h3 class="card-title">Getting Started Guide</h3>
+          <p class="card-desc">Your orientation to the Coordination Partner Programme</p>
+          <div class="card-meta">
+            <span class="card-time">8 min read</span>
+            <span class="card-arrow">Read Guide &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2. Support at Home Explained -->
+      <a href="resources/sah-explained.html" class="hub-card card-visible" data-category="getting-started">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #027F7E, #1F3B63);">
+          <span class="card-icon">&#x1F3E0;</span>
+        </div>
+        <div class="card-body">
+          <span class="card-category" style="color: #027F7E;">Getting Started</span>
+          <h3 class="card-title">Support at Home Explained</h3>
+          <p class="card-desc">How aged care funding works — classifications, budgets, and eligibility</p>
+          <div class="card-meta">
+            <span class="card-time">12 min read</span>
+            <span class="card-arrow">Read Guide &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3. Client Acquisition Playbook -->
+      <a href="resources/client-acquisition.html" class="hub-card card-visible" data-category="sales">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #1F3B63, #027F7E);">
+          <span class="card-icon">&#x1F3AF;</span>
+        </div>
+        <div class="card-body">
+          <span class="card-category" style="color: #1F3B63;">Sales &amp; Revenue</span>
+          <h3 class="card-title">Client Acquisition Playbook</h3>
+          <p class="card-desc">The proven 3-step framework for building your aged care client base</p>
+          <div class="card-meta">
+            <span class="card-time">15 min read</span>
+            <span class="card-arrow">Read Guide &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4. Your Brand in Market -->
+      <a href="resources/brand-and-marketing.html" class="hub-card card-visible" data-category="marketing">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #D4A537, #E07B5E);">
+          <span class="card-icon">&#x2728;</span>
+        </div>
+        <div class="card-body">
+          <span class="card-category" style="color: #D4A537;">Marketing &amp; Brand</span>
+          <h3 class="card-title">Your Brand in Market</h3>
+          <p class="card-desc">Co-branded materials, social media toolkit, and marketing support</p>
+          <div class="card-meta">
+            <span class="card-time">10 min read</span>
+            <span class="card-arrow">Read Guide &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5. Sales Conversations Guide -->
+      <a href="resources/sales-conversations.html" class="hub-card card-visible" data-category="sales">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #1F3B63, #4A5565);">
+          <span class="card-icon">&#x1F4AC;</span>
+        </div>
+        <div class="card-body">
+          <span class="card-category" style="color: #1F3B63;">Sales &amp; Revenue</span>
+          <h3 class="card-title">Sales Conversations Guide</h3>
+          <p class="card-desc">Scripts and frameworks for talking to clients, referrers, and families</p>
+          <div class="card-meta">
+            <span class="card-time">12 min read</span>
+            <span class="card-arrow">Read Guide &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6. Community Outreach Playbook -->
+      <a href="resources/community-outreach.html" class="hub-card card-visible" data-category="marketing">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #D4A537, #027F7E);">
+          <span class="card-icon">&#x1F91D;</span>
+        </div>
+        <div class="card-body">
+          <span class="card-category" style="color: #D4A537;">Marketing &amp; Brand</span>
+          <h3 class="card-title">Community Outreach Playbook</h3>
+          <p class="card-desc">Build local referral relationships — hospitals, GPs, retirement villages</p>
+          <div class="card-meta">
+            <span class="card-time">14 min read</span>
+            <span class="card-arrow">Read Guide &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 7. Roles & Responsibilities -->
+      <a href="resources/roles-and-responsibilities.html" class="hub-card card-visible" data-category="operations">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #E07B5E, #1F3B63);">
+          <span class="card-icon">&#x1F4CB;</span>
+        </div>
+        <div class="card-body">
+          <span class="card-category" style="color: #E07B5E;">Operations</span>
+          <h3 class="card-title">Roles &amp; Responsibilities</h3>
+          <p class="card-desc">Who does what — you, Trilogy Care, and the client</p>
+          <div class="card-meta">
+            <span class="card-time">8 min read</span>
+            <span class="card-arrow">Read Guide &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 8. Revenue & Pricing Guide -->
+      <a href="resources/revenue-and-pricing.html" class="hub-card card-visible" data-category="sales">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #027F7E, #D4A537);">
+          <span class="card-icon">&#x1F4B0;</span>
+        </div>
+        <div class="card-body">
+          <span class="card-category" style="color: #1F3B63;">Sales &amp; Revenue</span>
+          <h3 class="card-title">Revenue &amp; Pricing Guide</h3>
+          <p class="card-desc">How you earn, SAH funding levels, revenue scenarios, and calculator</p>
+          <div class="card-meta">
+            <span class="card-time">10 min read</span>
+            <span class="card-arrow">Read Guide &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 9. Partner Onboarding Checklist -->
+      <a href="resources/onboarding-checklist.html" class="hub-card card-visible" data-category="getting-started">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #43C0BE, #027F7E);">
+          <span class="card-icon">&#x2705;</span>
+        </div>
+        <div class="card-body">
+          <span class="card-category" style="color: #027F7E;">Getting Started</span>
+          <h3 class="card-title">Partner Onboarding Checklist</h3>
+          <p class="card-desc">Week-by-week checklist for your first month as a Coordination Partner</p>
+          <div class="card-meta">
+            <span class="card-time">5 min read</span>
+            <span class="card-arrow">Read Guide &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 10. Switching Providers Guide -->
+      <a href="resources/switching-providers.html" class="hub-card card-visible" data-category="operations">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #E07B5E, #D4A537);">
+          <span class="card-icon">&#x1F504;</span>
+        </div>
+        <div class="card-body">
+          <span class="card-category" style="color: #E07B5E;">Operations</span>
+          <h3 class="card-title">Switching Providers Guide</h3>
+          <p class="card-desc">How to help clients transfer to Trilogy Care in 3 simple steps</p>
+          <div class="card-meta">
+            <span class="card-time">6 min read</span>
+            <span class="card-arrow">Read Guide &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Trilogy Care — Coordination Partner Programme</p>
+    <a href="index.html">&larr; Back to Presentation</a>
+  </footer>
+
+  <script>
+    (function() {
+      const pills = document.querySelectorAll('.filter-pill');
+      const cards = document.querySelectorAll('.hub-card');
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          // Update active pill
+          pills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+
+          const filter = pill.dataset.filter;
+
+          cards.forEach(card => {
+            const match = filter === 'all' || card.dataset.category === filter;
+
+            if (match) {
+              card.classList.remove('card-hidden');
+              card.classList.add('card-visible');
+            } else {
+              card.classList.remove('card-visible');
+              card.classList.add('card-hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

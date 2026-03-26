@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roles &amp; Responsibilities — Trilogy Care Partner Resource Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,400;1,8..144,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1F3B63;
+      --navy-dark: #0f2440;
+      --teal: #027F7E;
+      --light-teal: #43C0BE;
+      --coral: #E07B5E;
+      --gold: #D4A537;
+      --slate: #4A5565;
+      --charcoal: #4B5563;
+      --light-blue-bg: #E1EEFA;
+      --light-teal-bg: #dff4f4;
+      --white: #FFFFFF;
+      --off-white: #F9FAFB;
+      --font-heading: 'Roboto Serif', Georgia, serif;
+      --font-body: 'Roboto Flex', 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--slate);
+      font-size: 17px;
+      line-height: 1.8;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Fixed Nav ── */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.95);
+    }
+    .top-nav img { height: 32px; }
+    .top-nav a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: var(--navy); }
+    .top-nav a svg { width: 16px; height: 16px; }
+
+    /* ── Hero ── */
+    .hero {
+      margin-top: 61px;
+      background: linear-gradient(135deg, var(--coral) 0%, var(--navy) 100%);
+      padding: 80px 32px 64px;
+      text-align: center;
+    }
+    .hero .category-pill {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .hero .read-time {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 56px;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    h2:first-child { margin-top: 0; }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--teal);
+      margin-top: 36px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    p { margin-bottom: 18px; }
+
+    strong { color: var(--charcoal); font-weight: 600; }
+
+    /* ── Lists ── */
+    ul, ol {
+      margin-bottom: 18px;
+      padding-left: 24px;
+    }
+    li { margin-bottom: 8px; }
+
+    /* ── Role Section Card ── */
+    .role-section {
+      background: var(--white);
+      border: 1px solid #E5E7EB;
+      border-radius: 16px;
+      padding: 32px;
+      margin: 28px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .role-section.coordinator { border-left: 5px solid var(--coral); }
+    .role-section.trilogy { border-left: 5px solid var(--teal); }
+    .role-section.client { border-left: 5px solid var(--gold); }
+
+    .role-section h3 {
+      margin-top: 0;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .role-section.coordinator h3 { color: var(--coral); }
+    .role-section.trilogy h3 { color: var(--teal); }
+    .role-section.client h3 { color: var(--gold); }
+
+    .role-section h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+    .role-section h4:first-of-type { margin-top: 16px; }
+
+    .role-section ul { padding-left: 20px; }
+    .role-section li { font-size: 16px; line-height: 1.7; margin-bottom: 6px; }
+
+    /* ── Callout / Tip Card ── */
+    .callout {
+      background: var(--light-teal-bg);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 16px 16px 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .callout.coral-bg {
+      background: #fdf0ec;
+      border-left-color: var(--coral);
+    }
+    .callout.info {
+      background: var(--light-blue-bg);
+      border-left-color: var(--navy);
+    }
+    .callout p:last-child { margin-bottom: 0; }
+    .callout-label {
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .callout.coral-bg .callout-label { color: var(--coral); }
+    .callout.info .callout-label { color: var(--navy); }
+
+    /* ── Table ── */
+    .table-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin: 28px 0;
+      border: 1px solid #E5E7EB;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+    thead th {
+      background: var(--navy);
+      color: var(--white);
+      text-align: left;
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    tbody td {
+      padding: 12px 18px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    tbody tr:nth-child(even) { background: var(--off-white); }
+    tbody tr:last-child td { border-bottom: none; }
+    .check { color: var(--teal); font-weight: 700; }
+
+    /* ── Bottom Section ── */
+    .bottom-section {
+      border-top: 1px solid #E5E7EB;
+      margin-top: 56px;
+      padding-top: 40px;
+    }
+    .bottom-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--coral);
+      color: var(--white);
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-pdf:hover { background: #c9694d; }
+    .btn-pdf svg { width: 18px; height: 18px; }
+
+    .link-back {
+      font-size: 15px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .link-back:hover { color: var(--navy); }
+
+    .next-resources h3 {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .next-resources ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .next-resources li { margin-bottom: 12px; }
+    .next-resources a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+    .next-resources a:hover { color: var(--navy); }
+    .next-resources a svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .hero { padding: 60px 20px 48px; }
+      .hero h1 { font-size: 32px; }
+      .content { padding: 40px 18px 60px; }
+      h2 { font-size: 24px; }
+      .role-section { padding: 24px 20px; }
+      .table-wrap { overflow-x: auto; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      .top-nav, .btn-pdf, .bottom-actions, .next-resources { display: none !important; }
+      .hero { margin-top: 0; padding: 40px 20px; }
+      .content { padding: 20px 0; }
+      .hero h1 { font-size: 32px; }
+      body { font-size: 14px; }
+      .role-section { break-inside: avoid; }
+      .table-wrap { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      h2 { break-after: avoid; }
+      .bottom-section { border-top: none; margin-top: 24px; padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Nav -->
+  <nav class="top-nav">
+    <img src="../assets/tc-logo.svg" alt="Trilogy Care" height="32">
+    <a href="../hub.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to Resource Hub
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <span class="category-pill">Operations</span>
+    <h1>Roles &amp; Responsibilities</h1>
+    <p class="read-time">8 min read</p>
+  </header>
+
+  <!-- Content -->
+  <main class="content">
+
+    <h2>Your Role as Care Coordinator</h2>
+    <p>Your core job: coordinate care services for your clients according to their approved care plan and budget. Below is the full breakdown of what that looks like day-to-day.</p>
+
+    <div class="role-section coordinator">
+      <h3>Care Coordinator Responsibilities</h3>
+
+      <h4>Care Planning</h4>
+      <ul>
+        <li>Complete the Access Form and Care Plan preparation document with the client</li>
+        <li>Work with Trilogy to finalise the care plan</li>
+        <li>Update the care plan as client needs change</li>
+      </ul>
+
+      <h4>Worker Sourcing &amp; Management</h4>
+      <ul>
+        <li>Source workers and service providers (personal carers, cleaners, nurses, allied health)</li>
+        <li>Assist in gathering worker onboarding documents</li>
+        <li>Roster employees, publish rosters weekly, manage cancellations</li>
+        <li>Update workers as client needs and preferences change</li>
+      </ul>
+
+      <h4>Client Management</h4>
+      <ul>
+        <li>Be the primary contact for day-to-day care coordination</li>
+        <li>Liaise with the client&rsquo;s family</li>
+        <li>Log incidents in a timely fashion</li>
+        <li>Log feedback and complaints with Trilogy Care</li>
+        <li>Submit inclusions/exclusions requests with supporting documents</li>
+      </ul>
+
+      <h4>Administrative Support</h4>
+      <ul>
+        <li>Assist Trilogy with financial queries where possible</li>
+        <li>Request package upgrades (with supporting information)</li>
+        <li>Log meal requests, taxi/cab charges, OT assessments with Trilogy</li>
+        <li>Notify Trilogy if a client wishes to terminate</li>
+      </ul>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+
+    <h2>Trilogy Care&rsquo;s Role as Provider</h2>
+    <p>Trilogy handles everything behind the scenes so you can focus on care coordination.</p>
+
+    <div class="role-section trilogy">
+      <h3>Trilogy Care Responsibilities</h3>
+
+      <h4>Care Plan &amp; Compliance</h4>
+      <ul>
+        <li>Finalise care plans and budgets with you and the client</li>
+        <li>Provide printed copy of care plan for client&rsquo;s home</li>
+        <li>Conduct care plan reviews</li>
+        <li>Manage clinical incidents, adjust risks as required</li>
+        <li>Continuous improvement from feedback</li>
+      </ul>
+
+      <h4>Workforce Compliance</h4>
+      <ul>
+        <li>Mandatory document checking</li>
+        <li>COVID vaccination verification</li>
+        <li>Police checks</li>
+        <li>Insurance verification</li>
+        <li>All gathered by you, verified and stored by Trilogy</li>
+      </ul>
+
+      <h4>Financial Management</h4>
+      <ul>
+        <li>Manage expenditure in line with budget</li>
+        <li>Approve/reject bills and invoices</li>
+        <li>Publish monthly statements</li>
+        <li>Collect Income Tested Fees</li>
+        <li>Process reimbursements</li>
+      </ul>
+
+      <h4>Other</h4>
+      <ul>
+        <li>Approve/reject inclusions/exclusions requests</li>
+        <li>Submit meal and transport requests</li>
+        <li>Process package upgrades and update care plans</li>
+      </ul>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+
+    <h2>Client Responsibilities</h2>
+
+    <div class="role-section client">
+      <h3>What Your Client Is Responsible For</h3>
+      <ul>
+        <li>Participate in care plan conversations</li>
+        <li>Provide roster preferences and feedback</li>
+        <li>Inform coordinator/Trilogy of incidents</li>
+        <li>Submit reimbursement requests</li>
+        <li>Pay Income Tested Fee (if applicable)</li>
+        <li>Attend care plan reviews</li>
+      </ul>
+    </div>
+
+    <div class="callout coral-bg">
+      <div class="callout-label">Key Takeaway</div>
+      <p>The three-way partnership is simple: <strong>You coordinate, Trilogy administers, the client participates.</strong> Each party has clear responsibilities, reducing confusion and ensuring nothing falls through the cracks.</p>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+
+    <h2>NDIS vs Aged Care: What&rsquo;s the Same, What&rsquo;s Different</h2>
+
+    <h3>What stays the same</h3>
+    <p>If you&rsquo;re coming from an NDIS coordination background, many of your core skills transfer directly.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Activity</th>
+            <th>NDIS</th>
+            <th>Aged Care</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Coordinate care services</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Manage budgets</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Liaise with providers</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Advocate for clients</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Log incidents/complaints</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Source workers</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Work independently</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>What&rsquo;s different</h3>
+    <p>While the core coordination skills transfer, there are meaningful structural differences that generally work in your favour.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>NDIS</th>
+            <th>Aged Care</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Complexity</strong></td>
+            <td>High &mdash; behaviour support, SIL, restrictive practices</td>
+            <td>Lower &mdash; connection service, no restrictive practices</td>
+          </tr>
+          <tr>
+            <td><strong>Compliance burden</strong></td>
+            <td>18-month audit cycle, on-site, hundreds of hours prep</td>
+            <td>45-minute annual phone call</td>
+          </tr>
+          <tr>
+            <td><strong>Billing</strong></td>
+            <td>You invoice, chase plan managers</td>
+            <td>Trilogy handles all billing, you receive RCTI</td>
+          </tr>
+          <tr>
+            <td><strong>Registration</strong></td>
+            <td>You may need your own</td>
+            <td>Trilogy carries the registration</td>
+          </tr>
+          <tr>
+            <td><strong>Client relationship</strong></td>
+            <td>Directly with participant</td>
+            <td>Primarily with family (adult children)</td>
+          </tr>
+          <tr>
+            <td><strong>Funding mechanism</strong></td>
+            <td>NDIA plan, annual review</td>
+            <td>SAH quarterly budget, no reviews</td>
+          </tr>
+          <tr>
+            <td><strong>Clinical oversight</strong></td>
+            <td>Arrange externally</td>
+            <td>Phone access to Trilogy nursing team</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-label">Bottom Line</div>
+      <p>Aged care coordination through Trilogy is <strong>less complex, less admin, less compliance</strong> &mdash; and you get paid automatically. The skills you already have translate directly; the friction you&rsquo;re used to largely disappears.</p>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+
+    <div class="bottom-section">
+      <div class="bottom-actions">
+        <button class="btn-pdf" onclick="window.print()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Download as PDF
+        </button>
+        <a href="../hub.html" class="link-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          Back to Resource Hub
+        </a>
+      </div>
+
+      <div class="next-resources">
+        <h3>What to Read Next</h3>
+        <ul>
+          <li>
+            <a href="revenue-and-pricing.html">
+              Revenue &amp; Pricing Guide &mdash; Understand how you earn and model your income
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="onboarding-checklist.html">
+              Partner Onboarding Checklist &mdash; Your week-by-week setup guide
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switching Providers Guide — Trilogy Care Partner Resource Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,400;1,8..144,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1F3B63;
+      --navy-dark: #0f2440;
+      --teal: #027F7E;
+      --light-teal: #43C0BE;
+      --coral: #E07B5E;
+      --gold: #D4A537;
+      --slate: #4A5565;
+      --charcoal: #4B5563;
+      --light-blue-bg: #E1EEFA;
+      --light-teal-bg: #dff4f4;
+      --white: #FFFFFF;
+      --off-white: #F9FAFB;
+      --font-heading: 'Roboto Serif', Georgia, serif;
+      --font-body: 'Roboto Flex', 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--slate);
+      font-size: 17px;
+      line-height: 1.8;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Fixed Nav ── */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.95);
+    }
+    .top-nav img { height: 32px; }
+    .top-nav a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .top-nav a:hover { color: var(--navy); }
+    .top-nav a svg { width: 16px; height: 16px; }
+
+    /* ── Hero ── */
+    .hero {
+      margin-top: 61px;
+      background: linear-gradient(135deg, var(--coral) 0%, var(--gold) 100%);
+      padding: 80px 32px 64px;
+      text-align: center;
+    }
+    .hero .category-pill {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .hero .read-time {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 56px;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    h2:first-child { margin-top: 0; }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--teal);
+      margin-top: 36px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    p { margin-bottom: 18px; }
+
+    strong { color: var(--charcoal); font-weight: 600; }
+
+    /* ── Lists ── */
+    ul, ol {
+      margin-bottom: 18px;
+      padding-left: 24px;
+    }
+    li { margin-bottom: 8px; }
+
+    /* ── Reason Pills ── */
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .reason-pill {
+      background: var(--white);
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .reason-pill .reason-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 50%;
+      background: #fdf0ec;
+      color: var(--coral);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    /* ── Step Cards ── */
+    .step-card {
+      background: var(--white);
+      border: 1px solid #E5E7EB;
+      border-radius: 16px;
+      padding: 32px;
+      margin: 24px 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .step-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+    }
+    .step-card.step-1::before { background: linear-gradient(90deg, var(--coral), var(--gold)); }
+    .step-card.step-2::before { background: linear-gradient(90deg, var(--gold), var(--teal)); }
+    .step-card.step-3::before { background: linear-gradient(90deg, var(--teal), var(--light-teal)); }
+
+    .step-card .step-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .step-card .step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .step-card.step-1 .step-number { background: var(--coral); }
+    .step-card.step-2 .step-number { background: var(--gold); }
+    .step-card.step-3 .step-number { background: var(--teal); }
+
+    .step-card .step-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .step-card ul {
+      padding-left: 20px;
+    }
+    .step-card li {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── Callout / Tip Card ── */
+    .callout {
+      background: var(--light-teal-bg);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 16px 16px 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .callout.coral-bg {
+      background: #fdf0ec;
+      border-left-color: var(--coral);
+    }
+    .callout.info {
+      background: var(--light-blue-bg);
+      border-left-color: var(--navy);
+    }
+    .callout.gold {
+      background: #fdf8ec;
+      border-left-color: var(--gold);
+    }
+    .callout p:last-child { margin-bottom: 0; }
+    .callout-label {
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .callout.coral-bg .callout-label { color: var(--coral); }
+    .callout.info .callout-label { color: var(--navy); }
+    .callout.gold .callout-label { color: var(--gold); }
+
+    /* ── Template Box ── */
+    .template-box {
+      background: #F3F4F6;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .template-box .template-label {
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .template-box p {
+      font-style: italic;
+      color: var(--charcoal);
+    }
+
+    /* ── Timeline ── */
+    .visual-timeline {
+      position: relative;
+      margin: 36px 0;
+      padding-left: 40px;
+    }
+    .visual-timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--coral), var(--gold), var(--teal), var(--light-teal));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      padding: 16px 0 24px 24px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 20px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--teal);
+      background: var(--teal);
+    }
+    .timeline-item:nth-child(1)::before { background: var(--coral); box-shadow: 0 0 0 2px var(--coral); }
+    .timeline-item:nth-child(2)::before { background: var(--coral); box-shadow: 0 0 0 2px var(--coral); }
+    .timeline-item:nth-child(3)::before { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+    .timeline-item:nth-child(4)::before { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+    .timeline-item:nth-child(5)::before { background: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
+    .timeline-item:nth-child(6)::before { background: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
+    .timeline-item:nth-child(7)::before { background: var(--light-teal); box-shadow: 0 0 0 2px var(--light-teal); }
+
+    .timeline-item .tl-day {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .timeline-item:nth-child(1) .tl-day,
+    .timeline-item:nth-child(2) .tl-day { color: var(--coral); }
+    .timeline-item:nth-child(3) .tl-day,
+    .timeline-item:nth-child(4) .tl-day { color: var(--gold); }
+    .timeline-item:nth-child(5) .tl-day,
+    .timeline-item:nth-child(6) .tl-day { color: var(--teal); }
+    .timeline-item:nth-child(7) .tl-day { color: var(--light-teal); }
+
+    .timeline-item .tl-text {
+      font-size: 16px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    /* ── FAQ ── */
+    .faq-item {
+      border-bottom: 1px solid #E5E7EB;
+      padding: 24px 0;
+    }
+    .faq-item:first-of-type { border-top: 1px solid #E5E7EB; }
+    .faq-q {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .faq-a {
+      font-size: 16px;
+      color: var(--slate);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* ── Bottom Section ── */
+    .bottom-section {
+      border-top: 1px solid #E5E7EB;
+      margin-top: 56px;
+      padding-top: 40px;
+    }
+    .bottom-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--coral);
+      color: var(--white);
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-pdf:hover { background: #c9694d; }
+    .btn-pdf svg { width: 18px; height: 18px; }
+
+    .link-back {
+      font-size: 15px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .link-back:hover { color: var(--navy); }
+
+    .next-resources h3 {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--navy);
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .next-resources ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .next-resources li { margin-bottom: 12px; }
+    .next-resources a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+    .next-resources a:hover { color: var(--navy); }
+    .next-resources a svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .hero { padding: 60px 20px 48px; }
+      .hero h1 { font-size: 32px; }
+      .content { padding: 40px 18px 60px; }
+      h2 { font-size: 24px; }
+      .reasons-grid { grid-template-columns: 1fr; }
+      .step-card { padding: 24px 20px; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      .top-nav, .btn-pdf, .bottom-actions, .next-resources { display: none !important; }
+      .hero { margin-top: 0; padding: 40px 20px; }
+      .content { padding: 20px 0; }
+      .hero h1 { font-size: 32px; }
+      body { font-size: 14px; }
+      .step-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+      .callout { break-inside: avoid; }
+      .faq-item { break-inside: avoid; }
+      h2 { break-after: avoid; }
+      .bottom-section { border-top: none; margin-top: 24px; padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Nav -->
+  <nav class="top-nav">
+    <img src="../assets/tc-logo.svg" alt="Trilogy Care" height="32">
+    <a href="../hub.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to Resource Hub
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <span class="category-pill">Operations</span>
+    <h1>Switching Providers Guide</h1>
+    <p class="read-time">6 min read</p>
+  </header>
+
+  <!-- Content -->
+  <main class="content">
+
+    <h2>Why Clients Switch Providers</h2>
+    <p>There are many reasons people look for a new Support at Home provider. Understanding these reasons helps you have confident, empathetic conversations with potential clients.</p>
+
+    <div class="reasons-grid">
+      <div class="reason-pill">
+        <div class="reason-icon">&#10024;</div>
+        <span>Want more care hours and less fees</span>
+      </div>
+      <div class="reason-pill">
+        <div class="reason-icon">&#9997;</div>
+        <span>Want to choose their own care workers</span>
+      </div>
+      <div class="reason-pill">
+        <div class="reason-icon">&#128172;</div>
+        <span>Unhappy with current provider&rsquo;s communication</span>
+      </div>
+      <div class="reason-pill">
+        <div class="reason-icon">&#128736;</div>
+        <span>Current provider doesn&rsquo;t offer coordination</span>
+      </div>
+      <div class="reason-pill">
+        <div class="reason-icon">&#127968;</div>
+        <span>Moving areas</span>
+      </div>
+      <div class="reason-pill">
+        <div class="reason-icon">&#128101;</div>
+        <span>Family recommendation</span>
+      </div>
+      <div class="reason-pill">
+        <div class="reason-icon">&#128161;</div>
+        <span>Want the flexibility of the Fully Coordinated model</span>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+
+    <h2>The 3-Step Switching Process</h2>
+    <p>Switching providers is simpler than most people expect. Here are the three steps.</p>
+
+    <div class="step-card step-1">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <div class="step-title">Notify Current Provider</div>
+      </div>
+      <ul>
+        <li>Client (or you on their behalf) calls their current provider</li>
+        <li>Give notice of intent to transfer &mdash; typically 14 days notice required</li>
+        <li>Agree on a termination date</li>
+        <li>Request a final statement of unspent funds</li>
+      </ul>
+      <div class="callout gold" style="margin-bottom:0;">
+        <div class="callout-label">Tip</div>
+        <p>Be polite and professional &mdash; the aged care community is small. A respectful exit leaves the door open for future referral relationships.</p>
+      </div>
+    </div>
+
+    <div class="step-card step-2">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <div class="step-title">Contact Trilogy Care</div>
+      </div>
+      <ul>
+        <li>Call <strong>1300 459 190</strong> or email <strong>info@trilogycare.com.au</strong></li>
+        <li>Provide: client name, DOB, My Aged Care reference number</li>
+        <li>Trilogy handles all transfer paperwork with Services Australia</li>
+        <li>Unspent funds transfer automatically to Trilogy</li>
+        <li>No gap in funding &mdash; it&rsquo;s a seamless transition</li>
+      </ul>
+    </div>
+
+    <div class="step-card step-3">
+      <div class="step-header">
+        <div class="step-number">3</div>
+        <div class="step-title">Welcome to Trilogy Care</div>
+      </div>
+      <ul>
+        <li>Client meets their dedicated Care Partner at Trilogy</li>
+        <li>You (the coordinator) work with the client to develop their care plan</li>
+        <li>Services begin under the new arrangement</li>
+        <li>Client can keep their existing care workers in most cases</li>
+      </ul>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+
+    <h2>What to Tell the Client</h2>
+    <p>Here are the key talking points to reassure clients during the switching conversation.</p>
+
+    <div class="template-box">
+      <div class="template-label">Script / Talking Points</div>
+      <p>&ldquo;You have the right to switch providers at any time &mdash; it&rsquo;s your choice.&rdquo;</p>
+      <p>&ldquo;Your funding follows you. You won&rsquo;t lose anything. Any unspent money transfers to Trilogy Care automatically.&rdquo;</p>
+      <p>&ldquo;We&rsquo;ll handle all the paperwork with your current provider and Services Australia. You don&rsquo;t need to do much at all.&rdquo;</p>
+      <p>&ldquo;The whole process usually takes 2&ndash;3 weeks. During that time, your existing services can continue as normal.&rdquo;</p>
+      <p>&ldquo;You can keep your current care workers if you&rsquo;d like &mdash; in most cases they can continue under the new arrangement.&rdquo;</p>
+    </div>
+
+    <div class="callout coral-bg">
+      <div class="callout-label">Key Reassurance</div>
+      <p>The biggest fear clients have is <strong>losing their funding or having a gap in care</strong>. Address this upfront: funding transfers automatically, and services can continue uninterrupted during the transition period.</p>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+
+    <h2>Timeline</h2>
+    <p>Here&rsquo;s what a typical switching timeline looks like from start to finish.</p>
+
+    <div class="visual-timeline">
+      <div class="timeline-item">
+        <div class="tl-day">Day 1</div>
+        <div class="tl-text">Client decides to switch</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-day">Day 1&ndash;3</div>
+        <div class="tl-text">You or client notifies current provider (14 days notice)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-day">Day 3&ndash;7</div>
+        <div class="tl-text">Trilogy processes transfer with Services Australia</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-day">Day 7&ndash;14</div>
+        <div class="tl-text">Notice period runs</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-day">Day 14&ndash;17</div>
+        <div class="tl-text">Onboarding &mdash; care plan, meet Care Partner</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-day">Day 17&ndash;21</div>
+        <div class="tl-text">Services begin under Trilogy Care</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-day">Ongoing</div>
+        <div class="tl-text">You coordinate, Trilogy administers</div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">&ldquo;Will my client lose any funding?&rdquo;</div>
+      <p class="faq-a">No. Unspent funds transfer from the old provider to Trilogy Care. There&rsquo;s no gap and no loss.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">&ldquo;How long does the switch take?&rdquo;</div>
+      <p class="faq-a">Typically 2&ndash;3 weeks from the client giving notice to their current provider.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">&ldquo;Does my client need to do anything?&rdquo;</div>
+      <p class="faq-a">Very little. They notify their current provider (or you can help). Trilogy handles the Services Australia paperwork. Client signs a new agreement with Trilogy.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">&ldquo;Can they keep their current care workers?&rdquo;</div>
+      <p class="faq-a">In most cases, yes. Workers can continue providing services through Trilogy&rsquo;s platform. Compliance checks may need to be transferred.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">&ldquo;What if the current provider makes it difficult?&rdquo;</div>
+      <p class="faq-a">Clients have the legal right to switch providers at any time. If there are any issues, Trilogy&rsquo;s team can assist with the transition.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">&ldquo;What about clients on legacy Home Care Packages?&rdquo;</div>
+      <p class="faq-a">Same process. Legacy HCP clients transitioning to Support at Home go through the same 3-step switching process.</p>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+
+    <div class="bottom-section">
+      <div class="bottom-actions">
+        <button class="btn-pdf" onclick="window.print()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Download as PDF
+        </button>
+        <a href="../hub.html" class="link-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          Back to Resource Hub
+        </a>
+      </div>
+
+      <div class="next-resources">
+        <h3>What to Read Next</h3>
+        <ul>
+          <li>
+            <a href="roles-and-responsibilities.html">
+              Roles &amp; Responsibilities &mdash; Understand who does what in the partnership
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="revenue-and-pricing.html">
+              Revenue &amp; Pricing Guide &mdash; Model your income as a Coordination Partner
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
