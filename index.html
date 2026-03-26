@@ -1307,12 +1307,16 @@
        PRINT STYLESHEET
     ══════════════════════════════════════════ */
     @page {
-      size: landscape;
+      size: 297mm 210mm;
       margin: 0;
     }
 
     @media print {
-      html, body {
+      html {
+        font-size: 12px !important;
+      }
+
+      body {
         overflow: visible !important;
         height: auto !important;
         margin: 0 !important;
@@ -1324,74 +1328,188 @@
         overflow: visible !important;
         height: auto !important;
         scroll-snap-type: none !important;
+        background: none !important;
       }
 
+      /* Each slide = one landscape page, exact fit */
       section {
-        width: 100vw !important;
-        height: 100vh !important;
-        min-height: 100vh !important;
-        max-height: 100vh !important;
+        width: 297mm !important;
+        height: 210mm !important;
+        min-height: 210mm !important;
+        max-height: 210mm !important;
         scroll-snap-align: none !important;
-        page-break-after: always;
-        page-break-inside: avoid;
+        page-break-after: always !important;
+        page-break-inside: avoid !important;
+        break-after: page !important;
         overflow: hidden !important;
         display: flex !important;
         align-items: center !important;
+        position: relative !important;
+        margin: 0 !important;
+        padding: 0 !important;
       }
 
       section:last-of-type {
-        page-break-after: avoid;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
       }
 
+      /* Hide ALL UI chrome */
       .fixed-nav,
       .progress-dots,
-      .pdf-btn,
       .slide-counter,
       .scroll-indicator,
-      section::after {
+      section::after,
+      button[onclick="window.print()"] {
         display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
       }
 
+      /* Preserve all colours and backgrounds */
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
         color-adjust: exact !important;
       }
 
-      .hero-inner,
+      /* Tighten padding to fit landscape page */
+      .hero-inner {
+        padding: 32px 48px !important;
+      }
+
       .section-inner {
-        padding: 48px 56px !important;
+        padding: 28px 48px !important;
+        max-width: 100% !important;
       }
 
       .section-title {
-        font-size: 32px !important;
+        font-size: 26px !important;
+        margin-bottom: 4px !important;
+      }
+
+      .section-subtitle {
+        font-size: 16px !important;
+        margin-bottom: 20px !important;
       }
 
       .stat-number {
-        font-size: 40px !important;
+        font-size: 36px !important;
       }
 
-      .calculator-embed {
+      .stat-label {
+        font-size: 11px !important;
+      }
+
+      .card {
+        padding: 16px !important;
+      }
+
+      .card-grid {
+        gap: 14px !important;
+      }
+
+      /* Scale hero for print */
+      #hero h1 {
+        font-size: 32px !important;
+      }
+
+      #hero p {
+        font-size: 14px !important;
+      }
+
+      .hero-image img {
+        max-height: 140mm !important;
+      }
+
+      /* Tables */
+      .skills-table thead th,
+      .revenue-table thead th {
+        padding: 8px 12px !important;
+        font-size: 10px !important;
+      }
+
+      .skills-table tbody td,
+      .revenue-table tbody td {
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+      }
+
+      /* Pillar cards on programme slide */
+      .pillar-card {
+        padding: 14px 16px !important;
+      }
+
+      .pillar-card h3 {
+        font-size: 13px !important;
+      }
+
+      .pillar-card li {
+        font-size: 11px !important;
+      }
+
+      /* Timeline */
+      .timeline-step h4 {
+        font-size: 13px !important;
+      }
+
+      .timeline-step p {
+        font-size: 11px !important;
+      }
+
+      /* Crossover cards */
+      #crossover .card {
+        padding: 14px 18px !important;
+      }
+
+      #crossover .card h4 {
+        font-size: 13px !important;
+      }
+
+      #crossover .card p {
+        font-size: 11px !important;
+        line-height: 1.4 !important;
+      }
+
+      /* Hide calculator iframe, show link */
+      .calculator-embed,
+      iframe {
         display: none !important;
       }
 
-      #calculator {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-
       #calculator .section-inner::after {
-        content: 'Interactive calculator available at: future-focus-phi.vercel.app/calculator.html';
+        content: 'Interactive calculator: future-focus-phi.vercel.app/calculator.html';
         display: block;
         text-align: center;
-        padding: 60px 40px;
-        font-size: 20px;
+        padding: 40px;
+        font-size: 16px;
         font-style: italic;
         color: var(--teal);
         border: 2px dashed var(--light-teal);
         border-radius: 16px;
-        margin-top: 24px;
+        margin-top: 16px;
+      }
+
+      /* Acquisition cards */
+      .acq-card {
+        padding: 14px 16px !important;
+      }
+
+      /* CTA slide */
+      #cta .section-title {
+        font-size: 30px !important;
+      }
+
+      /* Links - show as text, no underlines */
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+
+      /* Hide resource link buttons */
+      .btn {
+        display: none !important;
       }
     }
   </style>
