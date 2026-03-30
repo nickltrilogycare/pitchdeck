@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Partner Onboarding Checklist — Trilogy Care Partner Resource Hub</title>
+  <title>4-Week Enterprise Onboarding Checklist — Future Focus x Trilogy Care</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,400;1,8..144,500&display=swap" rel="stylesheet">
@@ -284,6 +284,26 @@
       color: var(--navy);
     }
 
+    /* ── Owner tag ── */
+    .owner-tag {
+      display: inline-block;
+      background: var(--light-teal-bg);
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-left: 8px;
+      white-space: nowrap;
+    }
+    .owner-tag.luke { background: #E1EEFA; color: var(--navy); }
+    .owner-tag.nick { background: #fdf8ec; color: #a07c1a; }
+    .owner-tag.jake { background: #dff4f4; color: var(--teal); }
+    .owner-tag.ff { background: #fdf0ec; color: var(--coral); }
+    .owner-tag.both { background: #F3F4F6; color: var(--charcoal); }
+
     /* ── Callout ── */
     .callout {
       background: var(--light-teal-bg);
@@ -293,6 +313,10 @@
       margin: 28px 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
+    .callout.navy {
+      background: var(--light-blue-bg);
+      border-left-color: var(--navy);
+    }
     .callout p:last-child { margin-bottom: 0; }
     .callout-label {
       font-weight: 700;
@@ -301,6 +325,21 @@
       letter-spacing: 1px;
       color: var(--teal);
       margin-bottom: 8px;
+    }
+    .callout.navy .callout-label { color: var(--navy); }
+
+    /* ── Owner Legend ── */
+    .owner-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0 36px;
+      font-size: 14px;
+    }
+    .owner-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     /* ── Bottom Section ── */
@@ -387,7 +426,7 @@
       .bottom-actions { flex-direction: column; align-items: stretch; gap: 12px; }
       .btn-pdf { width: 100%; justify-content: center; }
       .link-back { text-align: center; display: block; }
-      .contact-card { padding: 24px 20px; }
+      .owner-legend { display: none; }
     }
 
     /* ── Print ── */
@@ -421,16 +460,16 @@
 
   <!-- Hero -->
   <header class="hero">
-    <span class="category-pill">Getting Started</span>
-    <h1>Partner Onboarding Checklist</h1>
-    <p class="read-time">5 min read</p>
+    <span class="category-pill">Enterprise Onboarding</span>
+    <h1>4-Week Enterprise Onboarding Checklist</h1>
+    <p class="read-time">8 min read</p>
   </header>
 
   <!-- Content -->
   <main class="content">
 
-    <h2>Your Onboarding Journey</h2>
-    <p>This checklist walks you through your first four weeks as a Trilogy Care Coordination Partner, plus the ongoing monthly rhythm that keeps your business growing.</p>
+    <h2>From Agreement to 50 Clients in Four Weeks</h2>
+    <p>This checklist covers the full onboarding journey for the Future Focus x Trilogy Care enterprise partnership &mdash; from executive discovery through to the 50 foundation clients going live. Each task includes who is responsible to ensure nothing falls through the cracks.</p>
 
     <!-- Progress Bar -->
     <div class="progress-bar">
@@ -440,7 +479,7 @@
       </div>
       <div class="progress-step">
         <div class="step-dot">2</div>
-        <div class="step-label">Learning</div>
+        <div class="step-label">Agreement</div>
       </div>
       <div class="progress-step">
         <div class="step-dot">3</div>
@@ -456,39 +495,49 @@
       </div>
     </div>
 
+    <!-- Owner legend -->
+    <div class="owner-legend">
+      <strong style="color:var(--navy)">Owners:</strong>
+      <div class="owner-legend-item"><span class="owner-tag luke">Luke</span> Luke Traini, CEO &mdash; Trilogy Care</div>
+      <div class="owner-legend-item"><span class="owner-tag nick">Nick</span> Nick Lunn, CGO &mdash; Trilogy Care</div>
+      <div class="owner-legend-item"><span class="owner-tag jake">Jake</span> Jake Kelly-Grubb, Partnership Manager</div>
+      <div class="owner-legend-item"><span class="owner-tag ff">FF Leadership</span> Future Focus senior leadership</div>
+      <div class="owner-legend-item"><span class="owner-tag both">Coordinators</span> Future Focus coordination team</div>
+    </div>
+
     <!-- ── Week 1 ── -->
     <div class="week-card week-1">
       <div class="week-header">
         <div class="week-number">1</div>
         <div>
-          <div class="week-title">Discovery &amp; Setup</div>
-          <div class="week-subtitle">Lay the foundations for your partnership</div>
+          <div class="week-title">Executive Discovery &amp; Capacity Assessment</div>
+          <div class="week-subtitle">Align on partnership terms, capacity, and client allocation strategy</div>
         </div>
       </div>
       <ul class="checklist">
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Complete discovery call with your Partnership Manager</span>
+          <span class="check-text"><strong>Executive alignment session</strong> &mdash; Luke Traini + Future Focus CEO/leadership to confirm partnership intent and terms <span class="owner-tag luke">Luke</span> <span class="owner-tag ff">FF Leadership</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Review and sign the partnership agreement</span>
+          <span class="check-text"><strong>Capacity assessment</strong> &mdash; Future Focus provides coordinator headcount per location, caseload capacity, and current NDIS client volume <span class="owner-tag ff">FF Leadership</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Submit your business details (ABN, business name, contact info)</span>
+          <span class="check-text"><strong>50 foundation client strategy agreed</strong> &mdash; which locations, which client profiles, warm vs cold pipeline split <span class="owner-tag luke">Luke</span> <span class="owner-tag ff">FF Leadership</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Submit your logo for co-branded brochure</span>
+          <span class="check-text"><strong>Commercial terms confirmed</strong> &mdash; 10&ndash;15% coordination fee model, revenue share, reporting cadence <span class="owner-tag luke">Luke</span> <span class="owner-tag nick">Nick</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Receive Trilogy Care Portal login credentials</span>
+          <span class="check-text"><strong>Dedicated team introductions</strong> &mdash; Jake Kelly-Grubb introduced to Future Focus leadership as day-to-day Partnership Manager <span class="owner-tag jake">Jake</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Read the <strong><a href="getting-started.html" style="color:var(--teal);">Getting Started Guide</a></strong></span>
+          <span class="check-text"><strong>Data room access</strong> &mdash; Future Focus reviews Trilogy Care compliance documentation, FUM overview, and provider credentials <span class="owner-tag jake">Jake</span></span>
         </li>
       </ul>
     </div>
@@ -498,34 +547,34 @@
       <div class="week-header">
         <div class="week-number">2</div>
         <div>
-          <div class="week-title">Learning &amp; Pricing</div>
-          <div class="week-subtitle">Understand the programme and your revenue model</div>
+          <div class="week-title">Partnership Agreement &amp; Client Allocation</div>
+          <div class="week-subtitle">Sign documents, finalise legal structure, map 50 foundation clients</div>
         </div>
       </div>
       <ul class="checklist">
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Read <strong><a href="sah-explained.html" style="color:var(--teal);">Support at Home Explained</a></strong> guide</span>
+          <span class="check-text"><strong>Partnership agreement executed</strong> &mdash; legal sign-off both parties <span class="owner-tag luke">Luke</span> <span class="owner-tag ff">FF Leadership</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Review and finalise your price book with PM</span>
+          <span class="check-text"><strong>50 foundation clients identified</strong> &mdash; Future Focus provides list of warm aged care prospects (parents of NDIS clients, known community members) <span class="owner-tag ff">FF Leadership</span> <span class="owner-tag both">Coordinators</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Understand the Fully Coordinated fee structure</span>
+          <span class="check-text"><strong>Client allocation per location</strong> &mdash; distribute 50 clients across Future Focus locations proportionate to coordinator capacity <span class="owner-tag jake">Jake</span> <span class="owner-tag ff">FF Leadership</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Read <strong><a href="roles-and-responsibilities.html" style="color:var(--teal);">Roles &amp; Responsibilities</a></strong> guide</span>
+          <span class="check-text"><strong>My Aged Care referral pathway confirmed</strong> &mdash; Trilogy linked as registered provider for all Future Focus referrals <span class="owner-tag jake">Jake</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Read <strong><a href="revenue-and-pricing.html" style="color:var(--teal);">Revenue &amp; Pricing Guide</a></strong></span>
+          <span class="check-text"><strong>Co-branding assets briefed</strong> &mdash; Nick provides brand assets and approves Future Focus + Trilogy Care co-brand usage guidelines <span class="owner-tag nick">Nick</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Familiarise yourself with the SAH funding classifications</span>
+          <span class="check-text"><strong>Portal credentials prepared</strong> &mdash; Trilogy portal logins staged for Future Focus coordinator team <span class="owner-tag jake">Jake</span></span>
         </li>
       </ul>
     </div>
@@ -535,34 +584,38 @@
       <div class="week-header">
         <div class="week-number">3</div>
         <div>
-          <div class="week-title">Training &amp; Systems</div>
-          <div class="week-subtitle">Get hands-on with the platform and your marketing assets</div>
+          <div class="week-title">Team Training &amp; Platform Setup</div>
+          <div class="week-subtitle">Coordinators trained, systems live, marketing assets distributed</div>
         </div>
       </div>
       <ul class="checklist">
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Complete Trilogy Care platform onboarding training</span>
+          <span class="check-text"><strong>Coordinator induction session</strong> &mdash; Jake delivers aged care overview to all Future Focus coordinators: Support at Home programme, funding model, care planning <span class="owner-tag jake">Jake</span> <span class="owner-tag both">Coordinators</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Practice creating a care plan in the portal</span>
+          <span class="check-text"><strong>Trilogy Care platform training</strong> &mdash; coordinators complete hands-on walkthrough of referral portal, care plan creation, client management <span class="owner-tag jake">Jake</span> <span class="owner-tag both">Coordinators</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Review compliance requirements with PM</span>
+          <span class="check-text"><strong>Sales conversation training</strong> &mdash; coordinators practise NDIS-to-aged-care language translation using the Aged Care Conversations guide <span class="owner-tag jake">Jake</span> <span class="owner-tag both">Coordinators</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Receive your co-branded brochure (digital + print-ready)</span>
+          <span class="check-text"><strong>Co-branded brochures delivered</strong> &mdash; per-location print and digital brochures (Future Focus x Trilogy Care) ready for distribution <span class="owner-tag nick">Nick</span> <span class="owner-tag jake">Jake</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Read <strong><a href="client-acquisition.html" style="color:var(--teal);">Client Acquisition Playbook</a></strong></span>
+          <span class="check-text"><strong>Social media toolkit distributed</strong> &mdash; social tile concepts, approved messaging, and per-location handles confirmed <span class="owner-tag nick">Nick</span> <span class="owner-tag ff">FF Leadership</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Read <strong><a href="brand-and-marketing.html" style="color:var(--teal);">Your Brand in Market</a></strong> guide</span>
+          <span class="check-text"><strong>GP and hospital collateral printed</strong> &mdash; brochures and referral cards ready for week 4 clinic drops at each location <span class="owner-tag both">Coordinators</span></span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text"><strong>Compliance briefing completed</strong> &mdash; coordinators understand their role boundaries and Trilogy's responsibilities under the Aged Care Quality Standards <span class="owner-tag jake">Jake</span></span>
         </li>
       </ul>
     </div>
@@ -572,34 +625,38 @@
       <div class="week-header">
         <div class="week-number">4</div>
         <div>
-          <div class="week-title">Go Live</div>
-          <div class="week-subtitle">Start building your pipeline and landing your first clients</div>
+          <div class="week-title">50 Clients Transfer &amp; Go Live</div>
+          <div class="week-subtitle">Foundation clients onboarded, pipeline open, partnership active</div>
         </div>
       </div>
       <ul class="checklist">
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Begin warm market outreach (parents of NDIS clients)</span>
+          <span class="check-text"><strong>Foundation client outreach begins</strong> &mdash; coordinators contact the 50 identified warm prospects using the Aged Care Conversations scripts <span class="owner-tag both">Coordinators</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Send therapist network email (template in Client Acquisition Playbook)</span>
+          <span class="check-text"><strong>First referrals submitted to Trilogy</strong> &mdash; any clients who agree to proceed referred via portal or Jake within 24 hours <span class="owner-tag both">Coordinators</span> <span class="owner-tag jake">Jake</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Schedule your first hospital discharge unit visit</span>
+          <span class="check-text"><strong>Trilogy contacts referred clients</strong> &mdash; within 2 business days of each referral; SLA monitored by Jake <span class="owner-tag jake">Jake</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Drop brochures at 3&ndash;5 GP practices</span>
+          <span class="check-text"><strong>GP and hospital drop visits completed</strong> &mdash; coordinators visit 3&ndash;5 GP practices and local hospital discharge units per location <span class="owner-tag both">Coordinators</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Set up your first social media posts (templates in Brand guide)</span>
+          <span class="check-text"><strong>First social posts published</strong> &mdash; each Future Focus location publishes co-branded aged care announcement across LinkedIn and Facebook <span class="owner-tag both">Coordinators</span> <span class="owner-tag ff">FF Leadership</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Complete your first client referral (if applicable)</span>
+          <span class="check-text"><strong>Go-live dashboard review</strong> &mdash; Luke, Nick, and Jake review pipeline status, referrals received, and 50-client progress <span class="owner-tag luke">Luke</span> <span class="owner-tag nick">Nick</span> <span class="owner-tag jake">Jake</span></span>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <span class="check-text"><strong>First client active &mdash; partnership is live</strong> <span class="owner-tag both">Coordinators</span> <span class="owner-tag jake">Jake</span></span>
         </li>
       </ul>
     </div>
@@ -609,49 +666,45 @@
       <div class="week-header">
         <div class="week-number">&#8734;</div>
         <div>
-          <div class="week-title">Ongoing Monthly Checklist</div>
-          <div class="week-subtitle">The rhythm that sustains and grows your business</div>
+          <div class="week-title">Ongoing Partnership Rhythm</div>
+          <div class="week-subtitle">Monthly and quarterly cadence to sustain and grow the partnership</div>
         </div>
       </div>
       <ul class="checklist">
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Monthly business review with Partnership Manager</span>
+          <span class="check-text"><strong>Monthly partnership review</strong> &mdash; Jake + Future Focus leadership: pipeline, active clients, revenue, blockers <span class="owner-tag jake">Jake</span> <span class="owner-tag ff">FF Leadership</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Update pipeline tracker</span>
+          <span class="check-text"><strong>Quarterly executive review</strong> &mdash; Luke + Nick + Future Focus CEO: strategic health of partnership, growth targets, expansion to new locations <span class="owner-tag luke">Luke</span> <span class="owner-tag nick">Nick</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Monthly hospital visit (maintain discharge planner relationships)</span>
+          <span class="check-text"><strong>Coordinator pipeline reporting</strong> &mdash; monthly update on referrals, warm prospects, and capacity <span class="owner-tag both">Coordinators</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Review client statements and payments</span>
+          <span class="check-text"><strong>Monthly hospital visits</strong> &mdash; maintain discharge planner relationships at each location <span class="owner-tag both">Coordinators</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Post 2x LinkedIn + 3x Facebook per week</span>
+          <span class="check-text"><strong>Quarterly GP practice visits</strong> &mdash; replenish brochures and nurture referral relationships <span class="owner-tag both">Coordinators</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Quarterly GP practice visits</span>
+          <span class="check-text"><strong>Client statements and revenue reviewed</strong> &mdash; Trilogy sends monthly statements; Jake reviews with FF leadership <span class="owner-tag jake">Jake</span></span>
         </li>
         <li>
           <div class="checkbox"></div>
-          <span class="check-text">Continue community outreach cadence</span>
-        </li>
-        <li>
-          <div class="checkbox"></div>
-          <span class="check-text">Review revenue vs targets</span>
+          <span class="check-text"><strong>Expansion planning</strong> &mdash; when 50 client target hit, review capacity for next tranche <span class="owner-tag luke">Luke</span> <span class="owner-tag ff">FF Leadership</span></span>
         </li>
       </ul>
     </div>
 
-    <div class="callout">
-      <div class="callout-label">Pro Tip</div>
-      <p>Print this checklist and stick it on your wall for the first month. The partners who follow this sequence consistently are the ones who hit 10 clients fastest. Your Partnership Manager will check in on your progress at each step.</p>
+    <div class="callout navy">
+      <div class="callout-label">The 50-client commitment</div>
+      <p>Trilogy Care's <strong>50 foundation clients</strong> are an investment in the partnership &mdash; Trilogy absorbs the cost of onboarding, compliance, and platform setup. The expectation is that Future Focus coordinators actively work toward filling this pipeline in the first 90 days. Jake is your point of contact for everything.</p>
     </div>
 
     <!-- ──────────────────────────────── -->
@@ -672,14 +725,14 @@
         <h3>What to Read Next</h3>
         <ul>
           <li>
-            <a href="getting-started.html">
-              Getting Started Guide &mdash; Your orientation to the Coordination Partner programme
+            <a href="sales-conversations.html">
+              Aged Care Conversations for NDIS Coordinators &mdash; Scripts and objection handling
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </a>
           </li>
           <li>
             <a href="switching-providers.html">
-              Switching Providers Guide &mdash; How to help clients transfer to Trilogy Care
+              NDIS-to-Aged-Care Skills Map &mdash; Every NDIS competency mapped to aged care
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </a>
           </li>

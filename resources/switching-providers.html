@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Switching Providers Guide — Trilogy Care Partner Resource Hub</title>
+  <title>NDIS-to-Aged-Care Skills Map — Future Focus x Trilogy Care</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;1,8..144,400;1,8..144,500&display=swap" rel="stylesheet">
@@ -139,100 +139,6 @@
     }
     li { margin-bottom: 8px; }
 
-    /* ── Reason Pills ── */
-    .reasons-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 28px 0;
-    }
-    .reason-pill {
-      background: var(--white);
-      border: 1px solid #E5E7EB;
-      border-radius: 12px;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      font-size: 15px;
-      line-height: 1.5;
-    }
-    .reason-pill .reason-icon {
-      width: 36px;
-      height: 36px;
-      min-width: 36px;
-      border-radius: 50%;
-      background: #fdf0ec;
-      color: var(--coral);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-    }
-
-    /* ── Step Cards ── */
-    .step-card {
-      background: var(--white);
-      border: 1px solid #E5E7EB;
-      border-radius: 16px;
-      padding: 32px;
-      margin: 24px 0;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-      position: relative;
-      overflow: hidden;
-    }
-    .step-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-    }
-    .step-card.step-1::before { background: linear-gradient(90deg, var(--coral), var(--gold)); }
-    .step-card.step-2::before { background: linear-gradient(90deg, var(--gold), var(--teal)); }
-    .step-card.step-3::before { background: linear-gradient(90deg, var(--teal), var(--light-teal)); }
-
-    .step-card .step-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    .step-card .step-number {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 24px;
-      color: var(--white);
-      flex-shrink: 0;
-    }
-    .step-card.step-1 .step-number { background: var(--coral); }
-    .step-card.step-2 .step-number { background: var(--gold); }
-    .step-card.step-3 .step-number { background: var(--teal); }
-
-    .step-card .step-title {
-      font-family: var(--font-heading);
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1.3;
-    }
-
-    .step-card ul {
-      padding-left: 20px;
-    }
-    .step-card li {
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
     /* ── Callout / Tip Card ── */
     .callout {
       background: var(--light-teal-bg);
@@ -267,109 +173,105 @@
     .callout.info .callout-label { color: var(--navy); }
     .callout.gold .callout-label { color: var(--gold); }
 
-    /* ── Template Box ── */
-    .template-box {
-      background: #F3F4F6;
-      border-radius: 12px;
-      padding: 24px 28px;
-      margin: 28px 0;
-      font-size: 16px;
-      line-height: 1.8;
-    }
-    .template-box .template-label {
-      font-weight: 700;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--navy);
-      margin-bottom: 12px;
-    }
-    .template-box p {
-      font-style: italic;
-      color: var(--charcoal);
-    }
-
-    /* ── Timeline ── */
-    .visual-timeline {
-      position: relative;
+    /* ── Quote highlight ── */
+    .quote-highlight {
+      background: linear-gradient(135deg, var(--navy) 0%, #27476F 100%);
+      border-radius: 16px;
+      padding: 36px 32px;
       margin: 36px 0;
-      padding-left: 40px;
+      text-align: center;
     }
-    .visual-timeline::before {
-      content: '';
-      position: absolute;
-      left: 15px;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(180deg, var(--coral), var(--gold), var(--teal), var(--light-teal));
-      border-radius: 2px;
-    }
-    .timeline-item {
-      position: relative;
-      padding: 16px 0 24px 24px;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -32px;
-      top: 20px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      border: 3px solid var(--white);
-      box-shadow: 0 0 0 2px var(--teal);
-      background: var(--teal);
-    }
-    .timeline-item:nth-child(1)::before { background: var(--coral); box-shadow: 0 0 0 2px var(--coral); }
-    .timeline-item:nth-child(2)::before { background: var(--coral); box-shadow: 0 0 0 2px var(--coral); }
-    .timeline-item:nth-child(3)::before { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
-    .timeline-item:nth-child(4)::before { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
-    .timeline-item:nth-child(5)::before { background: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
-    .timeline-item:nth-child(6)::before { background: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
-    .timeline-item:nth-child(7)::before { background: var(--light-teal); box-shadow: 0 0 0 2px var(--light-teal); }
-
-    .timeline-item .tl-day {
+    .quote-highlight p {
+      color: var(--white);
       font-family: var(--font-heading);
-      font-size: 13px;
+      font-size: 24px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+    .quote-highlight .quote-sub {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-style: normal;
+      color: var(--light-teal);
+      margin-top: 14px;
+    }
+
+    /* ── Complexity Badge ── */
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 4px;
     }
-    .timeline-item:nth-child(1) .tl-day,
-    .timeline-item:nth-child(2) .tl-day { color: var(--coral); }
-    .timeline-item:nth-child(3) .tl-day,
-    .timeline-item:nth-child(4) .tl-day { color: var(--gold); }
-    .timeline-item:nth-child(5) .tl-day,
-    .timeline-item:nth-child(6) .tl-day { color: var(--teal); }
-    .timeline-item:nth-child(7) .tl-day { color: var(--light-teal); }
+    .badge.easy { background: #d1fae5; color: #065f46; }
+    .badge.similar { background: #dbeafe; color: #1e40af; }
+    .badge.simpler { background: #ede9fe; color: #5b21b6; }
+    .badge.na { background: #F3F4F6; color: #6B7280; }
 
-    .timeline-item .tl-text {
-      font-size: 16px;
-      color: var(--slate);
-      line-height: 1.6;
+    /* ── Table ── */
+    .table-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin: 28px 0;
+      border: 1px solid #E5E7EB;
     }
-
-    /* ── FAQ ── */
-    .faq-item {
-      border-bottom: 1px solid #E5E7EB;
-      padding: 24px 0;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
     }
-    .faq-item:first-of-type { border-top: 1px solid #E5E7EB; }
-    .faq-q {
-      font-family: var(--font-heading);
-      font-size: 18px;
+    thead th {
+      background: var(--navy);
+      color: var(--white);
+      text-align: left;
+      padding: 14px 18px;
       font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 10px;
-      line-height: 1.4;
+      font-size: 14px;
     }
-    .faq-a {
-      font-size: 16px;
-      color: var(--slate);
-      line-height: 1.8;
-      margin: 0;
+    tbody td {
+      padding: 12px 18px;
+      border-bottom: 1px solid #E5E7EB;
+      vertical-align: middle;
+    }
+    tbody tr:nth-child(even) { background: var(--off-white); }
+    tbody tr:last-child td { border-bottom: none; }
+
+    /* ── Reasons Grid ── */
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .reason-pill {
+      background: var(--white);
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .reason-pill .reason-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 50%;
+      background: #dff4f4;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
     }
 
     /* ── Bottom Section ── */
@@ -449,15 +351,14 @@
       h3 { font-size: 17px; }
       table { font-size: 12px; }
       thead th, tbody td { padding: 8px 10px; }
-      .template-box { padding: 16px; font-size: 13px; }
       .callout { padding: 16px; }
       .reasons-grid { grid-template-columns: 1fr; }
-      .step-card { padding: 24px 20px; }
       .table-wrap { overflow-x: auto; }
+      .quote-highlight { padding: 24px 20px; }
+      .quote-highlight p { font-size: 18px; }
       .bottom-actions { flex-direction: column; align-items: stretch; gap: 12px; }
       .btn-pdf { width: 100%; justify-content: center; }
       .link-back { text-align: center; display: block; }
-      .contact-card { padding: 24px 20px; }
     }
 
     /* ── Print ── */
@@ -468,9 +369,9 @@
       .content { padding: 20px 0; }
       .hero h1 { font-size: 32px; }
       body { font-size: 14px; }
-      .step-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
       .callout { break-inside: avoid; }
-      .faq-item { break-inside: avoid; }
+      .quote-highlight { break-inside: avoid; }
+      .table-wrap { break-inside: avoid; }
       tr { break-inside: avoid; }
       h2 { break-after: avoid; }
       .bottom-section { border-top: none; margin-top: 24px; padding-top: 0; }
@@ -491,185 +392,208 @@
 
   <!-- Hero -->
   <header class="hero">
-    <span class="category-pill">Operations</span>
-    <h1>Switching Providers Guide</h1>
-    <p class="read-time">6 min read</p>
+    <span class="category-pill">Skills &amp; Capability</span>
+    <h1>NDIS-to-Aged-Care Skills Map</h1>
+    <p class="read-time">8 min read</p>
   </header>
 
   <!-- Content -->
   <main class="content">
 
-    <h2>Why Clients Switch Providers</h2>
-    <p>There are many reasons people look for a new Support at Home provider. Understanding these reasons helps you have confident, empathetic conversations with potential clients.</p>
+    <h2>Your NDIS Skills Are Directly Transferable</h2>
+    <p>There is a widespread belief in the aged care industry that NDIS and aged care require entirely different skill sets. This is incorrect. The coordination work is structurally similar. The regulatory burden in aged care is substantially lower. And the human skills &mdash; complex case management, family communication, multi-agency navigation &mdash; are identical.</p>
+
+    <div class="quote-highlight">
+      <p>"Nothing in aged care is harder than NDIS."</p>
+      <p class="quote-sub">Andrew Wallace &mdash; Trilogy Care. Said to every NDIS coordinator considering the move into aged care.</p>
+    </div>
+
+    <p>The table below maps every major NDIS competency to its aged care equivalent, with a complexity rating to show whether the aged care equivalent is simpler, similar, or simply different. In almost every case: it's simpler.</p>
+
+    <h2>The Full Skills Map</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 28%;">NDIS Competency</th>
+            <th style="width: 34%;">Aged Care Equivalent</th>
+            <th style="width: 20%;">Complexity</th>
+            <th>Key Difference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Support Coordination</strong></td>
+            <td>Care Coordination</td>
+            <td><span class="badge simpler">Simpler</span></td>
+            <td>Fewer funding categories; single flexible budget instead of Core / Capital / CB split</td>
+          </tr>
+          <tr>
+            <td><strong>Plan Budget Management</strong></td>
+            <td>Care Budget Management</td>
+            <td><span class="badge simpler">Simpler</span></td>
+            <td>One budget pool; Trilogy manages the financial administration, not the coordinator</td>
+          </tr>
+          <tr>
+            <td><strong>Service Agreement Coordination</strong></td>
+            <td>Care Agreement / Home Care Agreement</td>
+            <td><span class="badge similar">Similar</span></td>
+            <td>Same concept; Trilogy Care templates handle most of the documentation</td>
+          </tr>
+          <tr>
+            <td><strong>Goal Setting &amp; Review</strong></td>
+            <td>Care Plan Goals</td>
+            <td><span class="badge similar">Similar</span></td>
+            <td>Framed around independence and quality of life; no SMART goal format required</td>
+          </tr>
+          <tr>
+            <td><strong>Functional Capacity Assessment</strong></td>
+            <td>ACAT / RAS Assessment</td>
+            <td><span class="badge simpler">Simpler</span></td>
+            <td>Conducted by My Aged Care assessors &mdash; not the coordinator's responsibility</td>
+          </tr>
+          <tr>
+            <td><strong>NDIA Plan Review Preparation</strong></td>
+            <td>Annual Review / Reassessment</td>
+            <td><span class="badge simpler">Simpler</span></td>
+            <td>Less adversarial; reassessment is needs-based, not evidence-contested</td>
+          </tr>
+          <tr>
+            <td><strong>Compliance &mdash; NDIS Audit (18 months)</strong></td>
+            <td>Aged Care Quality Standards Review</td>
+            <td><span class="badge easy">Much Simpler</span></td>
+            <td>Trilogy manages compliance; coordinator's role is documentation and care planning only. Annual check is approximately 45 minutes.</td>
+          </tr>
+          <tr>
+            <td><strong>Provider Sourcing &amp; Rostering</strong></td>
+            <td>Care Worker Sourcing</td>
+            <td><span class="badge similar">Similar</span></td>
+            <td>Same process; Trilogy platform supports worker matching and scheduling</td>
+          </tr>
+          <tr>
+            <td><strong>Complex Family Communication</strong></td>
+            <td>Complex Family Communication</td>
+            <td><span class="badge similar">Similar</span></td>
+            <td>Emotional complexity similar; often easier because families are generally supportive rather than adversarial</td>
+          </tr>
+          <tr>
+            <td><strong>Multi-Agency Coordination</strong></td>
+            <td>GP / Allied Health / Hospital Liaison</td>
+            <td><span class="badge similar">Similar</span></td>
+            <td>Fewer agencies; clearer role boundaries; aged care professionals are generally familiar with coordination roles</td>
+          </tr>
+          <tr>
+            <td><strong>Crisis &amp; Risk Management</strong></td>
+            <td>Clinical Risk &amp; Escalation</td>
+            <td><span class="badge similar">Similar</span></td>
+            <td>Trilogy provides clinical escalation pathways; coordinator identifies and refers, not manages</td>
+          </tr>
+          <tr>
+            <td><strong>Behaviour Support Plans</strong></td>
+            <td>N/A in aged care</td>
+            <td><span class="badge na">Not Required</span></td>
+            <td>No equivalent requirement in Support at Home. Dementia-related behaviours are managed through clinical care planning, not behaviour support frameworks.</td>
+          </tr>
+          <tr>
+            <td><strong>Supported Independent Living (SIL)</strong></td>
+            <td>N/A in aged care</td>
+            <td><span class="badge na">Not Required</span></td>
+            <td>No SIL equivalent. Residential aged care is a separate system; Support at Home is exclusively community-based.</td>
+          </tr>
+          <tr>
+            <td><strong>Specialist Support Coordination</strong></td>
+            <td>N/A in aged care</td>
+            <td><span class="badge na">Not Required</span></td>
+            <td>No specialist tier. All aged care coordination operates at the same level; Trilogy Care provides clinical oversight where needed.</td>
+          </tr>
+          <tr>
+            <td><strong>NDIS Portal &amp; MyPlace</strong></td>
+            <td>My Aged Care Portal + Trilogy Platform</td>
+            <td><span class="badge simpler">Simpler</span></td>
+            <td>My Aged Care is less complex than MyPlace; Trilogy's partner portal handles most of the system interaction for coordinators</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The Compliance Comparison</h2>
+    <p>Compliance is the most common anxiety for NDIS coordinators considering aged care. The reality should put that anxiety to rest.</p>
 
     <div class="reasons-grid">
       <div class="reason-pill">
-        <div class="reason-icon">&#10024;</div>
-        <span>Want more care hours and less fees</span>
+        <div class="reason-icon">&#128221;</div>
+        <span><strong>NDIS audit:</strong> 18-month cycles, registration renewal, evidence portfolios, independent auditors on-site</span>
       </div>
       <div class="reason-pill">
-        <div class="reason-icon">&#9997;</div>
-        <span>Want to choose their own care workers</span>
+        <div class="reason-icon">&#9989;</div>
+        <span><strong>Aged care review:</strong> Annual standards check, approximately 45 minutes, managed by Trilogy Care with coordinator documentation</span>
       </div>
       <div class="reason-pill">
-        <div class="reason-icon">&#128172;</div>
-        <span>Unhappy with current provider&rsquo;s communication</span>
+        <div class="reason-icon">&#128196;</div>
+        <span><strong>NDIS:</strong> Coordinator maintains registration, insurance, NDIS Worker Screening, individual compliance obligations</span>
       </div>
       <div class="reason-pill">
-        <div class="reason-icon">&#128736;</div>
-        <span>Current provider doesn&rsquo;t offer coordination</span>
+        <div class="reason-icon">&#127919;</div>
+        <span><strong>Aged care:</strong> Trilogy Care holds the provider registration. Future Focus coordinators operate under Trilogy's compliance umbrella.</span>
       </div>
-      <div class="reason-pill">
-        <div class="reason-icon">&#127968;</div>
-        <span>Moving areas</span>
-      </div>
-      <div class="reason-pill">
-        <div class="reason-icon">&#128101;</div>
-        <span>Family recommendation</span>
-      </div>
-      <div class="reason-pill">
-        <div class="reason-icon">&#128161;</div>
-        <span>Want the flexibility of the Fully Coordinated model</span>
-      </div>
-    </div>
-
-    <!-- ──────────────────────────────── -->
-
-    <h2>The 3-Step Switching Process</h2>
-    <p>Switching providers is simpler than most people expect. Here are the three steps.</p>
-
-    <div class="step-card step-1">
-      <div class="step-header">
-        <div class="step-number">1</div>
-        <div class="step-title">Notify Current Provider</div>
-      </div>
-      <ul>
-        <li>Client (or you on their behalf) calls their current provider</li>
-        <li>Give notice of intent to transfer &mdash; typically 14 days notice required</li>
-        <li>Agree on a termination date</li>
-        <li>Request a final statement of unspent funds</li>
-      </ul>
-      <div class="callout gold" style="margin-bottom:0;">
-        <div class="callout-label">Tip</div>
-        <p>Be polite and professional &mdash; the aged care community is small. A respectful exit leaves the door open for future referral relationships.</p>
-      </div>
-    </div>
-
-    <div class="step-card step-2">
-      <div class="step-header">
-        <div class="step-number">2</div>
-        <div class="step-title">Contact Trilogy Care</div>
-      </div>
-      <ul>
-        <li>Call <strong>1300 459 190</strong> or email <strong>info@trilogycare.com.au</strong></li>
-        <li>Provide: client name, DOB, My Aged Care reference number</li>
-        <li>Trilogy handles all transfer paperwork with Services Australia</li>
-        <li>Unspent funds transfer automatically to Trilogy</li>
-        <li>No gap in funding &mdash; it&rsquo;s a seamless transition</li>
-      </ul>
-    </div>
-
-    <div class="step-card step-3">
-      <div class="step-header">
-        <div class="step-number">3</div>
-        <div class="step-title">Welcome to Trilogy Care</div>
-      </div>
-      <ul>
-        <li>Client meets their dedicated Care Partner at Trilogy</li>
-        <li>You (the coordinator) work with the client to develop their care plan</li>
-        <li>Services begin under the new arrangement</li>
-        <li>Client can keep their existing care workers in most cases</li>
-      </ul>
-    </div>
-
-    <!-- ──────────────────────────────── -->
-
-    <h2>What to Tell the Client</h2>
-    <p>Here are the key talking points to reassure clients during the switching conversation.</p>
-
-    <div class="template-box">
-      <div class="template-label">Script / Talking Points</div>
-      <p>&ldquo;You have the right to switch providers at any time &mdash; it&rsquo;s your choice.&rdquo;</p>
-      <p>&ldquo;Your funding follows you. You won&rsquo;t lose anything. Any unspent money transfers to Trilogy Care automatically.&rdquo;</p>
-      <p>&ldquo;We&rsquo;ll handle all the paperwork with your current provider and Services Australia. You don&rsquo;t need to do much at all.&rdquo;</p>
-      <p>&ldquo;The whole process usually takes 2&ndash;3 weeks. During that time, your existing services can continue as normal.&rdquo;</p>
-      <p>&ldquo;You can keep your current care workers if you&rsquo;d like &mdash; in most cases they can continue under the new arrangement.&rdquo;</p>
     </div>
 
     <div class="callout coral-bg">
-      <div class="callout-label">Key Reassurance</div>
-      <p>The biggest fear clients have is <strong>losing their funding or having a gap in care</strong>. Address this upfront: funding transfers automatically, and services can continue uninterrupted during the transition period.</p>
+      <div class="callout-label">The key insight</div>
+      <p>In aged care, <strong>Trilogy Care carries the compliance burden</strong> &mdash; provider registration, quality standards, audits, billing compliance, and government reporting. Future Focus coordinators focus on coordination and client relationships. That is a fundamentally different risk and workload profile to NDIS.</p>
     </div>
 
-    <!-- ──────────────────────────────── -->
+    <h2>What Is Actually Different</h2>
+    <p>Honest differences, because they exist and coordinators should know them going in.</p>
 
-    <h2>Timeline</h2>
-    <p>Here&rsquo;s what a typical switching timeline looks like from start to finish.</p>
-
-    <div class="visual-timeline">
-      <div class="timeline-item">
-        <div class="tl-day">Day 1</div>
-        <div class="tl-text">Client decides to switch</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-day">Day 1&ndash;3</div>
-        <div class="tl-text">You or client notifies current provider (14 days notice)</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-day">Day 3&ndash;7</div>
-        <div class="tl-text">Trilogy processes transfer with Services Australia</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-day">Day 7&ndash;14</div>
-        <div class="tl-text">Notice period runs</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-day">Day 14&ndash;17</div>
-        <div class="tl-text">Onboarding &mdash; care plan, meet Care Partner</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-day">Day 17&ndash;21</div>
-        <div class="tl-text">Services begin under Trilogy Care</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-day">Ongoing</div>
-        <div class="tl-text">You coordinate, Trilogy administers</div>
-      </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>NDIS</th>
+            <th>Aged Care (Support at Home)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Client cohort</strong></td>
+            <td>Primarily working-age adults; often lifelong relationships</td>
+            <td>65+ adults; often a shorter but intensive relationship period</td>
+          </tr>
+          <tr>
+            <td><strong>Emotional content</strong></td>
+            <td>Disability identity, advocacy, rights-based conversations</td>
+            <td>Ageing, loss of independence, end-of-life planning; grief often present</td>
+          </tr>
+          <tr>
+            <td><strong>Funding model</strong></td>
+            <td>NDIS plan; needs-based, individualised, disability-specific</td>
+            <td>Support at Home budget; entitlement-based, acuity-classified</td>
+          </tr>
+          <tr>
+            <td><strong>Advocacy</strong></td>
+            <td>Active advocacy often required in plan reviews</td>
+            <td>Less adversarial; advocacy through care planning rather than review contestation</td>
+          </tr>
+          <tr>
+            <td><strong>Clinical complexity</strong></td>
+            <td>Varies widely; some participants have complex medical needs</td>
+            <td>Often high clinical need; Trilogy's nursing team supports escalation</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- ──────────────────────────────── -->
-
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq-item">
-      <div class="faq-q">&ldquo;Will my client lose any funding?&rdquo;</div>
-      <p class="faq-a">No. Unspent funds transfer from the old provider to Trilogy Care. There&rsquo;s no gap and no loss.</p>
+    <div class="callout gold">
+      <div class="callout-label">Preparing for the emotional difference</div>
+      <p>The most significant adjustment for NDIS coordinators is the emotional tenor of aged care conversations &mdash; clients are often navigating loss of independence, fear of residential care, and end-of-life matters. This is not harder than NDIS. But it is different. Jake Kelly-Grubb provides mentoring on this during coordinator induction.</p>
     </div>
 
-    <div class="faq-item">
-      <div class="faq-q">&ldquo;How long does the switch take?&rdquo;</div>
-      <p class="faq-a">Typically 2&ndash;3 weeks from the client giving notice to their current provider.</p>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">&ldquo;Does my client need to do anything?&rdquo;</div>
-      <p class="faq-a">Very little. They notify their current provider (or you can help). Trilogy handles the Services Australia paperwork. Client signs a new agreement with Trilogy.</p>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">&ldquo;Can they keep their current care workers?&rdquo;</div>
-      <p class="faq-a">In most cases, yes. Workers can continue providing services through Trilogy&rsquo;s platform. Compliance checks may need to be transferred.</p>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">&ldquo;What if the current provider makes it difficult?&rdquo;</div>
-      <p class="faq-a">Clients have the legal right to switch providers at any time. If there are any issues, Trilogy&rsquo;s team can assist with the transition.</p>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">&ldquo;What about clients on legacy Home Care Packages?&rdquo;</div>
-      <p class="faq-a">Same process. Legacy HCP clients transitioning to Support at Home go through the same 3-step switching process.</p>
-    </div>
+    <h2>The Verdict</h2>
+    <p>Future Focus coordinators have already demonstrated they can manage some of the most complex care coordination work in Australia. The NDIS system &mdash; with its multiple funding bodies, contested reviews, behaviour support requirements, and 18-month audit cycles &mdash; is genuinely harder than Support at Home coordination.</p>
+    <p>Aged care adds emotional complexity and a different client cohort. It removes most of the system complexity. With Trilogy Care handling compliance, billing, and platform administration, Future Focus coordinators can do what they are already very good at: building trust with families and managing care well.</p>
 
     <!-- ──────────────────────────────── -->
 
@@ -689,14 +613,14 @@
         <h3>What to Read Next</h3>
         <ul>
           <li>
-            <a href="roles-and-responsibilities.html">
-              Roles &amp; Responsibilities &mdash; Understand who does what in the partnership
+            <a href="sales-conversations.html">
+              Aged Care Conversations for NDIS Coordinators &mdash; Scripts and language translation
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </a>
           </li>
           <li>
-            <a href="revenue-and-pricing.html">
-              Revenue &amp; Pricing Guide &mdash; Model your income as a Coordination Partner
+            <a href="onboarding-checklist.html">
+              4-Week Enterprise Onboarding Checklist &mdash; The step-by-step partnership launch plan
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </a>
           </li>
