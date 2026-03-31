@@ -24,2100 +24,275 @@
       --font-heading: 'Roboto Serif', Georgia, serif;
       --font-body: 'Roboto Flex', 'Inter', system-ui, sans-serif;
     }
-
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    body {
-      font-family: var(--font-body);
-      color: var(--slate);
-      font-size: 18px;
-      line-height: 1.7;
-      overflow: hidden;
-      background: var(--navy-dark);
-      height: 100vh;
-    }
-
-    /* ── Password Gate ── */
-    #password-gate {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background: var(--navy-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); color: var(--slate); font-size: 18px; line-height: 1.7; overflow: hidden; background: var(--navy-dark); height: 100vh; }
+    #password-gate { position: fixed; inset: 0; z-index: 99999; background: var(--navy-dark); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1.2rem; }
     #password-gate.unlocked { display: none; }
-    #password-gate h2 {
-      font-family: var(--font-heading);
-      color: var(--white);
-      font-size: 1.6rem;
-      font-weight: 500;
-    }
-    #password-gate input {
-      padding: 0.75rem 1.2rem;
-      font-size: 1.1rem;
-      border: 2px solid var(--teal);
-      border-radius: 8px;
-      background: var(--white);
-      text-align: center;
-      width: 240px;
-      outline: none;
-    }
+    #password-gate h2 { font-family: var(--font-heading); color: var(--white); font-size: 1.6rem; font-weight: 500; }
+    #password-gate input { padding: 0.75rem 1.2rem; font-size: 1.1rem; border: 2px solid var(--teal); border-radius: 8px; background: var(--white); text-align: center; width: 240px; outline: none; }
     #password-gate input:focus { border-color: var(--light-teal); }
-    #password-gate button {
-      padding: 0.7rem 2rem;
-      font-size: 1rem;
-      font-weight: 600;
-      background: var(--teal);
-      color: var(--white);
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+    #password-gate button { padding: 0.7rem 2rem; font-size: 1rem; font-weight: 600; background: var(--teal); color: var(--white); border: none; border-radius: 8px; cursor: pointer; }
     #password-gate button:hover { background: var(--light-teal); }
     #password-gate .error { color: var(--coral); font-size: 0.9rem; min-height: 1.2em; }
     #app-content { display: none; }
     #app-content.visible { display: block; }
-
-    /* ── Presentation Container ── */
-    .deck {
-      height: 100vh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ── Fixed Nav ── */
-    .fixed-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 48px;
-      background: rgba(255, 255, 255, 0.97);
-      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .nav-logo-img {
-      height: 32px;
-      width: auto;
-    }
-
-    .nav-divider {
-      width: 1px;
-      height: 20px;
-      background: rgba(31, 59, 99, 0.15);
-    }
-
-    .nav-subtitle {
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--teal);
-      font-weight: 500;
-    }
-
-    /* ── Progress Dots ── */
-    .progress-dots {
-      position: fixed;
-      right: 24px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .progress-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(31, 59, 99, 0.2);
-      cursor: pointer;
-      transition: all 0.3s;
-      border: none;
-      padding: 0;
-    }
-
-    .progress-dot.active {
-      background: var(--teal);
-      transform: scale(1.3);
-    }
-
-    .progress-dot:hover {
-      background: var(--navy);
-      transform: scale(1.2);
-    }
-
-    /* ── Slide Base ── */
-    section {
-      height: 100vh;
-      min-height: 100vh;
-      max-height: 100vh;
-      scroll-snap-align: start;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* ── Slide Number Indicator ── */
-    section::after {
-      content: attr(data-slide-num);
-      position: absolute;
-      bottom: 24px;
-      left: 48px;
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(74, 85, 101, 0.3);
-      font-family: var(--font-body);
-      letter-spacing: 1px;
-    }
-
-    section[data-dark]::after {
-      color: rgba(255, 255, 255, 0.2);
-    }
-
-    /* ── Scroll Indicator (hero only) ── */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      animation: pulse-down 2s ease-in-out infinite;
-    }
-
-    .scroll-indicator span {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      font-weight: 500;
-    }
-
-    .scroll-indicator svg {
-      width: 20px;
-      height: 20px;
-      stroke: rgba(255,255,255,0.4);
-    }
-
-    @keyframes pulse-down {
-      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-      50% { transform: translateX(-50%) translateY(8px); opacity: 0.5; }
-    }
-
-    /* ── Slide Counter ── */
-    .slide-counter {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(74, 85, 101, 0.4);
-      z-index: 998;
-      font-family: var(--font-body);
-      transition: color 0.3s;
-    }
-
-    .slide-counter.on-dark {
-      color: rgba(255, 255, 255, 0.3);
-    }
-
-    .section-inner {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 72px 48px 48px;
-    }
-
-    .section-title {
-      font-family: var(--font-heading);
-      font-size: 38px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-      line-height: 1.25;
-    }
-
-    .section-subtitle {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      font-weight: 600;
-      font-style: italic;
-      color: var(--teal);
-      margin-bottom: 48px;
-    }
-
-    /* ── Cards ── */
-    .card {
-      background: var(--white);
-      border-radius: 16px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      padding: 32px;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    /* ── Buttons ── */
-    .btn {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 16px;
-      font-weight: 500;
-      padding: 14px 32px;
-      border-radius: 10px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: none;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
-
-    .btn-teal {
-      background: var(--teal);
-      color: var(--white);
-    }
-
-    .btn-navy {
-      background: var(--navy);
-      color: var(--white);
-    }
-
-    .btn-outline-white {
-      background: transparent;
-      border: 1.5px solid rgba(255, 255, 255, 0.5);
-      color: var(--white);
-    }
-
-    .btn-outline-white:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .btn-white {
-      background: var(--white);
-      color: var(--teal);
-    }
-
-    /* ── Stat Card ── */
-    .stat-card {
-      text-align: center;
-      padding: 36px 24px;
-    }
-
-    .stat-number {
-      font-family: var(--font-heading);
-      font-size: 48px;
-      font-weight: 300;
-      color: var(--teal);
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      color: var(--slate);
-      line-height: 1.5;
-    }
-
-    /* ── Pill Badge ── */
-    .pill {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 50px;
-    }
-
-    .pill-teal {
-      background: var(--teal);
-      color: var(--white);
-    }
-
-    .pill-navy {
-      background: rgba(31, 59, 99, 0.1);
-      color: var(--navy);
-    }
-
-    .pill-light {
-      background: rgba(255, 255, 255, 0.15);
-      color: var(--white);
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 1 — HERO
-    ══════════════════════════════════════════ */
-    #hero {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
-      overflow: hidden;
-    }
-
-    .hero-inner {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 120px 48px 80px;
-      display: grid;
-      grid-template-columns: 55% 45%;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .hero-text h1 {
-      font-family: var(--font-heading);
-      font-size: 44px;
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.3;
-      margin: 24px 0;
-    }
-
-    .hero-text p {
-      font-size: 18px;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 36px;
-      line-height: 1.7;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .hero-image {
-      position: relative;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      border-radius: 20px;
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero-confidential {
-      position: absolute;
-      bottom: 24px;
-      left: 48px;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.35);
-      letter-spacing: 1px;
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 2 — REP INTRODUCTION
-    ══════════════════════════════════════════ */
+    .deck { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; position: relative; z-index: 1; }
+    .fixed-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 12px 48px; background: rgba(255, 255, 255, 0.97); box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06); backdrop-filter: blur(12px); }
+    .nav-left { display: flex; align-items: center; gap: 16px; }
+    .nav-logo-img { height: 32px; width: auto; }
+    .nav-divider { width: 1px; height: 20px; background: rgba(31, 59, 99, 0.15); }
+    .nav-subtitle { font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); font-weight: 500; }
+    .progress-dots { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); z-index: 999; display: flex; flex-direction: column; gap: 12px; }
+    .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(31, 59, 99, 0.2); cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
+    .progress-dot.active { background: var(--teal); transform: scale(1.3); }
+    .progress-dot:hover { background: var(--navy); transform: scale(1.2); }
+    section { height: 100vh; min-height: 100vh; max-height: 100vh; scroll-snap-align: start; display: flex; align-items: center; position: relative; overflow: hidden; }
+    section::after { content: attr(data-slide-num); position: absolute; bottom: 24px; left: 48px; font-size: 13px; font-weight: 500; color: rgba(74, 85, 101, 0.3); font-family: var(--font-body); letter-spacing: 1px; }
+    section[data-dark]::after { color: rgba(255, 255, 255, 0.2); }
+    .scroll-indicator { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; animation: pulse-down 2s ease-in-out infinite; }
+    .scroll-indicator span { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 500; }
+    .scroll-indicator svg { width: 20px; height: 20px; stroke: rgba(255,255,255,0.4); }
+    @keyframes pulse-down { 0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; } 50% { transform: translateX(-50%) translateY(8px); opacity: 0.5; } }
+    .slide-counter { position: fixed; bottom: 24px; right: 24px; font-size: 13px; font-weight: 500; color: rgba(74, 85, 101, 0.4); z-index: 998; font-family: var(--font-body); transition: color 0.3s; }
+    .slide-counter.on-dark { color: rgba(255, 255, 255, 0.3); }
+    .section-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: 72px 48px 48px; }
+    .section-title { font-family: var(--font-heading); font-size: 38px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.25; }
+    .section-subtitle { font-family: var(--font-heading); font-size: 20px; font-weight: 600; font-style: italic; color: var(--teal); margin-bottom: 48px; }
+    .card { background: var(--white); border-radius: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); padding: 32px; }
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .btn { display: inline-block; font-family: var(--font-body); font-size: 16px; font-weight: 500; padding: 14px 32px; border-radius: 10px; text-decoration: none; cursor: pointer; transition: all 0.2s; border: none; }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-teal { background: var(--teal); color: var(--white); }
+    .btn-navy { background: var(--navy); color: var(--white); }
+    .btn-outline-white { background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.5); color: var(--white); }
+    .btn-outline-white:hover { background: rgba(255, 255, 255, 0.1); }
+    .btn-white { background: var(--white); color: var(--teal); }
+    .stat-card { text-align: center; padding: 36px 24px; }
+    .stat-number { font-family: var(--font-heading); font-size: 48px; font-weight: 300; color: var(--teal); line-height: 1.1; margin-bottom: 8px; }
+    .stat-label { font-size: 14px; color: var(--slate); line-height: 1.5; }
+    .pill { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 50px; }
+    .pill-teal { background: var(--teal); color: var(--white); }
+    .pill-navy { background: rgba(31, 59, 99, 0.1); color: var(--navy); }
+    .pill-light { background: rgba(255, 255, 255, 0.15); color: var(--white); }
+    #hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); overflow: hidden; }
+    .hero-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: 120px 48px 80px; display: grid; grid-template-columns: 55% 45%; gap: 48px; align-items: center; }
+    .hero-text h1 { font-family: var(--font-heading); font-size: 44px; font-weight: 300; color: var(--white); line-height: 1.3; margin: 24px 0; }
+    .hero-text p { font-size: 18px; color: rgba(255, 255, 255, 0.7); margin-bottom: 36px; line-height: 1.7; }
+    .hero-image img { width: 100%; height: 480px; object-fit: cover; border-radius: 20px; border: 2px solid rgba(255, 255, 255, 0.15); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
+    .hero-confidential { position: absolute; bottom: 24px; left: 48px; font-size: 12px; color: rgba(255, 255, 255, 0.35); letter-spacing: 1px; }
     #rep-intro { background: var(--white); }
-
-    .rep-grid {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 56px;
-      align-items: center;
-    }
-
-    .rep-photo-frame {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .rep-photo {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--teal);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-      background: var(--light-teal-bg);
-    }
-
-    .rep-name {
-      font-family: var(--font-heading);
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 4px;
-      line-height: 1.2;
-    }
-
-    .rep-title {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      font-weight: 500;
-      font-style: italic;
-      color: var(--teal);
-      margin-bottom: 24px;
-    }
-
-    .rep-creds {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 28px;
-    }
-
-    .rep-creds li {
-      padding: 8px 0 8px 28px;
-      position: relative;
-      font-size: 17px;
-      color: var(--charcoal);
-      line-height: 1.5;
-    }
-
-    .rep-creds li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 16px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--teal);
-    }
-
-    .rep-quote {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      font-style: italic;
-      color: var(--slate);
-      line-height: 1.6;
-      border-left: 4px solid var(--teal);
-      padding-left: 24px;
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 3 — DISCOVERY
-    ══════════════════════════════════════════ */
+    .rep-grid { display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: center; }
+    .rep-photo-frame { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .rep-photo { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid var(--teal); box-shadow: 0 8px 32px rgba(0,0,0,0.12); background: var(--light-teal-bg); }
+    .rep-name { font-family: var(--font-heading); font-size: 36px; font-weight: 700; color: var(--navy); margin-bottom: 4px; line-height: 1.2; }
+    .rep-title { font-family: var(--font-heading); font-size: 20px; font-weight: 500; font-style: italic; color: var(--teal); margin-bottom: 24px; }
+    .rep-creds { list-style: none; padding: 0; margin-bottom: 28px; }
+    .rep-creds li { padding: 8px 0 8px 28px; position: relative; font-size: 17px; color: var(--charcoal); line-height: 1.5; }
+    .rep-creds li::before { content: ''; position: absolute; left: 0; top: 16px; width: 10px; height: 10px; border-radius: 50%; background: var(--teal); }
+    .rep-quote { font-family: var(--font-heading); font-size: 18px; font-style: italic; color: var(--slate); line-height: 1.6; border-left: 4px solid var(--teal); padding-left: 24px; }
     #discovery { background: var(--white); }
-
-    .discovery-layout {
-      display: grid;
-      grid-template-columns: 45% 55%;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .discovery-photo img {
-      width: 100%;
-      height: 100%;
-      max-height: 500px;
-      object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    }
-
-    .discovery-prompts {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .discovery-prompt {
-      border-left: 4px solid var(--teal);
-      padding: 12px 0 12px 20px;
-      font-family: var(--font-heading);
-      font-size: 17px;
-      color: var(--navy);
-      font-weight: 500;
-      line-height: 1.4;
-    }
-
-    .discovery-footer {
-      font-size: 14px;
-      color: #999;
-      line-height: 1.5;
-      margin-top: 8px;
-    }
-
-    .discovery-hint {
-      font-size: 13px;
-      color: var(--teal);
-      font-style: italic;
-      line-height: 1.4;
-    }
-
-    /* ══════════════════════════════════════════
-       PRESENTER BUTTON
-    ══════════════════════════════════════════ */
-    .presenter-btn {
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px 20px;
-      border-radius: 8px;
-      border: 2px solid var(--teal);
-      background: var(--teal);
-      color: var(--white);
-      cursor: pointer;
-      transition: all 0.2s;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      box-shadow: 0 2px 8px rgba(2,127,126,0.3);
-    }
-
-    .presenter-btn:hover {
-      background: var(--navy);
-      border-color: var(--navy);
-      box-shadow: 0 4px 12px rgba(31,59,99,0.3);
-      transform: translateY(-1px);
-    }
-
-    .presenter-btn.active {
-      background: var(--coral);
-      border-color: var(--coral);
-      box-shadow: 0 2px 8px rgba(224,123,94,0.3);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 2px 8px rgba(224,123,94,0.3); }
-      50% { box-shadow: 0 2px 16px rgba(224,123,94,0.5); }
-    }
-
-    /* ══════════════════════════════════════════
-       PRESENTER PANEL (inline right side)
-    ══════════════════════════════════════════ */
-    .presenter-panel {
-      position: fixed;
-      top: 0;
-      right: -420px;
-      width: 420px;
-      height: 100vh;
-      background: #0d1b2a;
-      color: #E1EEFA;
-      z-index: 2000;
-      display: flex;
-      flex-direction: column;
-      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: -4px 0 24px rgba(0,0,0,0.3);
-      font-family: var(--font-body);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .presenter-panel.open {
-      right: 0;
-    }
-
-    .pp-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      background: #1F3B63;
-      border-bottom: 2px solid #027F7E;
-      flex-shrink: 0;
-    }
-
-    .pp-header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .pp-badge {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #43C0BE;
-    }
-
-    .pp-slide-count {
-      font-size: 12px;
-      color: rgba(255,255,255,0.5);
-      font-weight: 500;
-    }
-
-    .pp-close {
-      background: none;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
-      font-size: 18px;
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-    }
-
-    .pp-close:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .pp-content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 0;
-    }
-
-    .pp-onscreen {
-      background: #1a2d47;
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .pp-onscreen-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #43C0BE;
-      margin-bottom: 4px;
-    }
-
-    .pp-onscreen-title {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 2px;
-    }
-
-    .pp-onscreen-desc {
-      font-size: 12px;
-      color: rgba(255,255,255,0.4);
-    }
-
-    .pp-section {
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .pp-section-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
+    .discovery-layout { display: grid; grid-template-columns: 45% 55%; gap: 48px; align-items: center; }
+    .discovery-photo img { width: 100%; height: 100%; max-height: 500px; object-fit: cover; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .discovery-prompts { display: flex; flex-direction: column; gap: 16px; }
+    .discovery-prompt { border-left: 4px solid var(--teal); padding: 12px 0 12px 20px; font-family: var(--font-heading); font-size: 17px; color: var(--navy); font-weight: 500; line-height: 1.4; }
+    .discovery-footer { font-size: 14px; color: #999; line-height: 1.5; margin-top: 8px; }
+    .presenter-btn { font-family: var(--font-body); font-size: 13px; font-weight: 600; padding: 8px 20px; border-radius: 8px; border: 2px solid var(--teal); background: var(--teal); color: var(--white); cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 2px 8px rgba(2,127,126,0.3); }
+    .presenter-btn:hover { background: var(--navy); border-color: var(--navy); box-shadow: 0 4px 12px rgba(31,59,99,0.3); transform: translateY(-1px); }
+    .presenter-btn.active { background: var(--coral); border-color: var(--coral); box-shadow: 0 2px 8px rgba(224,123,94,0.3); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { box-shadow: 0 2px 8px rgba(224,123,94,0.3); } 50% { box-shadow: 0 2px 16px rgba(224,123,94,0.5); } }
+    .presenter-panel { position: fixed; top: 0; right: -420px; width: 420px; height: 100vh; background: #0d1b2a; color: #E1EEFA; z-index: 2000; display: flex; flex-direction: column; transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -4px 0 24px rgba(0,0,0,0.3); font-family: var(--font-body); font-size: 13px; line-height: 1.5; }
+    .presenter-panel.open { right: 0; }
+    .pp-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #1F3B63; border-bottom: 2px solid #027F7E; flex-shrink: 0; }
+    .pp-header-left { display: flex; align-items: center; gap: 12px; }
+    .pp-badge { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #43C0BE; }
+    .pp-slide-count { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500; }
+    .pp-close { background: none; border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 18px; width: 28px; height: 28px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .pp-close:hover { background: rgba(255,255,255,0.1); }
+    .pp-content { flex: 1; overflow-y: auto; padding: 0; }
+    .pp-onscreen { background: #1a2d47; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .pp-onscreen-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #43C0BE; margin-bottom: 4px; }
+    .pp-onscreen-title { font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .pp-onscreen-desc { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .pp-section { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .pp-section-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
     .pp-section-label.script { color: #43C0BE; }
     .pp-section-label.pivots { color: #D4A537; }
     .pp-section-label.ask { color: #E07B5E; }
-
-    .pp-script-text {
-      font-size: 14px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .pp-script-text b {
-      color: #43C0BE;
-    }
-
-    .pp-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .pp-list li {
-      padding: 5px 0 5px 14px;
-      position: relative;
-      font-size: 12px;
-      color: rgba(255,255,255,0.7);
-    }
-
-    .pp-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 11px;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-    }
-
+    .pp-script-text { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.9); }
+    .pp-script-text b { color: #43C0BE; }
+    .pp-list { list-style: none; padding: 0; margin: 0; }
+    .pp-list li { padding: 5px 0 5px 14px; position: relative; font-size: 12px; color: rgba(255,255,255,0.7); }
+    .pp-list li::before { content: ''; position: absolute; left: 0; top: 11px; width: 5px; height: 5px; border-radius: 50%; }
     .pp-list.pivots li::before { background: #D4A537; }
     .pp-list.ask li::before { background: #E07B5E; }
-
-    .pp-next-up {
-      padding: 10px 16px;
-      font-size: 11px;
-      color: rgba(255,255,255,0.3);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .pp-next-up span {
-      font-weight: 600;
-      color: rgba(255,255,255,0.5);
-    }
-
-    .pp-nav {
-      display: flex;
-      gap: 1px;
-      flex-shrink: 0;
-      background: rgba(255,255,255,0.05);
-    }
-
-    .pp-nav-btn {
-      flex: 1;
-      padding: 14px;
-      background: #1F3B63;
-      border: none;
-      color: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-      font-family: var(--font-body);
-      letter-spacing: 0.5px;
-    }
-
-    .pp-nav-btn:hover {
-      background: #027F7E;
-    }
-
-    /* When panel is open, shrink the deck */
-    body.presenter-active .deck {
-      margin-right: 420px;
-      transition: margin-right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    body.presenter-active .fixed-nav {
-      right: 420px;
-      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    body.presenter-active .progress-dots {
-      right: 444px;
-    }
-
-    body.presenter-active .slide-counter {
-      right: 444px;
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 4 — OPPORTUNITY
-    ══════════════════════════════════════════ */
-    #opportunity {
-      background: var(--light-teal-bg);
-    }
-
-    .opportunity-content {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 48px;
-    }
-
-    .bullet-card {
-      padding: 36px;
-    }
-
-    .bullet-card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .bullet-card li {
-      padding: 10px 0;
-      padding-left: 28px;
-      position: relative;
-      font-size: 17px;
-      color: var(--charcoal);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .bullet-card li:last-child {
-      border-bottom: none;
-    }
-
-    .bullet-card li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 18px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--teal);
-    }
-
-    .opportunity-bottom {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 32px;
-      align-items: stretch;
-    }
-
-    .opportunity-photo {
-      display: flex;
-      align-items: stretch;
-    }
-
-    .opportunity-photo img {
-      width: 100%;
-      height: 100%;
-      min-height: 200px;
-      max-height: 280px;
-      object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    /* ── TC Logo on every slide ── */
-    .slide-logo {
-      position: absolute;
-      top: 24px;
-      right: 48px;
-      height: 40px;
-      width: auto;
-      opacity: 0.85;
-      z-index: 10;
-    }
-
-    section[data-dark] .slide-logo {
-      filter: brightness(0) invert(1);
-      opacity: 0.6;
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 5 — CREDIBILITY
-    ══════════════════════════════════════════ */
-    #credibility {
-      background: var(--white);
-    }
-
-    .cred-stats {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      margin-bottom: 48px;
-    }
-
-    .cred-stat {
-      text-align: center;
-      padding: 28px 16px;
-    }
-
-    .cred-stat .stat-number {
-      font-size: 36px;
-    }
-
-    .feature-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-
-    .feature-card {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      padding: 28px;
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: var(--light-teal-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 22px;
-    }
-
-    .feature-card h4 {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 6px;
-    }
-
-    .feature-card p {
-      font-size: 15px;
-      color: var(--slate);
-      line-height: 1.6;
-    }
-
-    .testimonial-card {
-      background: var(--navy);
-      color: var(--white);
-      border-radius: 16px;
-      padding: 40px;
-    }
-
-    .testimonial-card blockquote {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      font-style: italic;
-      font-weight: 300;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .testimonial-card cite {
-      font-style: normal;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 7 — SKILLS TRANSFER
-    ══════════════════════════════════════════ */
-    #skills {
-      background: var(--light-blue-bg);
-    }
-
-    .skills-table-wrapper {
-      overflow-x: auto;
-      margin-bottom: 32px;
-    }
-
-    .skills-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      background: var(--white);
-    }
-
-    .skills-table thead th {
-      background: var(--navy);
-      color: var(--white);
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 12px 20px;
-      text-align: left;
-    }
-
-    .skills-table tbody td {
-      padding: 10px 20px;
-      font-size: 15px;
-      color: var(--charcoal);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .skills-table tbody tr:nth-child(even) {
-      background: var(--off-white);
-    }
-
-    .skills-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    .skill-pills {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .skill-pill {
-      font-size: 14px;
-      padding: 8px 18px;
-      border-radius: 50px;
-      background: var(--white);
-      color: var(--navy);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-      font-weight: 500;
-    }
-
-    .skills-cta {
-      font-family: var(--font-heading);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--teal);
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 8 — REVENUE
-    ══════════════════════════════════════════ */
-    #revenue {
-      background: var(--white);
-    }
-
-    .revenue-table-wrapper {
-      overflow-x: auto;
-      margin-bottom: 36px;
-    }
-
-    .revenue-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      background: var(--white);
-    }
-
-    .revenue-table thead th {
-      background: var(--navy);
-      color: var(--white);
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 18px 24px;
-      text-align: left;
-    }
-
-    .revenue-table tbody td {
-      padding: 16px 24px;
-      font-size: 16px;
-      color: var(--charcoal);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .revenue-table tbody tr:nth-child(even) {
-      background: var(--off-white);
-    }
-
-    .revenue-table tbody tr.highlight {
-      background: var(--teal);
-      color: var(--white);
-      box-shadow: 0 0 20px rgba(2, 127, 126, 0.3);
-    }
-
-    .revenue-table tbody tr.highlight td {
-      color: var(--white);
-      font-weight: 600;
-      border-bottom-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .comparison-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 36px;
-    }
-
-    .comparison-card {
-      padding: 28px;
-      border-top: 3px solid;
-    }
-
-    .comparison-card.ndis {
-      border-top-color: var(--coral);
-    }
-
-    .comparison-card.aged-care {
-      border-top-color: var(--teal);
-    }
-
-    .comparison-card h4 {
-      font-family: var(--font-heading);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    .comparison-card p {
-      font-size: 15px;
-      color: var(--slate);
-      line-height: 1.6;
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 9 — CALCULATOR
-    ══════════════════════════════════════════ */
-    #calculator {
-      background: var(--light-blue-bg);
-    }
-
-    .calculator-embed {
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      background: var(--white);
-    }
-
-    .calculator-embed iframe {
-      width: 100%;
-      height: 65vh;
-      border: none;
-      border-radius: 16px;
-    }
-
-    .calculator-link {
-      text-align: center;
-      margin-top: 24px;
-    }
-
-    .calculator-link a {
-      color: var(--teal);
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 16px;
-    }
-
-    .calculator-link a:hover {
-      text-decoration: underline;
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 10 — PROGRAMME (TEAL)
-    ══════════════════════════════════════════ */
-    #programme {
-      background: var(--teal);
-    }
-
-    #programme .section-title {
-      color: var(--white);
-    }
-
-    #programme .section-subtitle {
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .pillar-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 36px;
-    }
-
-    .pillar-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 32px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .pillar-card.keep {
-      border-top: 4px solid var(--gold);
-    }
-
-    .pillar-card.gain {
-      border-top: 4px solid var(--navy);
-    }
-
-    .pillar-card.gone {
-      border-top: 4px solid var(--coral);
-    }
-
-    .pillar-card h3 {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .pillar-card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .pillar-card li {
-      padding: 8px 0;
-      font-size: 16px;
-      color: var(--charcoal);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .pillar-card li:last-child {
-      border-bottom: none;
-    }
-
-    .pillar-card li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 16px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-    }
-
-    .pillar-card.keep li::before {
-      background: var(--gold);
-    }
-
-    .pillar-card.gain li::before {
-      background: var(--navy);
-    }
-
-    .pillar-card.gone li::before {
-      background: var(--coral);
-    }
-
-    .programme-footer {
-      text-align: center;
-    }
-
-    .programme-footer .pill {
-      margin-bottom: 20px;
-      font-size: 14px;
-      padding: 10px 24px;
-      background: rgba(255, 255, 255, 0.15);
-      color: var(--white);
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 11 — CLIENT ACQUISITION
-    ══════════════════════════════════════════ */
-    #acquisition {
-      background: var(--white);
-    }
-
-    .acq-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-
-    .acq-card {
-      padding: 32px;
-    }
-
-    .acq-number {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--teal);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    .acq-card h4 {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 12px;
-    }
-
-    .acq-card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .acq-card li {
-      padding: 6px 0;
-      font-size: 15px;
-      color: var(--slate);
-      padding-left: 18px;
-      position: relative;
-    }
-
-    .acq-card li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 14px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--light-teal);
-    }
-
-    .acq-support {
-      font-size: 17px;
-      color: var(--charcoal);
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .acq-buttons {
-      text-align: center;
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 12 — TIMELINE
-    ══════════════════════════════════════════ */
-    #timeline {
-      background: var(--light-teal-bg);
-    }
-
-    .timeline-grid {
-      display: grid;
-      grid-template-columns: 55% 45%;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .timeline-track {
-      position: relative;
-      padding-left: 40px;
-    }
-
-    .timeline-line {
-      position: absolute;
-      left: 15px;
-      top: 12px;
-      bottom: 12px;
-      width: 2px;
-      background: rgba(2, 127, 126, 0.2);
-    }
-
-    .timeline-item {
-      position: relative;
-      padding: 20px 0;
-    }
-
-    .timeline-dot {
-      position: absolute;
-      left: -33px;
-      top: 24px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--white);
-      border: 3px solid var(--teal);
-    }
-
-    .timeline-item.active .timeline-dot {
-      background: var(--teal);
-      box-shadow: 0 0 12px rgba(2, 127, 126, 0.4);
-    }
-
-    .timeline-week {
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--teal);
-      margin-bottom: 4px;
-    }
-
-    .timeline-item.active .timeline-week {
-      color: var(--teal);
-    }
-
-    .timeline-label {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--navy);
-    }
-
-    .timeline-item.active .timeline-label {
-      color: var(--teal);
-      font-weight: 700;
-    }
-
-    .timeline-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .starter-card {
-      padding: 28px;
-    }
-
-    .starter-card h4 {
-      font-family: var(--font-heading);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--navy);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
-    }
-
-    .starter-card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .starter-card li {
-      padding: 6px 0;
-      font-size: 15px;
-      color: var(--charcoal);
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .starter-card li::before {
-      content: '\2192';
-      position: absolute;
-      left: 0;
-      color: var(--teal);
-      font-weight: 700;
-    }
-
-    .day-card {
-      background: var(--navy);
-      color: var(--white);
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .day-card h4 {
-      font-family: var(--font-heading);
-      font-size: 16px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
-      color: var(--white);
-    }
-
-    .day-card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .day-card li {
-      padding: 6px 0;
-      font-size: 15px;
-      color: rgba(255, 255, 255, 0.85);
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .day-card li::before {
-      content: '\2192';
-      position: absolute;
-      left: 0;
-      color: var(--light-teal);
-      font-weight: 700;
-    }
-
-    /* ══════════════════════════════════════════
-       SECTION 13 — CTA
-    ══════════════════════════════════════════ */
-    #cta {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
-      text-align: center;
-    }
-
-    #cta .section-inner {
-      max-width: 800px;
-    }
-
-    #cta .section-title {
-      font-family: var(--font-heading);
-      font-size: 44px;
-      font-weight: 300;
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-
-    .cta-subtitle {
-      font-size: 18px;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 40px;
-      line-height: 1.7;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-body);
-      font-size: 16px;
-      font-weight: 500;
-      padding: 16px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .cta-btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .cta-btn.email {
-      background: var(--teal);
-      color: var(--white);
-    }
-
-    .cta-btn.phone {
-      background: transparent;
-      border: 1.5px solid rgba(255, 255, 255, 0.4);
-      color: var(--white);
-    }
-
-    .cta-btn.phone:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .urgency-card {
-      background: rgba(255, 255, 255, 0.07);
-      border-left: 4px solid var(--gold);
-      border-radius: 12px;
-      padding: 24px 32px;
-      margin: 32px auto;
-      max-width: 600px;
-      text-align: left;
-    }
-
-    .urgency-card p {
-      font-size: 16px;
-      color: rgba(255, 255, 255, 0.85);
-      font-style: italic;
-      line-height: 1.6;
-    }
-
-    .cta-calc-link {
-      margin-top: 24px;
-    }
-
-    .cta-calc-link a {
-      color: var(--light-teal);
-      font-weight: 500;
-      text-decoration: none;
-      font-size: 15px;
-    }
-
-    .cta-calc-link a:hover {
-      text-decoration: underline;
-    }
-
-    .cta-brand {
-      margin-top: 48px;
-      font-family: var(--font-heading);
-      font-size: 18px;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.3);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    /* ══════════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .hero-buttons {
-        justify-content: center;
-      }
-
-      .hero-image img {
-        height: 360px;
-      }
-
-      .cred-stats {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .pillar-cards {
-        grid-template-columns: 1fr;
-      }
-
-      .timeline-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      /* Disable scroll-snap on mobile — normal scrolling page */
-      body { overflow: auto !important; height: auto !important; }
-      .deck { height: auto !important; overflow: visible !important; scroll-snap-type: none !important; }
-
-      /* Sections become auto-height, not locked viewports */
-      section {
-        height: auto !important;
-        min-height: auto !important;
-        max-height: none !important;
-        scroll-snap-align: none !important;
-        overflow: visible !important;
-        padding: 20px 0;
-      }
-
-      /* Nav */
-      .fixed-nav { padding: 10px 16px; }
-      .nav-logo-img { height: 24px; }
-      .nav-subtitle { display: none; }
-      .nav-divider { display: none; }
-      .presenter-btn { font-size: 10px; padding: 5px 10px; }
-
-      /* Hide presentation UI */
-      .progress-dots { display: none; }
-      .slide-counter { display: none; }
-      .scroll-indicator { display: none; }
-      section::after { display: none; } /* slide numbers */
-
-      /* Presenter panel full width */
-      .presenter-panel { width: 100vw; right: -100vw; }
-      .presenter-panel.open { right: 0; }
-      body.presenter-active .deck { margin-right: 0; }
-      body.presenter-active .fixed-nav { right: 0; }
-      body.presenter-active .progress-dots { right: auto; }
-      body.presenter-active .slide-counter { right: auto; }
-
-      /* Section inner — tighter padding */
-      .section-inner { padding: 48px 20px 32px !important; max-width: 100% !important; }
-
-      /* Typography */
-      .section-title { font-size: 24px !important; line-height: 1.3 !important; }
-      .section-subtitle { font-size: 15px !important; margin-bottom: 20px !important; }
-
-      /* ── HERO ── */
-      .hero-inner {
-        display: flex !important;
-        flex-direction: column !important;
-        padding: 60px 20px 32px !important;
-        gap: 24px;
-      }
-      #hero h1 { font-size: 28px !important; line-height: 1.2 !important; }
-      #hero p { font-size: 15px !important; }
-      .hero-image { order: -1; }
-      .hero-image img { max-height: 200px !important; width: 100% !important; border-radius: 12px !important; }
-      .hero-confidential { font-size: 11px !important; }
-
-      /* ── REP INTRO ── */
-      .rep-grid {
-        grid-template-columns: 1fr !important;
-        gap: 24px !important;
-        text-align: center;
-      }
-      .rep-photo { width: 120px !important; height: 120px !important; }
-      .rep-name { font-size: 26px !important; }
-      .rep-title { font-size: 16px !important; }
-      .rep-creds li { text-align: left; font-size: 15px !important; }
-      .rep-quote { font-size: 16px !important; text-align: left; }
-
-      /* ── DISCOVERY ── */
-      .discovery-layout {
-        grid-template-columns: 1fr !important;
-        gap: 24px !important;
-      }
-      .discovery-photo img { max-height: 200px !important; }
-      .discovery-prompt { font-size: 15px !important; }
-
-      /* ── STAT CARDS (used on multiple slides) ── */
-      .card-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
-      .stat-number { font-size: 28px !important; }
-      .stat-label { font-size: 11px !important; }
-      .stat-card, .card.stat-card { padding: 16px 12px !important; }
-
-      /* ── CREDIBILITY ── */
-      .cred-stats {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 8px !important;
-      }
-      .cred-stat { padding: 12px 8px !important; }
-      .cred-stat .stat-number { font-size: 22px !important; }
-      .cred-stat .stat-label { font-size: 10px !important; }
-      .feature-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
-      .feature-card { padding: 16px !important; }
-      .feature-card h4 { font-size: 15px !important; }
-      .feature-card p { font-size: 13px !important; }
-      .feature-cards { grid-template-columns: 1fr !important; gap: 12px !important; }
-      .testimonial-card { padding: 20px !important; }
-      .testimonial-card blockquote { font-size: 16px !important; }
-
-      /* ── CROSSOVER ── (uses inline grid style) */
-      #crossover .section-inner > div[style*="grid"] {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
-      }
-      #crossover .section-inner > div {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
-      }
-      #crossover .card { padding: 16px 18px !important; }
-      #crossover .card h4 { font-size: 14px !important; }
-      #crossover .card p { font-size: 13px !important; line-height: 1.5 !important; }
-
-      /* ── SKILLS TABLE ── */
-      .skills-table-wrapper { margin-bottom: 16px !important; overflow-x: auto !important; }
-      .skills-table { font-size: 12px !important; }
-      .skills-table thead th { padding: 8px !important; font-size: 9px !important; letter-spacing: 0.5px !important; }
-      .skills-table tbody td { padding: 8px !important; font-size: 12px !important; }
-      .skill-pills { gap: 6px !important; }
-      .skill-pill { font-size: 11px !important; padding: 5px 12px !important; }
-      .skills-cta { font-size: 14px !important; }
-
-      /* ── REVENUE TABLE ── */
-      .revenue-table-wrapper { margin-bottom: 16px !important; overflow-x: auto !important; }
-      .revenue-table { font-size: 12px !important; }
-      .revenue-table thead th { padding: 8px !important; font-size: 9px !important; }
-      .revenue-table tbody td { padding: 8px !important; font-size: 12px !important; }
-      .comparison-minis { grid-template-columns: 1fr !important; gap: 12px !important; }
-      .comparison-cards { grid-template-columns: 1fr !important; gap: 12px !important; }
-
-      /* ── CALCULATOR ── */
-      .calculator-embed, iframe { height: 400px !important; }
-
-      /* ── PROGRAMME (teal bg) ── */
-      .pillar-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
-      .pillar-cards { grid-template-columns: 1fr !important; gap: 16px !important; }
-      .pillar-card { padding: 20px !important; }
-      .pillar-card h3 { font-size: 14px !important; }
-      .pillar-card li { font-size: 13px !important; }
-      .programme-footer { padding-top: 16px; }
-      .programme-footer .btn { font-size: 13px !important; padding: 10px 20px !important; }
-
-      /* ── CLIENT ACQUISITION ── */
-      .acq-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
-      .acq-cards { grid-template-columns: 1fr !important; gap: 16px !important; }
-      .acq-card { padding: 20px !important; }
-
-      /* ── TIMELINE ── */
-      .timeline-layout { grid-template-columns: 1fr !important; gap: 24px !important; }
-      .timeline-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-      .timeline-cards { margin-top: 0 !important; }
-
-      /* ── OPPORTUNITY ── */
-      .opportunity-bottom { grid-template-columns: 1fr !important; }
-
-      /* ── CTA ── */
-      #cta .section-title { font-size: 28px !important; }
-      .cta-subtitle { font-size: 15px !important; }
-      .cta-buttons { flex-direction: column !important; gap: 12px !important; align-items: center; }
-      .cta-btn { width: 100% !important; max-width: 320px; text-align: center; }
-      .urgency-card { padding: 16px 20px !important; }
-      .urgency-card p { font-size: 14px !important; }
-
-      /* ── BUTTONS — ensure all visible ── */
-      .btn { display: inline-block !important; font-size: 14px !important; }
-      a.btn { display: inline-block !important; }
-    }
-
-    /* ══════════════════════════════════════════
-       PRINT STYLESHEET
-    ══════════════════════════════════════════ */
-    @page {
-      size: 297mm 210mm;
-      margin: 0;
-    }
-
-    @media print {
-      html {
-        font-size: 12px !important;
-      }
-
-      body {
-        overflow: visible !important;
-        height: auto !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: white !important;
-      }
-
-      .deck {
-        overflow: visible !important;
-        height: auto !important;
-        scroll-snap-type: none !important;
-        background: none !important;
-      }
-
-      /* Each slide = one landscape page, exact fit */
-      section {
-        width: 297mm !important;
-        height: 210mm !important;
-        min-height: 210mm !important;
-        max-height: 210mm !important;
-        scroll-snap-align: none !important;
-        page-break-after: always !important;
-        page-break-inside: avoid !important;
-        break-after: page !important;
-        overflow: hidden !important;
-        display: flex !important;
-        align-items: center !important;
-        position: relative !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-
-      section:last-of-type {
-        page-break-after: avoid !important;
-        break-after: avoid !important;
-      }
-
-      /* Hide ALL UI chrome */
-      .fixed-nav,
-      .progress-dots,
-      .slide-counter,
-      .scroll-indicator,
-      section::after,
-      #presenterBtn,
-      .presenter-btn,
-      button[onclick="window.print()"] {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        overflow: hidden !important;
-      }
-
-      /* Preserve all colours and backgrounds */
-      * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-        color-adjust: exact !important;
-      }
-
-      /* Tighten padding to fit landscape page */
-      .hero-inner {
-        padding: 32px 48px !important;
-      }
-
-      .section-inner {
-        padding: 28px 48px !important;
-        max-width: 100% !important;
-      }
-
-      .section-title {
-        font-size: 26px !important;
-        margin-bottom: 4px !important;
-      }
-
-      .section-subtitle {
-        font-size: 16px !important;
-        margin-bottom: 20px !important;
-      }
-
-      .stat-number {
-        font-size: 36px !important;
-      }
-
-      .stat-label {
-        font-size: 11px !important;
-      }
-
-      .card {
-        padding: 16px !important;
-      }
-
-      .card-grid {
-        gap: 14px !important;
-      }
-
-      /* Scale hero for print */
-      #hero h1 {
-        font-size: 32px !important;
-      }
-
-      #hero p {
-        font-size: 14px !important;
-      }
-
-      .hero-image img {
-        max-height: 140mm !important;
-      }
-
-      /* Tables */
-      .skills-table thead th,
-      .revenue-table thead th {
-        padding: 8px 12px !important;
-        font-size: 10px !important;
-      }
-
-      .skills-table tbody td,
-      .revenue-table tbody td {
-        padding: 6px 12px !important;
-        font-size: 11px !important;
-      }
-
-      /* Pillar cards on programme slide */
-      .pillar-card {
-        padding: 14px 16px !important;
-      }
-
-      .pillar-card h3 {
-        font-size: 13px !important;
-      }
-
-      .pillar-card li {
-        font-size: 11px !important;
-      }
-
-      /* Timeline */
-      .timeline-step h4 {
-        font-size: 13px !important;
-      }
-
-      .timeline-step p {
-        font-size: 11px !important;
-      }
-
-      /* Crossover cards */
-      #crossover .card {
-        padding: 14px 18px !important;
-      }
-
-      #crossover .card h4 {
-        font-size: 13px !important;
-      }
-
-      #crossover .card p {
-        font-size: 11px !important;
-        line-height: 1.4 !important;
-      }
-
-      /* Hide calculator iframe, show link */
-      .calculator-embed,
-      iframe {
-        display: none !important;
-      }
-
-      #calculator .section-inner::after {
-        content: 'Interactive calculator: future-focus-phi.vercel.app/calculator.html';
-        display: block;
-        text-align: center;
-        padding: 40px;
-        font-size: 16px;
-        font-style: italic;
-        color: var(--teal);
-        border: 2px dashed var(--light-teal);
-        border-radius: 16px;
-        margin-top: 16px;
-      }
-
-      /* Acquisition cards */
-      .acq-card {
-        padding: 14px 16px !important;
-      }
-
-      /* CTA slide */
-      #cta .section-title {
-        font-size: 30px !important;
-      }
-
-      /* Links - show as text, no underlines */
-      a {
-        text-decoration: none !important;
-        color: inherit !important;
-      }
-
-      /* Hide resource link buttons */
-      .btn {
-        display: none !important;
-      }
-
-      /* Rep intro slide */
-      #rep-intro .rep-photo { width: 120px !important; height: 120px !important; }
-
-      /* Discovery slide */
-      .discovery-layout { grid-template-columns: 1fr !important; gap: 24px !important; }
-      .discovery-photo img { max-height: 300px !important; }
-
-      /* Hide presenter panel in print */
-      .presenter-panel { display: none !important; }
-      body.presenter-active .deck { margin-right: 0 !important; }
-    }
+    .pp-next-up { padding: 10px 16px; font-size: 11px; color: rgba(255,255,255,0.3); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .pp-next-up span { font-weight: 600; color: rgba(255,255,255,0.5); }
+    .pp-nav { display: flex; gap: 1px; flex-shrink: 0; background: rgba(255,255,255,0.05); }
+    .pp-nav-btn { flex: 1; padding: 14px; background: #1F3B63; border: none; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.2s; font-family: var(--font-body); letter-spacing: 0.5px; }
+    .pp-nav-btn:hover { background: #027F7E; }
+    body.presenter-active .deck { margin-right: 420px; transition: margin-right 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+    body.presenter-active .fixed-nav { right: 420px; transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+    body.presenter-active .progress-dots { right: 444px; }
+    body.presenter-active .slide-counter { right: 444px; }
+    #opportunity { background: var(--light-teal-bg); }
+    .bullet-card { padding: 36px; }
+    .bullet-card ul { list-style: none; padding: 0; }
+    .bullet-card li { padding: 10px 0; padding-left: 28px; position: relative; font-size: 17px; color: var(--charcoal); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+    .bullet-card li:last-child { border-bottom: none; }
+    .bullet-card li::before { content: ''; position: absolute; left: 0; top: 18px; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+    .opportunity-bottom { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: stretch; }
+    .opportunity-photo { display: flex; align-items: stretch; }
+    .opportunity-photo img { width: 100%; height: 100%; min-height: 200px; max-height: 280px; object-fit: cover; border-radius: 16px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); }
+    #credibility { background: var(--white); }
+    .cred-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 48px; }
+    .cred-stat { text-align: center; padding: 28px 16px; }
+    .cred-stat .stat-number { font-size: 36px; }
+    .feature-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+    .feature-card { display: flex; gap: 20px; align-items: flex-start; padding: 28px; }
+    .feature-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--light-teal-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 22px; }
+    .feature-card h4 { font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .feature-card p { font-size: 15px; color: var(--slate); line-height: 1.6; }
+    .testimonial-card { background: var(--navy); color: var(--white); border-radius: 16px; padding: 40px; }
+    .testimonial-card blockquote { font-family: var(--font-heading); font-size: 20px; font-style: italic; font-weight: 300; line-height: 1.6; margin-bottom: 16px; }
+    .testimonial-card cite { font-style: normal; font-size: 14px; color: rgba(255, 255, 255, 0.6); }
+    #services { background: var(--light-blue-bg); }
+    .skills-table-wrapper { overflow-x: auto; margin-bottom: 32px; }
+    .skills-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); background: var(--white); }
+    .skills-table thead th { background: var(--navy); color: var(--white); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 12px 20px; text-align: left; }
+    .skills-table tbody td { padding: 10px 20px; font-size: 15px; color: var(--charcoal); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+    .skills-table tbody tr:nth-child(even) { background: var(--off-white); }
+    .skills-table tbody tr:last-child td { border-bottom: none; }
+    .skill-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+    .skill-pill { font-size: 14px; padding: 8px 18px; border-radius: 50px; background: var(--white); color: var(--navy); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); font-weight: 500; }
+    .skills-cta { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--teal); }
+    #revenue { background: var(--white); }
+    .revenue-table-wrapper { overflow-x: auto; margin-bottom: 36px; }
+    .revenue-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); background: var(--white); }
+    .revenue-table thead th { background: var(--navy); color: var(--white); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 18px 24px; text-align: left; }
+    .revenue-table tbody td { padding: 16px 24px; font-size: 16px; color: var(--charcoal); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+    .revenue-table tbody tr:nth-child(even) { background: var(--off-white); }
+    .revenue-table tbody tr.highlight { background: var(--teal); color: var(--white); box-shadow: 0 0 20px rgba(2, 127, 126, 0.3); }
+    .revenue-table tbody tr.highlight td { color: var(--white); font-weight: 600; border-bottom-color: rgba(255, 255, 255, 0.15); }
+    .comparison-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 36px; }
+    .comparison-card { padding: 28px; border-top: 3px solid; }
+    .comparison-card.diy { border-top-color: var(--coral); }
+    .comparison-card.trilogy { border-top-color: var(--teal); }
+    .comparison-card h4 { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .comparison-card p { font-size: 15px; color: var(--slate); line-height: 1.6; }
+    #calculator { background: var(--light-blue-bg); }
+    .calculator-embed { border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); background: var(--white); }
+    .calculator-embed iframe { width: 100%; height: 65vh; border: none; border-radius: 16px; }
+    .calculator-link { text-align: center; margin-top: 24px; }
+    .calculator-link a { color: var(--teal); font-weight: 600; text-decoration: none; font-size: 16px; }
+    .calculator-link a:hover { text-decoration: underline; }
+    #programme { background: var(--teal); }
+    #programme .section-title { color: var(--white); }
+    #programme .section-subtitle { color: rgba(255, 255, 255, 0.8); }
+    .pillar-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 36px; }
+    .pillar-card { background: var(--white); border-radius: 16px; padding: 32px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); }
+    .pillar-card.keep { border-top: 4px solid var(--gold); }
+    .pillar-card.gain { border-top: 4px solid var(--navy); }
+    .pillar-card.gone { border-top: 4px solid var(--coral); }
+    .pillar-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .pillar-card ul { list-style: none; padding: 0; }
+    .pillar-card li { padding: 8px 0; font-size: 16px; color: var(--charcoal); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding-left: 20px; position: relative; }
+    .pillar-card li:last-child { border-bottom: none; }
+    .pillar-card li::before { content: ''; position: absolute; left: 0; top: 16px; width: 6px; height: 6px; border-radius: 50%; }
+    .pillar-card.keep li::before { background: var(--gold); }
+    .pillar-card.gain li::before { background: var(--navy); }
+    .pillar-card.gone li::before { background: var(--coral); }
+    .programme-footer { text-align: center; }
+    #acquisition { background: var(--white); }
+    .acq-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+    .acq-card { padding: 32px; }
+    .acq-number { width: 40px; height: 40px; border-radius: 50%; background: var(--teal); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; margin-bottom: 20px; }
+    .acq-card h4 { font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .acq-card p { font-size: 15px; color: var(--slate); line-height: 1.6; }
+    .acq-support { font-size: 17px; color: var(--charcoal); margin-bottom: 24px; text-align: center; }
+    #timeline { background: var(--light-teal-bg); }
+    .timeline-grid { display: grid; grid-template-columns: 55% 45%; gap: 48px; align-items: start; }
+    .timeline-track { position: relative; padding-left: 40px; }
+    .timeline-line { position: absolute; left: 15px; top: 12px; bottom: 12px; width: 2px; background: rgba(2, 127, 126, 0.2); }
+    .timeline-item { position: relative; padding: 20px 0; }
+    .timeline-dot { position: absolute; left: -33px; top: 24px; width: 14px; height: 14px; border-radius: 50%; background: var(--white); border: 3px solid var(--teal); }
+    .timeline-item.active .timeline-dot { background: var(--teal); box-shadow: 0 0 12px rgba(2, 127, 126, 0.4); }
+    .timeline-week { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--teal); margin-bottom: 4px; }
+    .timeline-label { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--navy); }
+    .timeline-item.active .timeline-label { color: var(--teal); font-weight: 700; }
+    .timeline-cards { display: flex; flex-direction: column; gap: 24px; }
+    .starter-card { padding: 28px; }
+    .starter-card h4 { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .starter-card ul { list-style: none; padding: 0; }
+    .starter-card li { padding: 6px 0; font-size: 15px; color: var(--charcoal); padding-left: 20px; position: relative; }
+    .starter-card li::before { content: '\2192'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+    .day-card { background: var(--navy); color: var(--white); border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); }
+    .day-card h4 { font-family: var(--font-heading); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; color: var(--white); }
+    .day-card ul { list-style: none; padding: 0; }
+    .day-card li { padding: 6px 0; font-size: 15px; color: rgba(255, 255, 255, 0.85); padding-left: 20px; position: relative; }
+    .day-card li::before { content: '\2192'; position: absolute; left: 0; color: var(--light-teal); font-weight: 700; }
+    #cta { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); text-align: center; }
+    #cta .section-inner { max-width: 800px; }
+    #cta .section-title { font-family: var(--font-heading); font-size: 44px; font-weight: 300; color: var(--white); margin-bottom: 16px; }
+    .cta-subtitle { font-size: 18px; color: rgba(255, 255, 255, 0.7); margin-bottom: 40px; line-height: 1.7; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 16px; font-weight: 500; padding: 16px 32px; border-radius: 50px; text-decoration: none; transition: all 0.2s; }
+    .cta-btn:hover { transform: translateY(-1px); }
+    .cta-btn.email { background: var(--teal); color: var(--white); }
+    .cta-btn.phone { background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.4); color: var(--white); }
+    .cta-btn.phone:hover { background: rgba(255, 255, 255, 0.1); }
+    .urgency-card { background: rgba(255, 255, 255, 0.07); border-left: 4px solid var(--gold); border-radius: 12px; padding: 24px 32px; margin: 32px auto; max-width: 600px; text-align: left; }
+    .urgency-card p { font-size: 16px; color: rgba(255, 255, 255, 0.85); font-style: italic; line-height: 1.6; }
+    .cta-calc-link { margin-top: 24px; }
+    .cta-calc-link a { color: var(--light-teal); font-weight: 500; text-decoration: none; font-size: 15px; }
+    .cta-calc-link a:hover { text-decoration: underline; }
+    .cta-brand { margin-top: 48px; font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: rgba(255, 255, 255, 0.3); letter-spacing: 3px; text-transform: uppercase; }
+    @media (max-width: 1024px) { .hero-inner { grid-template-columns: 1fr; text-align: center; } .hero-image img { height: 360px; } .cred-stats { grid-template-columns: repeat(3, 1fr); } .pillar-cards { grid-template-columns: 1fr; } .timeline-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { body { overflow: auto !important; height: auto !important; } .deck { height: auto !important; overflow: visible !important; scroll-snap-type: none !important; } section { height: auto !important; min-height: auto !important; max-height: none !important; scroll-snap-align: none !important; overflow: visible !important; padding: 20px 0; } .fixed-nav { padding: 10px 16px; } .nav-logo-img { height: 24px; } .nav-subtitle { display: none; } .nav-divider { display: none; } .presenter-btn { font-size: 10px; padding: 5px 10px; } .progress-dots { display: none; } .slide-counter { display: none; } .scroll-indicator { display: none; } section::after { display: none; } .presenter-panel { width: 100vw; right: -100vw; } .presenter-panel.open { right: 0; } body.presenter-active .deck { margin-right: 0; } body.presenter-active .fixed-nav { right: 0; } .section-inner { padding: 48px 20px 32px !important; max-width: 100% !important; } .section-title { font-size: 24px !important; line-height: 1.3 !important; } .section-subtitle { font-size: 15px !important; margin-bottom: 20px !important; } .hero-inner { display: flex !important; flex-direction: column !important; padding: 60px 20px 32px !important; gap: 24px; } #hero h1 { font-size: 28px !important; } #hero p { font-size: 15px !important; } .hero-image { order: -1; } .hero-image img { max-height: 200px !important; width: 100% !important; border-radius: 12px !important; } .rep-grid { grid-template-columns: 1fr !important; gap: 24px !important; text-align: center; } .rep-photo { width: 120px !important; height: 120px !important; } .discovery-layout { grid-template-columns: 1fr !important; gap: 24px !important; } .card-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; } .stat-number { font-size: 28px !important; } .cred-stats { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; } .feature-cards { grid-template-columns: 1fr !important; } #why-partner .section-inner > div { grid-template-columns: 1fr !important; gap: 16px !important; } .comparison-cards { grid-template-columns: 1fr !important; } .pillar-cards { grid-template-columns: 1fr !important; } .acq-cards { grid-template-columns: 1fr !important; } .timeline-grid { grid-template-columns: 1fr !important; } .opportunity-bottom { grid-template-columns: 1fr !important; } #cta .section-title { font-size: 28px !important; } .cta-buttons { flex-direction: column !important; align-items: center; } .btn { display: inline-block !important; font-size: 14px !important; } }
+    @page { size: 297mm 210mm; margin: 0; }
+    @media print { html { font-size: 12px !important; } body { overflow: visible !important; height: auto !important; background: white !important; } .deck { overflow: visible !important; height: auto !important; scroll-snap-type: none !important; } section { width: 297mm !important; height: 210mm !important; min-height: 210mm !important; max-height: 210mm !important; page-break-after: always !important; overflow: hidden !important; display: flex !important; align-items: center !important; } section:last-of-type { page-break-after: avoid !important; } .fixed-nav, .progress-dots, .slide-counter, .scroll-indicator, section::after, .presenter-btn { display: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .section-inner { padding: 28px 48px !important; max-width: 100% !important; } .calculator-embed, iframe { display: none !important; } .presenter-panel { display: none !important; } .btn { display: none !important; } }
   </style>
 </head>
 <body>
-
-  <!-- ── Password Gate ── -->
   <div id="password-gate">
     <h2>Enter Access Code</h2>
     <input type="password" id="gate-pw" placeholder="Access code" autofocus>
     <button onclick="checkPw()">Enter</button>
     <div class="error" id="gate-err"></div>
   </div>
-
   <div id="app-content">
-  <!-- ── Fixed Navigation ── -->
   <nav class="fixed-nav" id="mainNav">
     <div class="nav-left">
       <a href="#hero"><img src="assets/tc-logo.svg" alt="Trilogy Care" class="nav-logo-img" onerror="this.parentElement.innerHTML='TRILOGY CARE'"></a>
       <div class="nav-divider"></div>
-      <span class="nav-subtitle">P1 Service Partner — Aged Care</span>
+      <span class="nav-subtitle">P1 Service Partner &mdash; Aged Care</span>
     </div>
-    <button class="presenter-btn" id="presenterBtn" title="Open presenter notes (P)" style="display:inline-block !important; visibility:visible !important;">▶ PRESENT</button>
+    <button class="presenter-btn" id="presenterBtn" title="Open presenter notes (P)">&#9654; PRESENT</button>
   </nav>
-
-  <!-- ── Progress Dots ── -->
   <div class="progress-dots" id="progressDots">
     <button class="progress-dot active" data-section="hero" title="Title"></button>
     <button class="progress-dot" data-section="rep-intro" title="Introduction"></button>
     <button class="progress-dot" data-section="discovery" title="Discovery"></button>
     <button class="progress-dot" data-section="opportunity" title="Opportunity"></button>
     <button class="progress-dot" data-section="credibility" title="Credibility"></button>
-    <button class="progress-dot" data-section="crossover" title="Industry Crossover"></button>
-    <button class="progress-dot" data-section="skills" title="Skills Transfer"></button>
+    <button class="progress-dot" data-section="why-partner" title="Why Partner"></button>
+    <button class="progress-dot" data-section="services" title="Your Services"></button>
     <button class="progress-dot" data-section="revenue" title="Revenue"></button>
     <button class="progress-dot" data-section="calculator" title="Calculator"></button>
     <button class="progress-dot" data-section="programme" title="Programme"></button>
-    <button class="progress-dot" data-section="acquisition" title="Client Acquisition"></button>
+    <button class="progress-dot" data-section="acquisition" title="How You Get Clients"></button>
     <button class="progress-dot" data-section="timeline" title="Timeline"></button>
     <button class="progress-dot" data-section="cta" title="Get Started"></button>
   </div>
-
   <div class="slide-counter" id="slideCounter">1 / 13</div>
-
   <div class="deck" id="deck">
-
-  <!-- ══════════════════════════════════════════════════
-       SECTION 1 — HERO
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 1 — HERO -->
   <section id="hero" data-dark data-slide-num="01">
     <div class="hero-inner">
       <div class="hero-text">
         <span class="pill pill-teal">P1 Service Partnership</span>
         <h1>Your Care Workers.<br>More Clients.<br>Better Margins.</h1>
-        <p>Join Australia's 2nd largest Support at Home provider network</p>
+        <p>Join Australia's 2nd largest Support at Home provider network and grow your aged care business</p>
         <div style="margin-top:32px; display:flex; gap:12px; flex-wrap:wrap;">
           <span class="pill pill-light" style="font-size:11px;">Support at Home</span>
           <span class="pill pill-light" style="font-size:11px;">P1 Partner</span>
@@ -2135,33 +310,29 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 2 — REP INTRODUCTION
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 2 — REP INTRO -->
   <section id="rep-intro" data-slide-num="02">
     <div class="section-inner">
       <div class="rep-grid">
         <div class="rep-photo-frame">
-          <img id="repPhoto" class="rep-photo" src="https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Your Partnership Contact">
+          <img class="rep-photo" src="https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Your Partnership Contact">
           <span class="pill pill-teal" style="font-size:10px;">YOUR PARTNERSHIP CONTACT</span>
         </div>
         <div>
-          <h2 class="rep-name" id="repName">Jay Parekh</h2>
-          <p class="rep-title" id="repTitle">Partnership Growth Consultant — Trilogy Care</p>
-          <ul class="rep-creds" id="repCreds">
-            <li>Your dedicated business growth consultant</li>
-            <li>Works 1-on-1 with 50+ Coordination Partners nationally</li>
-            <li>Helps you build strategy, acquire clients, and scale your portfolio</li>
+          <h2 class="rep-name">Jay Parekh</h2>
+          <p class="rep-title">Partnership Growth Consultant &mdash; Trilogy Care</p>
+          <ul class="rep-creds">
+            <li>Your dedicated service partnership growth consultant</li>
+            <li>Works 1-on-1 with 50+ P1 Service Partners nationally</li>
+            <li>Helps you grow client numbers, optimise margins, and expand service capacity</li>
           </ul>
-          <p class="rep-quote" id="repQuote">"Think of me as your business coach for aged care. I work with you one-on-one — from building your first client pipeline through to scaling a thriving portfolio."</p>
+          <p class="rep-quote">&ldquo;I work with aged care providers like you every day. My job is to connect you with a steady stream of clients so you can focus on what you do best &mdash; delivering great care.&rdquo;</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 3 — DISCOVERY MODE
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 3 — DISCOVERY -->
   <section id="discovery" data-slide-num="03">
     <div class="section-inner">
       <div class="discovery-layout">
@@ -2171,58 +342,44 @@
         <div>
           <span class="pill pill-teal" style="margin-bottom:12px;">LET'S TALK</span>
           <h2 class="section-title" style="font-size:28px;">This Works Best as a Conversation</h2>
-          <p class="section-subtitle" style="font-style:italic; color:var(--teal); font-size:18px; margin-bottom:24px;">Before I show you how Trilogy can help, I'd love to understand your business.</p>
-
+          <p class="section-subtitle" style="font-style:italic; color:var(--teal); font-size:18px; margin-bottom:24px;">Before I show you the details, I'd love to understand where you're at.</p>
           <div class="discovery-prompts">
             <div class="discovery-prompt">How has the transition to Support at Home affected your business?</div>
             <div class="discovery-prompt">Tell me about your current client base and service areas?</div>
             <div class="discovery-prompt">What's your biggest operational challenge right now?</div>
             <div class="discovery-prompt">Are you looking to grow your client numbers or optimise margins?</div>
           </div>
-
-          <p class="discovery-footer">There are no right or wrong answers — this helps me tailor the rest of our conversation to what matters to you.</p>
+          <p class="discovery-footer">There are no right or wrong answers &mdash; this helps me tailor the rest of our conversation to what matters to you.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 4 — THE OPPORTUNITY
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 4 — OPPORTUNITY -->
   <section id="opportunity" data-slide-num="04">
     <div class="section-inner">
       <h2 class="section-title">The Support at Home Opportunity</h2>
-      <p class="section-subtitle">The market is consolidating &mdash; strategic partners will capture the growth</p>
-
-      <div class="card-grid" style="margin-bottom: 24px; grid-template-columns: 1fr 1fr;">
-        <div class="card stat-card">
-          <div class="stat-number">$9.8B</div>
-          <div class="stat-label">Home care market value</div>
-        </div>
-        <div class="card stat-card">
-          <div class="stat-number">275,486</div>
-          <div class="stat-label">Older Australians receiving home care</div>
-        </div>
+      <p class="section-subtitle">The market is growing &mdash; the question is whether you can capture it</p>
+      <div class="card-grid" style="margin-bottom: 24px; grid-template-columns: 1fr 1fr 1fr;">
+        <div class="card stat-card"><div class="stat-number">$9.8B</div><div class="stat-label">Home care market</div></div>
+        <div class="card stat-card"><div class="stat-number">275,486</div><div class="stat-label">Recipients &mdash; growing 6.6% YoY</div></div>
+        <div class="card stat-card"><div class="stat-number">88,000+</div><div class="stat-label">Approved and waiting for a provider</div></div>
       </div>
-
       <div class="card" style="background: var(--navy); border-radius: 16px; padding: 32px 40px; margin-bottom: 36px; display: flex; align-items: center; gap: 32px;">
         <div style="text-align: center; flex-shrink: 0;">
           <div style="font-family: var(--font-heading); font-size: 52px; font-weight: 300; color: var(--light-teal); line-height: 1.1;">83,000+</div>
-          <div style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px;">New places released</div>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px;">New SaH places</div>
         </div>
         <div style="width: 1px; height: 60px; background: rgba(255,255,255,0.15); flex-shrink: 0;"></div>
-        <div>
-          <p style="font-size: 17px; color: rgba(255,255,255,0.9); line-height: 1.6; margin: 0;">83,000 section changes have now transitioned to Support at Home packages &mdash; 40,000 released by Dec 2025, with 43,000 more in H1 2026. There are literally not enough providers to meet demand.</p>
-        </div>
+        <div><p style="font-size: 17px; color: rgba(255,255,255,0.9); line-height: 1.6; margin: 0;">83,000 new places transitioned to Support at Home packages. The demand is there &mdash; the question is whether you can capture it.</p></div>
       </div>
-
       <div class="opportunity-bottom">
         <div class="card bullet-card">
           <ul>
-            <li>Government investment: $8.83B in FY24 (up 29% YoY)</li>
-            <li>Sector growing 28%+, projected to double</li>
-            <li>88,000+ people approved and waiting for a provider</li>
-            <li>Smart NDIS coordinators are already diversifying into this market</li>
+            <li>35.5% of providers currently unprofitable &mdash; those who partner strategically will absorb their clients</li>
+            <li>Market consolidating: 35 exits vs 9 new entries last quarter</li>
+            <li>Small providers with &lt;250 packages averaging negative margins</li>
+            <li>Trilogy's coordination network generates steady client referrals for P1 partners</li>
           </ul>
         </div>
         <div class="opportunity-photo">
@@ -2232,430 +389,187 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 5 — TRILOGY CREDIBILITY
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 5 — CREDIBILITY -->
   <section id="credibility" data-slide-num="05">
     <div class="section-inner">
       <h2 class="section-title">Who's Behind This</h2>
       <p class="section-subtitle">Trilogy Care &mdash; Australia's fastest-growing Support at Home provider</p>
-
       <div class="cred-stats">
-        <div class="card cred-stat">
-          <div class="stat-number">2nd</div>
-          <div class="stat-label">Largest Support at Home provider</div>
-        </div>
-        <div class="card cred-stat">
-          <div class="stat-number">$500M+</div>
-          <div class="stat-label">Funding under management</div>
-        </div>
-        <div class="card cred-stat">
-          <div class="stat-number">300+</div>
-          <div class="stat-label">Coordination Partners</div>
-        </div>
-        <div class="card cred-stat">
-          <div class="stat-number">15,000+</div>
-          <div class="stat-label">Active clients</div>
-        </div>
-        <div class="card cred-stat">
-          <div class="stat-number" style="font-size: 28px;">46th &rarr; 2nd</div>
-          <div class="stat-label">KPMG ranking in 2 years</div>
-        </div>
+        <div class="card cred-stat"><div class="stat-number">2nd</div><div class="stat-label">Largest Support at Home provider</div></div>
+        <div class="card cred-stat"><div class="stat-number">$500M+</div><div class="stat-label">Funding under management</div></div>
+        <div class="card cred-stat"><div class="stat-number">300+</div><div class="stat-label">Coordination Partners</div></div>
+        <div class="card cred-stat"><div class="stat-number">15,000+</div><div class="stat-label">Active clients</div></div>
+        <div class="card cred-stat"><div class="stat-number" style="font-size: 28px;">46th &rarr; 2nd</div><div class="stat-label">KPMG ranking in 2 years</div></div>
       </div>
-
       <div class="feature-cards">
-        <div class="card feature-card">
-          <div class="feature-icon">&#9670;</div>
-          <div>
-            <h4>Dual-Model Provider &mdash; Coordination &amp; Self-Managed</h4>
-            <p>The only top-10 provider offering both full coordination and self-managed care. Flexible models to suit your clients &mdash; no conflict of interest.</p>
-          </div>
-        </div>
-        <div class="card feature-card">
-          <div class="feature-icon">&#9650;</div>
-          <div>
-            <h4>Australia's Fastest-Growing Provider Network</h4>
-            <p>46th to 2nd in KPMG rankings. Our growth means more clients for our service delivery partners.</p>
-          </div>
-        </div>
+        <div class="card feature-card"><div class="feature-icon">&#9670;</div><div><h4>Dual-Model Provider</h4><p>Both fully coordinated and self-managed pathways. Your services fit into whichever model the client chooses.</p></div></div>
+        <div class="card feature-card"><div class="feature-icon">&#9650;</div><div><h4>Australia's Fastest-Growing Provider Network</h4><p>46th to 2nd in KPMG rankings. Our growth means more clients for our service delivery partners.</p></div></div>
       </div>
-
       <div class="testimonial-card">
         <blockquote>&ldquo;We joined Trilogy's P1 network 8 months ago. Our weekly service hours have increased 40% without a single dollar spent on marketing.&rdquo;</blockquote>
         <cite>&mdash; P1 Service Partner</cite>
       </div>
     </div>
   </section>
-
-  <!-- ══════════════════════════════════════════════════
-       SECTION 6 — INDUSTRY CROSSOVER
-  ══════════════════════════════════════════════════ -->
-  <section id="crossover" data-slide-num="06" style="background: var(--white);">
+  <!-- SLIDE 6 — WHY PARTNER -->
+  <section id="why-partner" data-slide-num="06" style="background: var(--white);">
     <div class="section-inner">
       <h2 class="section-title">Why Smaller Providers Are Partnering</h2>
-      <p class="section-subtitle">The market is consolidating &mdash; and the smart providers are choosing partnership over isolation</p>
-
+      <p class="section-subtitle">The Support at Home transition is creating pressure &mdash; and opportunity</p>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px;">
-
-        <!-- Card 1: Same People -->
+        <div class="card" style="border-top:4px solid var(--coral); padding:28px 32px;">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:12px; background:#FDF0EC; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#128203;</div>
+            <h4 style="font-family:var(--font-heading); font-size:17px; font-weight:700; color:var(--navy); margin:0;">Admin Overwhelm Is Real</h4>
+          </div>
+          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">88% of providers report being overwhelmed by Support at Home admin. Transaction-based claiming, monthly client statements, subcontractor disclosure &mdash; Trilogy handles it all.</p>
+        </div>
+        <div class="card" style="border-top:4px solid var(--navy); padding:28px 32px;">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
+            <div style="width:44px; height:44px; border-radius:12px; background:var(--light-blue-bg); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#128187;</div>
+            <h4 style="font-family:var(--font-heading); font-size:17px; font-weight:700; color:var(--navy); margin:0;">Technology Gap</h4>
+          </div>
+          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">ACPP portal, PRODA integration, real-time claiming &mdash; Trilogy's platform handles the tech so you focus on care delivery.</p>
+        </div>
         <div class="card" style="border-top:4px solid var(--teal); padding:28px 32px;">
           <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
             <div style="width:44px; height:44px; border-radius:12px; background:var(--light-teal-bg); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#128101;</div>
-            <h4 style="font-family:var(--font-heading); font-size:17px; font-weight:700; color:var(--navy); margin:0;">Admin Overwhelm Is Real</h4>
-          </div>
-          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">Your NDIS participants have parents and grandparents who need aged care. Many aged care clients previously had disability support. You already understand the people — it's the same community, at a different life stage.</p>
-        </div>
-
-        <!-- Card 2: Same Core Work -->
-        <div class="card" style="border-top:4px solid var(--gold); padding:28px 32px;">
-          <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
-            <div style="width:44px; height:44px; border-radius:12px; background:#FDF5E6; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#128260;</div>
-            <h4 style="font-family:var(--font-heading); font-size:17px; font-weight:700; color:var(--navy); margin:0;">Technology Gap</h4>
-          </div>
-          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">Both roles coordinate care, manage budgets, liaise with providers, and advocate for clients. Aged care is a connection service — no behaviour support plans, no restrictive practices, no SIL. Andrew Wallace, Trilogy Care COO: <em>&ldquo;Nothing in aged care is harder than NDIS.&rdquo;</em></p>
-        </div>
-
-        <!-- Card 3: Client Pipeline -->
-        <div class="card" style="border-top:4px solid var(--coral); padding:28px 32px;">
-          <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
-            <div style="width:44px; height:44px; border-radius:12px; background:#FDF0EC; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#127760;</div>
             <h4 style="font-family:var(--font-heading); font-size:17px; font-weight:700; color:var(--navy); margin:0;">Client Pipeline</h4>
           </div>
-          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">Physios, OTs, nurses, personal carers, cleaners — the allied health and support worker network you already use operates across both NDIS and aged care. Your existing relationships transfer directly.</p>
+          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">300+ coordination partners across Australia actively referring clients. Join the network and receive steady referrals in your service area.</p>
         </div>
-
-        <!-- Card 4: Same Government Funding Model -->
-        <div class="card" style="border-top:4px solid var(--navy); padding:28px 32px;">
+        <div class="card" style="border-top:4px solid var(--gold); padding:28px 32px;">
           <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
-            <div style="width:44px; height:44px; border-radius:12px; background:var(--light-blue-bg); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#127970;</div>
+            <div style="width:44px; height:44px; border-radius:12px; background:#FDF5E6; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">&#128176;</div>
             <h4 style="font-family:var(--font-heading); font-size:17px; font-weight:700; color:var(--navy); margin:0;">Margin Protection</h4>
           </div>
-          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">Both are government-funded individual budgets managed by a registered provider. You already understand plan budgets, service bookings, compliance, and claiming. The system works the same way — just different legislation.</p>
+          <p style="font-size:15px; color:var(--slate); line-height:1.6; margin:0;">Price caps from July 2026 will squeeze margins further. Trilogy's scale means better rates, lower admin costs, and sustainable operations.</p>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 7 — SKILLS TRANSFER
-  ══════════════════════════════════════════════════ -->
-  <section id="skills" data-slide-num="07">
+  <!-- SLIDE 7 — SERVICES -->
+  <section id="services" data-slide-num="07">
     <div class="section-inner">
       <h2 class="section-title">You Already Deliver the Services Clients Need</h2>
       <p class="section-subtitle">Your existing services map directly to Support at Home categories</p>
-
       <div class="skills-table-wrapper">
         <table class="skills-table">
-          <thead>
-            <tr>
-              <th>Support at Home Service</th>
-              <th>Your Existing Service</th>
-              <th>Demand Level</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Support at Home Service</th><th>Your Existing Service</th><th>Demand Level</th></tr></thead>
           <tbody>
-            <tr>
-              <td>Personal care</td>
-              <td>Personal care / hygiene support</td>
-              <td>Very High</td>
-            </tr>
-            <tr>
-              <td>Domestic assistance</td>
-              <td>Cleaning, laundry, meal prep</td>
-              <td>Very High</td>
-            </tr>
-            <tr>
-              <td>Clinical care</td>
-              <td>Nursing, wound care, medication</td>
-              <td>High</td>
-            </tr>
-            <tr>
-              <td>Allied health</td>
-              <td>Physio, OT, podiatry, speech</td>
-              <td>High</td>
-            </tr>
-            <tr>
-              <td>Social support</td>
-              <td>Community access, companionship</td>
-              <td>Growing</td>
-            </tr>
-            <tr>
-              <td>Home modifications</td>
-              <td>Minor home maintenance</td>
-              <td>Moderate</td>
-            </tr>
+            <tr><td>Personal care</td><td>Personal care / hygiene support</td><td><strong style="color:var(--teal);">Very High</strong></td></tr>
+            <tr><td>Domestic assistance</td><td>Cleaning, laundry, meal prep</td><td><strong style="color:var(--teal);">Very High</strong></td></tr>
+            <tr><td>Clinical care</td><td>Nursing, wound care, medication</td><td><strong style="color:var(--navy);">High</strong></td></tr>
+            <tr><td>Allied health</td><td>Physio, OT, podiatry, speech</td><td><strong style="color:var(--navy);">High</strong></td></tr>
+            <tr><td>Social support</td><td>Community access, companionship</td><td><strong style="color:var(--gold);">Growing</strong></td></tr>
+            <tr><td>Home modifications</td><td>Minor home maintenance</td><td><strong style="color:var(--slate);">Moderate</strong></td></tr>
           </tbody>
         </table>
       </div>
-
       <div class="skill-pills">
-        <span class="skill-pill">Your workers already deliver these services</span>
+        <span class="skill-pill">Your workers are already delivering these services</span>
         <span class="skill-pill">No additional qualifications needed</span>
         <span class="skill-pill">Immediate capacity to serve more clients</span>
       </div>
-
-      <p class="skills-cta">P1 partners report an average 40% increase in weekly service hours within 6 months.</p>
-
+      <p class="skills-cta">Everything you do today translates directly into the P1 service model.</p>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 8 — REVENUE OPPORTUNITY
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 8 — REVENUE -->
   <section id="revenue" data-slide-num="08">
     <div class="section-inner">
       <h2 class="section-title">Grow Your Revenue Without Growing Your Overheads</h2>
-      <p class="section-subtitle">Additional clients from Trilogy's coordination network &mdash; on top of your existing base</p>
-
+      <p class="section-subtitle">Incremental clients from Trilogy's network &mdash; on top of your existing base</p>
       <div class="revenue-table-wrapper">
         <table class="revenue-table">
-          <thead>
-            <tr>
-              <th>Additional Clients</th>
-              <th>Service Hours/Week</th>
-              <th>Annual Revenue Added</th>
-              <th>Est. Margin Added</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Additional Clients</th><th>Weekly Service Hours</th><th>Annual Revenue Added</th><th>Est. Margin Added</th></tr></thead>
           <tbody>
-            <tr>
-              <td>10</td>
-              <td>40 hrs/wk</td>
-              <td>$156K</td>
-              <td>$23K &ndash; $31K</td>
-            </tr>
-            <tr>
-              <td>25</td>
-              <td>100 hrs/wk</td>
-              <td>$390K</td>
-              <td>$59K &ndash; $78K</td>
-            </tr>
-            <tr class="highlight">
-              <td><strong>50</strong></td>
-              <td><strong>200 hrs/wk</strong></td>
-              <td><strong>$780K</strong></td>
-              <td><strong>$117K &ndash; $156K</strong></td>
-            </tr>
-            <tr>
-              <td>100</td>
-              <td>400 hrs/wk</td>
-              <td>$1.56M</td>
-              <td>$234K &ndash; $312K</td>
-            </tr>
+            <tr><td>10</td><td>40 hrs/wk</td><td>$156K</td><td>$23K &ndash; $31K</td></tr>
+            <tr><td>25</td><td>100 hrs/wk</td><td>$390K</td><td>$59K &ndash; $78K</td></tr>
+            <tr class="highlight"><td><strong>50</strong></td><td><strong>200 hrs/wk</strong></td><td><strong>$780K</strong></td><td><strong>$117K &ndash; $156K</strong></td></tr>
+            <tr><td>100</td><td>400 hrs/wk</td><td>$1.56M</td><td>$234K &ndash; $312K</td></tr>
           </tbody>
         </table>
       </div>
-
-      <p style="font-size: 13px; color: var(--slate); text-align: center; margin-bottom: 24px; font-style: italic;">Based on average service rate of $75/hr. These are ADDITIONAL clients from Trilogy's coordination network &mdash; on top of your existing client base.</p>
-
+      <p style="font-size: 13px; color: var(--slate); text-align: center; margin-bottom: 24px; font-style: italic;">These are ADDITIONAL clients from Trilogy's coordination network &mdash; on top of your existing client base.</p>
       <div class="comparison-cards">
-        <div class="card comparison-card ndis">
-          <h4>Finding Clients Yourself</h4>
-          <p>Marketing costs, My Aged Care listing, word of mouth &mdash; <strong>slow and expensive</strong>. 35.5% of small providers are unprofitable.</p>
-        </div>
-        <div class="card comparison-card aged-care">
-          <h4>Trilogy's P1 Network</h4>
-          <p>300+ coordinators referring clients. Geographic matching. <strong>No marketing spend</strong>. Immediate, growing pipeline.</p>
-        </div>
+        <div class="card comparison-card diy"><h4>Finding Clients Yourself</h4><p>Marketing costs, My Aged Care listing optimisation, word of mouth &mdash; slow, unpredictable, and expensive. Most small providers spend months to acquire a handful of new clients.</p></div>
+        <div class="card comparison-card trilogy"><h4>Trilogy's P1 Network</h4><p>300+ coordinators actively referring clients. Geographic matching to your service area. Immediate pipeline from day one. <strong>You deliver care &mdash; we deliver clients.</strong></p></div>
       </div>
-
-      <div style="text-align: center;">
-        <a href="#calculator" class="btn btn-teal">Model your own numbers &rarr;</a>
-      </div>
+      <div style="text-align: center;"><a href="#calculator" class="btn btn-teal">Model your own numbers &rarr;</a></div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 9 — CALCULATOR
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 9 — CALCULATOR -->
   <section id="calculator" data-slide-num="09">
     <div class="section-inner">
       <h2 class="section-title">Model Your Own Numbers</h2>
-      <p class="section-subtitle">Interactive calculator &mdash; project your 24-month revenue</p>
-
-      <div class="calculator-embed">
-        <iframe src="https://future-focus-phi.vercel.app/calculator.html" title="Revenue Calculator" loading="lazy"></iframe>
-      </div>
-
-      <div class="calculator-link">
-        <a href="https://future-focus-phi.vercel.app/calculator.html" target="_blank" rel="noopener">Open full calculator &rarr;</a>
-      </div>
+      <p class="section-subtitle">Interactive calculator &mdash; project your revenue growth</p>
+      <div class="calculator-embed"><iframe src="https://future-focus-phi.vercel.app/calculator.html" title="Revenue Calculator" loading="lazy"></iframe></div>
+      <div class="calculator-link"><a href="https://future-focus-phi.vercel.app/calculator.html" target="_blank" rel="noopener">Open full calculator &rarr;</a></div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 10 — THE PROGRAMME
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 10 — PROGRAMME -->
   <section id="programme" data-dark data-slide-num="10">
     <div class="section-inner">
-      <h2 class="section-title">The P1 Service Partnership</h2>
-      <p class="section-subtitle">More clients, less admin &mdash; focus on what you do best</p>
-
+      <h2 class="section-title">P1 Service Partnership</h2>
+      <p class="section-subtitle">Keep your business. Gain a client pipeline. Lose the admin burden.</p>
       <div class="pillar-cards">
-        <div class="pillar-card keep">
-          <h3>What You Keep</h3>
-          <ul>
-            <li>Your business</li>
-            <li>Your workforce</li>
-            <li>Your existing clients</li>
-            <li>Your brand</li>
-            <li>Your service area</li>
-            <li>Your independence</li>
-          </ul>
-        </div>
-        <div class="pillar-card gain">
-          <h3>What You Gain</h3>
-          <ul>
-            <li>New client referrals from 300+ coordinators</li>
-            <li>Trilogy's claiming &amp; billing platform</li>
-            <li>Reduced admin burden</li>
-            <li>Dedicated Partnership Growth Consultant</li>
-            <li>Sustainable margins through scale</li>
-            <li>Growing client pipeline</li>
-          </ul>
-        </div>
-        <div class="pillar-card gone">
-          <h3>What Goes Away</h3>
-          <ul>
-            <li>Marketing costs for new clients</li>
-            <li>Complex SaH claiming admin</li>
-            <li>Technology platform costs</li>
-            <li>Pricing uncertainty</li>
-            <li>Isolation as a small provider</li>
-            <li>Underutilised workforce</li>
-          </ul>
-        </div>
+        <div class="pillar-card keep"><h3>What You Keep</h3><ul><li>Your business</li><li>Your workforce</li><li>Your existing clients</li><li>Your brand</li><li>Your service area</li></ul></div>
+        <div class="pillar-card gain"><h3>What You Gain</h3><ul><li>New client referrals from 300+ coordinators</li><li>Trilogy's claiming &amp; billing platform</li><li>Reduced admin burden</li><li>Dedicated Partnership Growth Consultant</li><li>Sustainable margins through scale</li><li>Growing client pipeline</li></ul></div>
+        <div class="pillar-card gone"><h3>What Goes Away</h3><ul><li>Marketing costs to find new clients</li><li>Complex SaH claiming admin</li><li>Technology platform costs</li><li>Pricing uncertainty</li><li>Isolation as a small provider</li></ul></div>
       </div>
-
       <div class="programme-footer">
         <div style="margin-top: 20px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-          <a href="hub.html" class="btn btn-white">Explore the Resource Hub &rarr;</a>
-          <a href="resources/brand-and-marketing.html" class="btn btn-outline-white">See marketing materials &rarr;</a>
+          <a href="#acquisition" class="btn btn-white">See how you get clients &rarr;</a>
+          <a href="#calculator" class="btn btn-outline-white">Model your revenue &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 11 — CLIENT ACQUISITION
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 11 — HOW YOU GET CLIENTS -->
   <section id="acquisition" data-slide-num="11">
     <div class="section-inner">
-      <h2 class="section-title">How You Get More Clients</h2>
-      <p class="section-subtitle">Trilogy's coordination network does the client finding &mdash; you deliver the care</p>
-
+      <h2 class="section-title">How You Get Clients</h2>
+      <p class="section-subtitle">Three steps from joining to a full referral pipeline</p>
       <div class="acq-cards">
-        <div class="card acq-card">
-          <div class="acq-number">1</div>
-          <h4>Join the P1 Network</h4>
-          <ul>
-            <li>Register your services and service area</li>
-            <li>Set your capacity and availability</li>
-            <li>Get added to Trilogy's preferred provider list</li>
-          </ul>
-        </div>
-        <div class="card acq-card">
-          <div class="acq-number">2</div>
-          <h4>Receive Matched Referrals</h4>
-          <ul>
-            <li>Coordinators match clients to your area</li>
-            <li>Referrals based on services and location</li>
-            <li>Steady pipeline without marketing spend</li>
-          </ul>
-        </div>
-        <div class="card acq-card">
-          <div class="acq-number">3</div>
-          <h4>Deliver &amp; Grow</h4>
-          <ul>
-            <li>Focus on what you do best &mdash; delivering care</li>
-            <li>As your reputation grows, referrals increase</li>
-            <li>Scale your workforce to match demand</li>
-          </ul>
-        </div>
+        <div class="card acq-card"><div class="acq-number">1</div><h4>Join the P1 Network</h4><p>Register your services, service area, and capacity on Trilogy's platform. Your profile goes live to 300+ coordination partners nationally.</p></div>
+        <div class="card acq-card"><div class="acq-number">2</div><h4>Receive Matched Referrals</h4><p>Coordination partners in your area are actively matching clients with P1 providers. You receive referrals based on your services and location.</p></div>
+        <div class="card acq-card"><div class="acq-number">3</div><h4>Deliver &amp; Grow</h4><p>Focus on what you do best &mdash; delivering care. As your reputation grows in the network, referrals increase. Great service creates a virtuous cycle.</p></div>
       </div>
-
-      <p class="acq-support">P1 partners receive client referrals directly &mdash; no marketing spend, no cold outreach, just quality care delivery.</p>
-
-      <div class="acq-buttons">
-        <a href="resources/client-acquisition.html" class="btn btn-teal">See the growth guide &rarr;</a>
-        <a href="resources/brand-and-marketing.html" class="btn btn-navy">See example materials &rarr;</a>
-      </div>
+      <p class="acq-support">You deliver the care. Trilogy's coordinators deliver the clients. It's that simple.</p>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 12 — TIMELINE
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 12 — TIMELINE -->
   <section id="timeline" data-slide-num="12">
     <div class="section-inner">
-      <h2 class="section-title">From Handshake to First Referral in 4 Weeks</h2>
-      <p class="section-subtitle">You coordinate care. Trilogy handles everything else.</p>
-
+      <h2 class="section-title">From First Call to First Client in 4 Weeks</h2>
+      <p class="section-subtitle">A streamlined onboarding designed for busy providers</p>
       <div class="timeline-grid">
         <div class="timeline-track">
           <div class="timeline-line"></div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-week">Week 1</div>
-            <div class="timeline-label">Discovery Call + Service Review</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-week">Week 2</div>
-            <div class="timeline-label">Pricing &amp; Coverage Setup</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-week">Week 3</div>
-            <div class="timeline-label">Platform Onboarding + Worker Verification</div>
-          </div>
-
-          <div class="timeline-item active">
-            <div class="timeline-dot"></div>
-            <div class="timeline-week">Week 4</div>
-            <div class="timeline-label">First Client Referrals</div>
-          </div>
+          <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-week">Week 1</div><div class="timeline-label">Discovery Call + Service Review</div></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-week">Week 2</div><div class="timeline-label">Pricing &amp; Coverage Setup</div></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-week">Week 3</div><div class="timeline-label">Platform Onboarding + Worker Verification</div></div>
+          <div class="timeline-item active"><div class="timeline-dot"></div><div class="timeline-week">Week 4</div><div class="timeline-label">First Client Referrals</div></div>
         </div>
-
         <div class="timeline-cards">
-          <div class="card starter-card">
-            <h4>Your Starter Pack</h4>
-            <ul>
-              <li>P1 service pricing guide</li>
-              <li>Worker compliance checklist</li>
-              <li>Aged care induction pack</li>
-              <li>P1 partner agreement</li>
-              <li>Fee schedule</li>
-            </ul>
-          </div>
-
-          <div class="day-card">
-            <h4>Day-to-Day</h4>
-            <ul>
-              <li>You coordinate</li>
-              <li>Workers deliver</li>
-              <li>Trilogy claims</li>
-              <li>You get paid monthly</li>
-              <li>45-min annual audit</li>
-            </ul>
-          </div>
+          <div class="card starter-card"><h4>What We Set Up For You</h4><ul><li>Service area and capacity profile</li><li>Price book aligned to SaH rates</li><li>Platform access and training</li><li>Worker verification and compliance checks</li><li>Connection to local coordination partners</li></ul></div>
+          <div class="day-card"><h4>Day-to-Day</h4><ul><li>Coordinators refer clients to you</li><li>Your workers deliver services</li><li>Trilogy handles claiming and billing</li><li>You get paid &mdash; on time, every time</li><li>Focus on care, not admin</li></ul></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SECTION 13 — CTA
-  ══════════════════════════════════════════════════ -->
+  <!-- SLIDE 13 — CTA -->
   <section id="cta" data-dark data-slide-num="13">
     <div class="section-inner">
-      <h2 class="section-title">Book Your Discovery Call</h2>
-      <p class="cta-subtitle">In 30 minutes, you'll know exactly what your aged care revenue could look like &mdash; and whether this partnership makes sense.</p>
-
+      <h2 class="section-title">Let's Grow Your Business Together</h2>
+      <p class="cta-subtitle">In 30 minutes, you'll know exactly how many clients are in your area &mdash; and whether the P1 partnership makes sense for your business.</p>
       <div class="cta-buttons">
         <a href="mailto:partnerships@trilogycare.com.au" class="cta-btn email">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
@@ -2666,24 +580,14 @@
           1300 784 564
         </a>
       </div>
-
-      <div class="urgency-card">
-        <p>Coordinators joining now are building their portfolio before the market gets crowded.</p>
-      </div>
-
-      <div class="cta-calc-link">
-        <a href="#calculator">Model your numbers &rarr;</a>
-      </div>
-
-      <button onclick="window.print()" style="margin-top:24px; font-family:var(--font-body); font-size:14px; font-weight:500; padding:10px 28px; border-radius:10px; border:1.5px solid rgba(255,255,255,0.3); background:transparent; color:rgba(255,255,255,0.6); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Download as PDF</button>
-
+      <div class="urgency-card"><p>The market is consolidating. Providers who build strategic partnerships now will capture the clients from the 35.5% who won't survive. Don't be left behind.</p></div>
+      <div class="cta-calc-link"><a href="#calculator">Model your numbers &rarr;</a></div>
+      <button onclick="window.print()" style="margin-top:24px; font-family:var(--font-body); font-size:14px; font-weight:500; padding:10px 28px; border-radius:10px; border:1.5px solid rgba(255,255,255,0.3); background:transparent; color:rgba(255,255,255,0.6); cursor:pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">Download as PDF</button>
       <div class="cta-brand">TRILOGY CARE</div>
     </div>
   </section>
-
-  </div><!-- /.deck -->
-
-  <!-- ── Presenter Panel (inline, right side) ── -->
+  </div>
+  <!-- Presenter Panel -->
   <div class="presenter-panel" id="presenterPanel">
     <div class="pp-header">
       <div class="pp-header-left">
@@ -2692,18 +596,12 @@
       </div>
       <button class="pp-close" id="ppClose">&times;</button>
     </div>
-    <div class="pp-content" id="ppContent">
-      <div class="pp-loading">Press Present or P to activate</div>
-    </div>
+    <div class="pp-content" id="ppContent"><div class="pp-loading">Press Present or P to activate</div></div>
     <div class="pp-nav">
       <button class="pp-nav-btn" id="ppPrev">&larr; PREV</button>
       <button class="pp-nav-btn" id="ppNext">NEXT &rarr;</button>
     </div>
   </div>
-
-  <!-- ══════════════════════════════════════════════════
-       JAVASCRIPT
-  ══════════════════════════════════════════════════ -->
   <script>
     (function () {
       const deck = document.getElementById('deck');
@@ -2716,252 +614,138 @@
       const counter = document.getElementById('slideCounter');
       const total = sections.length;
       let presenterOpen = false;
-
-      // ── Presenter Notes Data ──
       const NOTES = {
         'hero': {
-          title: 'Opening',
-          onScreen: 'Title slide \u2014 headline, 3 credential pills, stock photo',
-          script: 'Thanks for making the time \u2014 I know how busy you are. I want to show you something that a lot of NDIS coordinators are exploring right now, and see if it makes sense for your business. This isn\'t about leaving NDIS. It\'s about whether there\'s a way to add a second revenue stream using the skills you already have. Sound fair?',
-          pivots: ['If they nod: "Great, let me start by introducing myself..."', 'If they seem rushed: "I\'ll keep this tight \u2014 20 minutes and you\'ll know if it\'s worth exploring further."'],
-          ifTheyAsk: ['"What is this about?" \u2192 "We help NDIS coordinators add aged care coordination as a second revenue stream. Same skills, growing market, no conflict with your NDIS work."', '"How long will this take?" \u2192 "20 minutes for the overview. Then you\'ll know if it\'s worth a deeper conversation."'],
-          nextUp: 'Your introduction \u2014 building rapport'
+          title: 'Opening', onScreen: 'Title slide with headline, 3 pills, stock photo',
+          script: 'Thanks for making the time. I want to show you something a lot of aged care providers are exploring right now. It\u2019s about how to <b>grow your client base without growing your overheads</b> \u2014 by joining a network that sends clients to you. I\u2019m not here to change how you run your business. I\u2019m here to show you how to get more clients doing exactly what you already do.',
+          pivots: ['If they nod: "Great, let me introduce myself..."', 'If rushed: "20 minutes and you\u2019ll know if it\u2019s worth exploring further."'],
+          ifTheyAsk: ['"What is this about?" \u2192 "We connect aged care providers like you with a steady stream of clients through our coordination network."'],
+          nextUp: 'Your introduction'
         },
         'rep-intro': {
-          title: 'Introduction',
-          onScreen: 'Your photo, name, title, credentials, personal quote',
-          script: 'So a little about me \u2014 I\'m [Name], I\'m a Partnership Growth Consultant at Trilogy Care. Think of me as your business coach for aged care. I work one-on-one with about 50 coordination partners around the country \u2014 helping them build strategy, acquire clients, and scale their portfolios. Many started exactly where you are \u2014 running an NDIS practice and looking for what\'s next. I\'m with you from day one through to a thriving business. Before I go any further though, I\'d love to hear about you...',
-          pivots: ['Transition to discovery: "But enough about me \u2014 I\'d love to understand where you\'re at..."', 'If they share their background: "That\'s really similar to a lot of our partners. Let me ask you a few things..."'],
-          ifTheyAsk: ['"How many partners do you have?" \u2192 "Over 300 nationally, managing $500M+ in client funding. Many started in NDIS."', '"How long have you been doing this?" \u2192 Share your genuine background.'],
-          nextUp: 'Discovery questions \u2014 learning about their business'
+          title: 'Introduction', onScreen: 'Photo, name, title, credentials, quote',
+          script: 'I\u2019m Jay, Partnership Growth Consultant at Trilogy Care. I work with over 50 P1 service partners \u2014 helping them grow client numbers, optimise margins, and build sustainable businesses. Many were in exactly your position \u2014 delivering great care but struggling to find enough new clients. My job is to fix that.',
+          pivots: ['Transition: "But enough about me \u2014 I\u2019d love to understand where you\u2019re at..."'],
+          ifTheyAsk: ['"How many partners?" \u2192 "300+ coordination partners and a growing P1 network, managing $500M+ in client funding."'],
+          nextUp: 'Discovery questions'
         },
         'discovery': {
-          title: 'Discovery',
-          onScreen: 'Conversation photo + 4 open-ended questions',
-          script: 'I\'d love to understand where you\'re at before I show you anything else. There\'s no script here \u2014 just a genuine conversation. Start with: "How\'s your business tracking this year?" Then LISTEN. Let them talk. 60% them, 40% you. Mirror back what they say: "So it sounds like the admin is really eating into your time..." Take notes on what they say \u2014 you\'ll reference it later.',
-          pivots: ['After they share frustrations: "Yeah, I hear that from a lot of coordinators. Can I show you what some of them are doing about it?"', 'If they\'re positive about NDIS: "That\'s great \u2014 means you\'re well-run. Let me show you how that actually makes you perfect for what I\'m about to share."', 'After 5-7 minutes of conversation: "Thanks for sharing that. What I want to show you next is directly related to what you just told me..."'],
-          ifTheyAsk: ['"Is this a sales pitch?" \u2192 "Honestly? I\'m trying to figure out if this is a fit. If it\'s not, I\'ll tell you. But based on what you\'re telling me, I think you\'ll find it interesting."'],
-          nextUp: 'The aged care market opportunity'
+          title: 'Discovery', onScreen: '4 open-ended questions about their aged care business',
+          script: 'Start with: <b>"How has the transition to Support at Home affected your business?"</b> Almost every provider has a story. LISTEN. Let them talk about admin pain, tech frustrations, margins. Take notes \u2014 reference their pain points throughout the deck.',
+          pivots: ['After frustrations: "The admin burden is real. Can I show you how some providers are solving that?"', 'If doing well: "Great \u2014 let me show you how to add even more clients without adding overhead."'],
+          ifTheyAsk: ['"Is this a sales pitch?" \u2192 "I\u2019m trying to figure out if this is a fit. If not, I\u2019ll tell you."'],
+          nextUp: 'The Support at Home opportunity'
         },
         'opportunity': {
-          title: 'Market Opportunity',
-          onScreen: '3 stat cards ($4.2B, 320K, 83K+) + growth bullets + stock photo',
-          script: 'So here\'s what\'s happening in aged care right now. It\'s a <b>$4.2 billion</b> coordination market \u2014 and it\'s growing <b>28% year on year</b>. There are <b>320,000 people</b> receiving home care, and that number doubled in 5 years. Right now there are <b>83,000 new places</b> being released and <b>88,000 people</b> already approved and waiting for a provider. There literally aren\'t enough coordinators to meet demand. The government put <b>$8.83 billion</b> into this last year alone. Private equity firms are piling in \u2014 Prestige acquired 3 companies in 8 weeks. This market is moving fast.',
-          pivots: ['Connect to their situation: "Remember when you mentioned [their pain point]? This is the other side of that coin \u2014 a market that\'s growing, not shrinking."', 'For the skeptic: "I know that sounds like a lot of numbers. Let me show you who\'s behind this and why it matters to you specifically."'],
-          ifTheyAsk: ['"Why is it growing so fast?" \u2192 "Australia\'s ageing population. Plus the new Support at Home program launched Nov 2025 \u2014 completely reformed the system and unlocked massive demand."', '"Is it sustainable?" \u2192 "Government investment grew 29% last year. Demand is demographic \u2014 it only goes up."'],
-          nextUp: 'Who Trilogy Care is \u2014 credibility'
+          title: 'Market Opportunity', onScreen: '3 stat cards, 83K callout, consolidation bullets',
+          script: 'You know the market is big. Here\u2019s what\u2019s changing. <b>$9.8B</b> market. <b>275K recipients</b> growing 6.6% yearly. <b>88K waiting</b>. <b>83K new SaH places</b>. But <b>35.5% of providers are unprofitable</b>. Last quarter: 35 exits vs 9 entries. Those clients go somewhere. Providers who partner now will absorb them.',
+          pivots: ['Connect: "You mentioned [their challenge] \u2014 this is why partnering strategically matters."'],
+          ifTheyAsk: ['"We know it\u2019s growing." \u2192 "The question is whether you can capture it. That\u2019s what I want to show you."'],
+          nextUp: 'Trilogy credibility'
         },
         'credibility': {
-          title: 'Trilogy Credibility',
-          onScreen: '5 stat cards + 2 feature cards + testimonial quote',
-          script: 'So who\'s behind this? Trilogy Care is <b>Australia\'s 2nd largest</b> Support at Home provider. We went from <b>46th to 2nd</b> in KPMG rankings in two years \u2014 the fastest growth they\'ve ever tracked. We manage over <b>$500 million</b> in funding with <b>15,000+ active clients</b>. And here\'s the key \u2014 we offer <b>both coordination and self-managed models</b>. So whether your clients want full support or want to manage their own care, we\'ve got a pathway. We don\'t deliver services ourselves. We don\'t compete with you. We exist to make coordinators like you successful. <b>300+ partners</b> already do this.',
-          pivots: ['Let the testimonial land, then: "That\'s a real partner in Queensland. Similar background to yours."', 'Transition: "So the market is massive, and we\'re the #2 player. Let me show you why your skills are a perfect fit..."'],
-          ifTheyAsk: ['"Why haven\'t I heard of you?" \u2192 "We\'re B2B \u2014 we don\'t advertise to consumers directly. Our partners are our front line. That\'s why you\'re hearing about us now."', '"Who\'s #1?" \u2192 "Australian Unity. But we\'re the fastest growing by far, and we offer both coordination and self-managed models."'],
-          nextUp: 'How NDIS and aged care are basically the same industry'
+          title: 'Trilogy Credibility', onScreen: '5 stats, 2 feature cards, testimonial',
+          script: 'Trilogy Care is <b>Australia\u2019s 2nd largest</b> SaH provider. <b>46th to 2nd</b> in KPMG rankings in two years. <b>$500M+</b> in funding, <b>15,000+ clients</b>, <b>300+ coordination partners</b> actively matching clients with service providers like you. Our growth directly benefits P1 partners \u2014 more clients in our network means more referrals to you.',
+          pivots: ['Let testimonial land: "40% more service hours in 8 months, zero marketing spend."'],
+          ifTheyAsk: ['"Why haven\u2019t I heard of you?" \u2192 "We\u2019re B2B \u2014 our service delivery partners are our front line."'],
+          nextUp: 'Why providers are partnering'
         },
-        'crossover': {
-          title: 'Industry Crossover',
-          onScreen: '4 cards: Same People, Same Core Work, Same Providers, Same Funding',
-          script: 'This is the slide that changes most people\'s minds. NDIS and aged care are basically two sides of the same coin. <b>Same people</b> \u2014 your NDIS clients have elderly parents who need aged care. <b>Same core work</b> \u2014 you coordinate care, manage budgets, liaise with providers, advocate for clients. <b>Same provider network</b> \u2014 the physios, OTs, nurses and carers you already work with operate across both sectors. And <b>same government funding</b> structure \u2014 individual budgets managed by a registered provider. The difference? Aged care is simpler. No behaviour support plans. No restrictive practices. No SIL.',
-          pivots: ['Key quote: "Nothing in aged care is harder than NDIS. If you can do NDIS, you\'re overqualified for this."', 'Connect to their network: "You mentioned you work with [physio/OT name] \u2014 they almost certainly have aged care clients too."'],
-          ifTheyAsk: ['"Is it really that similar?" \u2192 "The core job is identical. You\'re connecting people with services and making sure they get the care they need. It\'s just a different demographic and less complex."'],
-          nextUp: 'Your specific skills and how they transfer'
+        'why-partner': {
+          title: 'Why Partner', onScreen: '4 cards: Admin, Technology, Pipeline, Margins',
+          script: 'Four reasons providers are joining. <b>Admin overwhelm</b> \u2014 88% drowning in SaH admin. Trilogy handles it. <b>Technology gap</b> \u2014 ACPP, PRODA, real-time claiming. Our platform does it. <b>Client pipeline</b> \u2014 300+ coordinators sending referrals. <b>Margin protection</b> \u2014 price caps coming July 2026. Scale is the answer.',
+          pivots: ['Reference their pain: "You mentioned [admin/tech/clients] \u2014 that\u2019s exactly this card."', 'Key line: "Focus on care, not admin."'],
+          ifTheyAsk: ['"How does Trilogy make money?" \u2192 "Coordination fees from client packages. Your service fees are separate. We\u2019re incentivised to grow your clients."'],
+          nextUp: 'Your services map to SaH'
         },
-        'skills': {
-          title: 'Skills Transfer',
-          onScreen: 'Comparison table (NDIS \u2192 Aged Care) + 3 key differences + bold CTA text',
-          script: 'Let me make this concrete. Walk through the table \u2014 every row is something you already do. Support coordination becomes care coordination. Plan budgets become care budgets. Provider liaison, client advocacy \u2014 identical. The big difference is compliance. In NDIS you\'re doing <b>18-month audit cycles</b>, on-site, hundreds of hours of prep. In aged care through Trilogy? A <b>45-minute annual phone call</b>. That\'s it. And behaviour support, SIL, restrictive practices? Not in your scope \u2014 Trilogy handles the complex stuff.',
-          pivots: ['After the compliance comparison: "I saw your reaction there. Tell me about your current audit burden..."', 'Transition to money: "So you can do the work \u2014 it\'s simpler than what you do now. The question is: what\'s the financial opportunity? Let me show you..."'],
-          ifTheyAsk: ['"What about qualifications?" \u2192 "There are no mandated qualifications in either sector. Your NDIS experience is more than enough. 300+ partners from non-aged-care backgrounds already do this."'],
-          nextUp: 'The revenue opportunity \u2014 the showstopper slide'
+        'services': {
+          title: 'Services Mapping', onScreen: 'Table: SaH services mapped to their existing services',
+          script: 'Every service on the left is something you already deliver. Personal care and domestic assistance are <b>very high demand</b>. You don\u2019t need new qualifications. Your workers are already doing this. You just need more clients.',
+          pivots: ['"Which services do you have the most capacity in right now?"'],
+          ifTheyAsk: ['"Special accreditation needed?" \u2192 "Standard aged care requirements. If your workers do it today, they\u2019re qualified."'],
+          nextUp: 'Revenue projections'
         },
         'revenue': {
-          title: 'Revenue \u2014 SHOWSTOPPER',
-          onScreen: 'Portfolio revenue table (50-client row highlighted in teal) + NDIS vs Aged Care comparison',
-          script: 'OK \u2014 this is the slide I want you to really look at. In NDIS, you\'re capped at about <b>$120K a year</b>. That\'s $100 an hour, 25 billable hours a week, 48 weeks. That\'s your ceiling. And at Level 2, the margin after staff costs is basically zero. Now look at aged care. At 50 clients \u2014 which our partners typically reach in 12-18 months \u2014 you\'re earning <b>$188K to $282K a year</b>. That\'s <b>50 to 135 percent above the NDIS ceiling</b>. At 100 clients, you\'re at <b>$377K to $565K</b>. And there\'s no cap, no rate freeze, and the market is growing 28% a year. You can do both at the same time.',
-          pivots: ['Let the numbers sink in. Then: "What would an extra $90 to $150K a year mean for your business?"', 'If they look interested: "Want to model your specific numbers? I\'ve got an interactive calculator on the next slide."', 'Connect back: "Remember you said [their revenue/ceiling frustration]? This is the answer to that."'],
-          ifTheyAsk: ['"Is that realistic?" \u2192 "These are based on our actual partner data. The average across 300+ partners tracks to these figures. Some do more, some less. Want to model your specific situation?"', '"How long to get to 50 clients?" \u2192 "12-18 months is typical. Most start with 5-10 from their warm market in the first quarter."'],
-          nextUp: 'Interactive calculator to model their specific numbers'
+          title: 'Revenue \u2014 SHOWSTOPPER', onScreen: 'Revenue table with 50-client row highlighted, comparison cards',
+          script: 'These are <b>additional</b> clients on top of your existing base. 10 extra clients = <b>$156K</b> revenue. 50 clients = <b>$780K</b>, <b>$117K-$156K margin</b>. 100 clients = <b>$1.56M</b>. Compare: finding clients yourself is slow and expensive. Through Trilogy? 300+ coordinators matching from day one.',
+          pivots: ['"What would an extra $100K+ in margin mean for your business?"', '"Want to model your specific numbers?"'],
+          ifTheyAsk: ['"Is that realistic?" \u2192 "Based on average SaH service hours and rates. Let me show you the calculator."'],
+          nextUp: 'Interactive calculator'
         },
         'calculator': {
-          title: 'Calculator',
-          onScreen: 'Embedded interactive calculator \u2014 adjust clients, fees, utilisation',
-          script: 'Let\'s make this real for you. I\'m going to plug in some numbers based on what you told me. Start with \u2014 how many clients do you think you could realistically pick up in your first 3 months? Most partners say 5-10 from their warm market alone. Watch the 24-month projection \u2014 see how it compounds. Each new client adds recurring annual income.',
-          pivots: ['After showing their projection: "How does that feel? Worth exploring further?"', 'If the number is compelling: "And that\'s alongside your NDIS business \u2014 not instead of it."'],
-          ifTheyAsk: ['"What\'s the fee percentage?" \u2192 "Typically 10-15%, agreed in your price book. We\'ll set that up together in Week 2 of onboarding."'],
-          nextUp: 'How the partnership programme actually works'
+          title: 'Calculator', onScreen: 'Interactive calculator embed',
+          script: 'How many additional hours per week could your team take on right now? Watch what that looks like over 12 months.',
+          pivots: ['"That\u2019s on top of everything you\u2019re already doing \u2014 no extra marketing spend."'],
+          ifTheyAsk: ['"What rates?" \u2192 "Set in your price book during onboarding, competitive with SaH schedules."'],
+          nextUp: 'P1 partnership structure'
         },
         'programme': {
-          title: 'The Programme',
-          onScreen: '3 pillar cards: What You Keep / What You Gain / What Goes Away',
-          script: 'So here\'s how it works. Three columns. <b>What you keep</b> \u2014 your business, your client relationships, your independence, your brand. This is a partnership, not a job and definitely not an acquisition. <b>What you gain</b> \u2014 Trilogy\'s registration so you don\'t need your own, a dedicated growth consultant \u2014 that\'s me, automatic monthly payments, training and support. <b>What goes away</b> \u2014 chasing plan managers, most of the invoicing burden, registration complexity, hundreds of hours of audit prep, and that rate freeze anxiety. As your portfolio grows, so does the support we provide.',
-          pivots: ['Point to the "Goes Away" column: "Which of these would make the biggest difference to your week?"', 'Transition: "Now the question everyone asks \u2014 how do you actually get clients? Let me show you..."'],
-          ifTheyAsk: ['"What does it cost?" \u2192 "There\'s no upfront cost. Trilogy earns when you earn \u2014 it\'s a percentage model. We\'re incentivised to make you successful."', '"Can I keep my NDIS business?" \u2192 "Absolutely. Most partners run both. NDIS Monday to Wednesday, aged care Thursday Friday. Or however you want to structure it."'],
-          nextUp: 'How you build your client base \u2014 the 3-step framework'
+          title: 'P1 Partnership', onScreen: '3 pillar cards: Keep / Gain / Goes Away',
+          script: '<b>What you keep</b> \u2014 business, workforce, clients, brand, service area. <b>What you gain</b> \u2014 referrals from 300+ coordinators, claiming platform, reduced admin, growth consultant, sustainable margins. <b>What goes away</b> \u2014 marketing costs, complex claiming admin, tech platform costs, pricing uncertainty, isolation.',
+          pivots: ['"Which of the Goes Away items would make the biggest difference to your week?"'],
+          ifTheyAsk: ['"Cost?" \u2192 "No upfront cost. Trilogy earns from coordination fees, separate from your service fees."', '"Lock-in?" \u2192 "No. But once referrals start, partners don\u2019t leave."'],
+          nextUp: 'How you get clients'
         },
         'acquisition': {
-          title: 'Client Acquisition',
-          onScreen: '3 numbered cards: Warm Market, Community Outreach, Local Events + resource links',
-          script: 'This is where the rubber meets the road. How do you actually get clients? Three steps. <b>Step 1 \u2014 your warm market.</b> This is the easiest and most people skip it. Your NDIS clients have elderly parents. Your therapist contacts work across both sectors. One email to your allied health network can generate 5-10 referrals. <b>Step 2 \u2014 community outreach.</b> Hospital discharge units are your #1 source. Every hospital has discharge planners who are desperate for coordinators. GPs, social workers, retirement villages \u2014 they all have aged care clients. <b>Step 3 \u2014 local events.</b> Talks at retirement villages, seniors groups. Trilogy gives you co-branded brochures, outreach playbooks, templates \u2014 everything.',
-          pivots: ['Reference their network: "You mentioned you work with [therapist name] \u2014 they\'d be a perfect first email."', 'If they seem overwhelmed: "You don\'t need to do all three at once. Most partners start with Step 1 \u2014 just their warm market \u2014 and get their first 5-10 clients from that alone."'],
-          ifTheyAsk: ['"Will Trilogy give me clients?" \u2192 "We support your client acquisition with tools, training, and marketing materials. Some clients come through Trilogy\'s pipeline, but the real growth comes from your local network \u2014 and that\'s where you have the advantage."'],
-          nextUp: 'The 4-week onboarding timeline'
+          title: 'How You Get Clients', onScreen: '3 steps: Join, Receive Referrals, Deliver & Grow',
+          script: '<b>Step 1</b> \u2014 join the network, register services and capacity. <b>Step 2</b> \u2014 coordinators match clients to your profile. <b>Step 3</b> \u2014 deliver great care. Better service = more referrals. Virtuous cycle.',
+          pivots: ['"You don\u2019t need to change how you operate. Just say yes to receiving referrals."'],
+          ifTheyAsk: ['"How many referrals?" \u2192 "Depends on area and capacity. We\u2019ll estimate during the discovery call."'],
+          nextUp: '4-week onboarding'
         },
         'timeline': {
-          title: 'Timeline',
-          onScreen: 'Vertical timeline (Weeks 1-4) + Starter Pack card + Day-to-Day card',
-          script: 'From handshake to first client in 4 weeks. <b>Week 1</b> \u2014 we have our discovery call, which is basically what we\'re doing now. <b>Week 2</b> \u2014 we set up your price book and review the portfolio. <b>Week 3</b> \u2014 platform onboarding and training. <b>Week 4</b> \u2014 you\'re live. You\'ve got your starter pack \u2014 client acquisition playbook, brochure templates, email templates, the lot. Day to day: you coordinate, workers deliver, Trilogy claims from government, you get paid monthly via RCTI. And your annual compliance is a 45-minute phone call.',
-          pivots: ['If they\'re ready: "Does 4 weeks feel realistic for your situation? We could have you onboarded by [specific date]."', 'If hesitant: "What would need to be true for you to feel ready to start?"', 'ACE if "I\'m not ready": Acknowledge \u2014 "Completely understand." Clarify \u2014 "What specifically feels like it needs more time?" Evidence \u2014 "Most partners felt exactly the same way. Here\'s what they found..."'],
-          ifTheyAsk: ['"What if it doesn\'t work out?" \u2192 "There\'s no lock-in. You can step back any time. But in our experience, once partners see the first few clients and revenue coming in, they don\'t look back."'],
-          nextUp: 'The close \u2014 booking the next step'
+          title: 'Timeline', onScreen: 'Weeks 1-4 timeline, setup card, day-to-day card',
+          script: '<b>Week 1</b> \u2014 discovery call. <b>Week 2</b> \u2014 pricing setup. <b>Week 3</b> \u2014 platform onboarding, worker verification. <b>Week 4</b> \u2014 first referrals. Day to day: coordinators refer, your workers deliver, Trilogy handles claiming, you get paid on time. Focus on care, not admin.',
+          pivots: ['"We could have you receiving referrals by [specific date]."', '"What would need to be true for you to start?"'],
+          ifTheyAsk: ['"Not enough capacity?" \u2192 "You control capacity settings. Start small, scale up."'],
+          nextUp: 'The close'
         },
         'cta': {
-          title: 'Close',
-          onScreen: 'Contact details + urgency box + Download PDF button',
-          script: 'So based on everything we\'ve talked about \u2014 [reference their specific situation]. You\'ve got the skills, the market is there, and the model works. The next step is simple: a <b>30-minute discovery call</b> where we dig into your specific numbers and see if the fit is right. I\'ll be honest \u2014 if it\'s not right for you, I\'ll tell you. But based on what you\'ve told me today, I think you\'d be great at this. What questions do you have?',
-          pivots: ['After questions: "On a scale of 1-10, how interested are you in exploring this further?"', 'Then: "What would make this a 10?"', 'Close by persona \u2014 Brenda: "Imagine the relief." Dave: "Imagine the revenue." Mia: "Imagine the impact."', 'ALWAYS book the next step before ending: "Let\'s lock in that discovery call \u2014 does [specific day] work?"'],
-          ifTheyAsk: ['"Can I think about it?" \u2192 "Of course. What I\'ll do is send you a link to everything we\'ve discussed \u2014 the deck, the resource hub, the calculator. Have a look in your own time and I\'ll check in [specific day]. Sound good?"'],
-          nextUp: 'End of presentation'
+          title: 'Close', onScreen: 'Contact details, urgency card, PDF button',
+          script: 'You have the workers. You have the skills. The clients are there. The question is whether they come to you or someone else. Next step: <b>30-minute discovery call</b> to look at demand in your area. If it\u2019s not right, I\u2019ll tell you.',
+          pivots: ['"On a scale of 1-10, how interested?"', '"35.5% unprofitable. Their clients go somewhere. Why not to you?"', 'ALWAYS book the next step.'],
+          ifTheyAsk: ['"Think about it?" \u2192 "Of course. I\u2019ll send the deck and calculator. But providers joining now capture clients from the 35% who won\u2019t survive."'],
+          nextUp: 'End'
         }
       };
-
-      // ── Slide ID list for ordered navigation ──
       const slideIds = Array.from(sections).map(s => s.id);
-
-      function getCurrentSlide() {
-        return Math.round(deck.scrollTop / window.innerHeight);
-      }
-
+      function getCurrentSlide() { return Math.round(deck.scrollTop / window.innerHeight); }
       function updateState() {
-        const idx = getCurrentSlide();
-        const current = sections[idx];
-        const isDark = current?.hasAttribute('data-dark');
-        const currentId = current?.id;
-
-        // Nav
-        if (idx > 0) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-
-        // Dots
+        const idx = getCurrentSlide(); const current = sections[idx]; const isDark = current?.hasAttribute('data-dark'); const currentId = current?.id;
+        if (idx > 0) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
         dots.forEach(dot => dot.classList.toggle('active', dot.dataset.section === currentId));
-
-        // Counter
-        counter.textContent = `${idx + 1} / ${total}`;
+        counter.textContent = (idx + 1) + ' / ' + total;
         counter.classList.toggle('on-dark', isDark);
         document.querySelector('.progress-dots')?.classList.toggle('on-dark', isDark);
-
-        // Sync presenter panel
-        if (presenterOpen) {
-          const notes = NOTES[currentId];
-          const nextIdx = idx + 1;
-          const nextId = slideIds[nextIdx];
-          const nextNotes = NOTES[nextId];
-          updatePresenterPanel(idx, currentId, notes, nextNotes);
-        }
+        if (presenterOpen) { updatePresenterPanel(idx, currentId, NOTES[currentId], NOTES[slideIds[idx + 1]]); }
       }
-
       function updatePresenterPanel(idx, id, notes, nextNotes) {
-        ppCount.textContent = `${idx + 1} / ${total}`;
-        if (!notes) { ppContent.innerHTML = '<div style="padding:20px;color:rgba(255,255,255,0.3);">No notes for this slide</div>'; return; }
-
-        let html = '';
-        // On Screen
-        html += `<div class="pp-onscreen">
-          <div class="pp-onscreen-label">ON SCREEN</div>
-          <div class="pp-onscreen-title">${notes.title}</div>
-          <div class="pp-onscreen-desc">${notes.onScreen || ''}</div>
-        </div>`;
-        // Script
-        html += `<div class="pp-section">
-          <div class="pp-section-label script">YOUR SCRIPT</div>
-          <div class="pp-script-text">${notes.script || ''}</div>
-        </div>`;
-        // Pivots
-        if (notes.pivots && notes.pivots.length) {
-          html += `<div class="pp-section">
-            <div class="pp-section-label pivots">PIVOT PHRASES</div>
-            <ul class="pp-list pivots">${notes.pivots.map(p => `<li>${p}</li>`).join('')}</ul>
-          </div>`;
-        }
-        // If they ask
-        if (notes.ifTheyAsk && notes.ifTheyAsk.length) {
-          html += `<div class="pp-section">
-            <div class="pp-section-label ask">IF THEY ASK</div>
-            <ul class="pp-list ask">${notes.ifTheyAsk.map(q => `<li>${q}</li>`).join('')}</ul>
-          </div>`;
-        }
-        // Next up
-        if (nextNotes) {
-          html += `<div class="pp-next-up"><span>NEXT UP:</span> ${nextNotes.title}</div>`;
-        }
-
-        ppContent.innerHTML = html;
-        ppContent.scrollTop = 0;
+        ppCount.textContent = (idx + 1) + ' / ' + total;
+        if (!notes) { ppContent.innerHTML = '<div style="padding:20px;color:rgba(255,255,255,0.3);">No notes</div>'; return; }
+        let h = '<div class="pp-onscreen"><div class="pp-onscreen-label">ON SCREEN</div><div class="pp-onscreen-title">' + notes.title + '</div><div class="pp-onscreen-desc">' + (notes.onScreen||'') + '</div></div>';
+        h += '<div class="pp-section"><div class="pp-section-label script">YOUR SCRIPT</div><div class="pp-script-text">' + (notes.script||'') + '</div></div>';
+        if (notes.pivots && notes.pivots.length) { h += '<div class="pp-section"><div class="pp-section-label pivots">PIVOT PHRASES</div><ul class="pp-list pivots">' + notes.pivots.map(function(p){return '<li>'+p+'</li>';}).join('') + '</ul></div>'; }
+        if (notes.ifTheyAsk && notes.ifTheyAsk.length) { h += '<div class="pp-section"><div class="pp-section-label ask">IF THEY ASK</div><ul class="pp-list ask">' + notes.ifTheyAsk.map(function(q){return '<li>'+q+'</li>';}).join('') + '</ul></div>'; }
+        if (nextNotes) { h += '<div class="pp-next-up"><span>NEXT UP:</span> ' + nextNotes.title + '</div>'; }
+        ppContent.innerHTML = h; ppContent.scrollTop = 0;
       }
-
-      // Scroll handler
       let ticking = false;
-      deck.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => { updateState(); ticking = false; });
-          ticking = true;
-        }
-      });
-
-      // Dot click
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const target = document.getElementById(dot.dataset.section);
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-        });
-      });
-
-      // Keyboard nav
-      document.addEventListener('keydown', (e) => {
+      deck.addEventListener('scroll', function() { if (!ticking) { requestAnimationFrame(function() { updateState(); ticking = false; }); ticking = true; } });
+      dots.forEach(function(dot) { dot.addEventListener('click', function() { const t = document.getElementById(dot.dataset.section); if (t) t.scrollIntoView({ behavior: 'smooth' }); }); });
+      document.addEventListener('keydown', function(e) {
         if (e.key === 'p' || e.key === 'P') { e.preventDefault(); togglePresenter(); return; }
         const idx = getCurrentSlide();
-        if (['ArrowDown', 'ArrowRight', ' '].includes(e.key)) {
-          e.preventDefault();
-          sections[Math.min(idx + 1, total - 1)]?.scrollIntoView({ behavior: 'smooth' });
-        } else if (['ArrowUp', 'ArrowLeft'].includes(e.key)) {
-          e.preventDefault();
-          sections[Math.max(idx - 1, 0)]?.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (['ArrowDown','ArrowRight',' '].indexOf(e.key) >= 0) { e.preventDefault(); sections[Math.min(idx+1,total-1)]?.scrollIntoView({behavior:'smooth'}); }
+        else if (['ArrowUp','ArrowLeft'].indexOf(e.key) >= 0) { e.preventDefault(); sections[Math.max(idx-1,0)]?.scrollIntoView({behavior:'smooth'}); }
       });
-
-      // Presenter panel toggle
-      function togglePresenter() {
-        presenterOpen = !presenterOpen;
-        panel.classList.toggle('open', presenterOpen);
-        document.body.classList.toggle('presenter-active', presenterOpen);
-        document.getElementById('presenterBtn')?.classList.toggle('active', presenterOpen);
-        if (presenterOpen) updateState(); // refresh notes
-      }
-
-      // Panel nav buttons
-      document.getElementById('ppPrev')?.addEventListener('click', () => {
-        const idx = getCurrentSlide();
-        sections[Math.max(idx - 1, 0)]?.scrollIntoView({ behavior: 'smooth' });
-      });
-      document.getElementById('ppNext')?.addEventListener('click', () => {
-        const idx = getCurrentSlide();
-        sections[Math.min(idx + 1, total - 1)]?.scrollIntoView({ behavior: 'smooth' });
-      });
+      function togglePresenter() { presenterOpen = !presenterOpen; panel.classList.toggle('open', presenterOpen); document.body.classList.toggle('presenter-active', presenterOpen); document.getElementById('presenterBtn')?.classList.toggle('active', presenterOpen); if (presenterOpen) updateState(); }
+      document.getElementById('ppPrev')?.addEventListener('click', function() { sections[Math.max(getCurrentSlide()-1,0)]?.scrollIntoView({behavior:'smooth'}); });
+      document.getElementById('ppNext')?.addEventListener('click', function() { sections[Math.min(getCurrentSlide()+1,total-1)]?.scrollIntoView({behavior:'smooth'}); });
       document.getElementById('ppClose')?.addEventListener('click', togglePresenter);
-
-      // Present button
       document.getElementById('presenterBtn')?.addEventListener('click', togglePresenter);
-
-      // PDF
-      document.querySelector('.pdf-btn')?.addEventListener('click', () => window.print());
-
-      // Initial
       updateState();
     })();
   </script>
-
-  </div><!-- /app-content -->
-
+  </div>
   <script>
     function checkPw() {
       if (document.getElementById('gate-pw').value === '4444') {
@@ -2972,8 +756,8 @@
         document.getElementById('gate-err').textContent = 'Incorrect code';
       }
     }
-    document.getElementById('gate-pw').addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
-    if (sessionStorage.getItem('pw-ok-v4') === '1') { checkPw(); document.getElementById('gate-pw').value = '7777'; checkPw(); }
+    document.getElementById('gate-pw').addEventListener('keydown', function(e) { if (e.key === 'Enter') checkPw(); });
+    if (sessionStorage.getItem('pw-ok-v4') === '1') { document.getElementById('gate-pw').value = '4444'; checkPw(); }
   </script>
 </body>
 </html>
