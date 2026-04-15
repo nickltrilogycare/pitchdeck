@@ -314,18 +314,55 @@
     .comparison-card.aged-care h4 { color: #276749; }
 
     /* ══════════════════════════════════════════
-       SECTION 9 — CALCULATOR
+       SECTION 9 — CALCULATOR (INLINE)
     ══════════════════════════════════════════ */
-    #calculator { background: var(--light-teal-bg); }
-    .calculator-embed { background: var(--white); border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; margin-bottom: 16px; }
-    .calculator-embed iframe { width: 100%; height: 440px; border: none; }
-    .calculator-link { text-align: center; }
-    .calculator-link a { color: var(--teal); font-weight: 500; font-size: 15px; text-decoration: none; }
-    .calculator-link a:hover { text-decoration: underline; }
+    #calculator { background: var(--light-teal-bg); overflow-y: auto !important; overflow-x: hidden !important; align-items: flex-start !important; scrollbar-width: thin; scrollbar-color: var(--teal) transparent; }
+    #calculator::-webkit-scrollbar { width: 6px; }
+    #calculator::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 3px; }
+    #calculator::-webkit-scrollbar-track { background: transparent; }
+    #calculator .section-inner { padding: 80px 48px 40px; }
+    .calc-kpi-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 20px; }
+    .calc-kpi-card { background: var(--white); border-radius: 12px; padding: 14px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
+    .calc-kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .calc-kpi-card:nth-child(1)::before { background: var(--teal); }
+    .calc-kpi-card:nth-child(2)::before { background: var(--navy); }
+    .calc-kpi-card:nth-child(3)::before { background: var(--light-teal); }
+    .calc-kpi-card:nth-child(4)::before { background: var(--gold); }
+    .calc-kpi-label { font-size: 10px; font-weight: 600; color: var(--slate); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .calc-kpi-value { font-family: var(--font-heading); font-size: 26px; font-weight: 300; color: var(--navy); line-height: 1.1; }
+    .calc-kpi-sub { font-size: 11px; color: var(--teal); font-weight: 600; margin-top: 3px; }
+    .calc-config { background: var(--white); border-radius: 12px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .calc-config-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+    .calc-config-item { display: flex; flex-direction: column; gap: 5px; }
+    .calc-config-item label { font-size: 10px; font-weight: 600; color: var(--slate); text-transform: uppercase; letter-spacing: 0.06em; }
+    .calc-config-item input[type="number"] { width: 100%; padding: 7px 10px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 8px; font-size: 14px; font-family: var(--font-body); font-weight: 600; color: var(--navy); }
+    .calc-config-item input[type="number"]:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(2,127,126,0.1); }
+    .calc-slider-row { display: flex; align-items: center; gap: 8px; }
+    .calc-slider-row input[type="range"] { flex: 1; accent-color: var(--teal); height: 5px; }
+    .calc-slider-row input[type="number"] { width: 56px; text-align: center; padding: 5px; }
+    .calc-config-summary { font-size: 12px; color: var(--slate); margin-bottom: 14px; padding: 8px 12px; background: var(--off-white); border-radius: 8px; }
+    .calc-config-summary strong { color: var(--navy); }
+    .calc-section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; padding-left: 4px; }
+    .calc-table-wrap { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 20px; }
+    .calc-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .calc-table thead th { background: var(--navy); color: var(--white); padding: 8px 12px; text-align: right; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .calc-table thead th:first-child { text-align: center; }
+    .calc-table tbody td { padding: 6px 12px; text-align: right; border-bottom: 1px solid rgba(0,0,0,0.04); font-variant-numeric: tabular-nums; color: var(--charcoal); }
+    .calc-table tbody td:first-child { text-align: center; font-weight: 700; color: var(--navy); }
+    .calc-table tbody tr:hover { background: rgba(2,127,126,0.04); }
+    .calc-chart-wrap { background: var(--white); border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 20px; }
+    .calc-chart-wrap svg text { font-family: var(--font-body); }
+    .calc-actions { display: flex; gap: 12px; justify-content: center; padding-bottom: 16px; }
+    .calc-export-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 10px; border: none; font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .calc-export-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+    .calc-export-btn.excel { background: #217346; color: var(--white); }
+    .calc-export-btn.excel:hover { background: #1a5c38; }
+    .calc-export-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
 
     /* ══════════════════════════════════════════
        SECTION 10 — THE PARTNERSHIP MODEL
     ══════════════════════════════════════════ */
+    #positioning { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); }
     #programme { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); }
     #programme .section-title { color: var(--white); }
     #programme .section-subtitle { color: var(--light-teal); }
@@ -506,9 +543,10 @@
       .story-journey, .opportunity-split, .foundation-grid, .comparison-cards,
       .timeline-grid { gap: 16px; }
 
-      /* Calculator iframe — show fallback text instead */
-      .calculator-embed { display: none; }
-      .calculator-link { display: block; text-align: center; padding: 40px; font-size: 16px; color: var(--teal); }
+      /* Calculator — compact for print */
+      #calculator .section-inner { overflow: visible; height: auto; }
+      .calc-chart-wrap { break-inside: avoid; }
+      .calc-actions { display: none; }
 
       /* Team photos print correctly */
       .team-photo { break-inside: avoid; }
@@ -521,6 +559,7 @@
       .cost-comparison { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     }
   </style>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 </head>
 <body>
 
@@ -552,6 +591,7 @@
     <button class="progress-dot" data-section="foundation" title="50 Clients"></button>
     <button class="progress-dot" data-section="calculator" title="Calculator"></button>
     <button class="progress-dot" data-section="revenue" title="Revenue"></button>
+    <button class="progress-dot" data-section="positioning" title="Positioning"></button>
     <button class="progress-dot" data-section="proof" title="Partners"></button>
     <button class="progress-dot" data-section="experts" title="Engine"></button>
     <button class="progress-dot" data-section="programme" title="Model"></button>
@@ -559,7 +599,7 @@
     <button class="progress-dot" data-section="cta" title="Next Steps"></button>
   </div>
 
-  <div class="slide-counter" id="slideCounter">1 / 13</div>
+  <div class="slide-counter" id="slideCounter">1 / 14</div>
 
   <div class="deck" id="deck">
 
@@ -754,7 +794,7 @@
   <section id="skills" data-slide-num="05">
     <div class="section-inner">
       <h2 class="section-title">Your Team Already Has the Skills</h2>
-      <p class="section-subtitle">Aged care coordination is simpler than what Future Focus does every day</p>
+      <p class="section-subtitle">Aged care coordination is simpler than what you already do every day</p>
 
       <div class="skills-table-wrapper">
         <table class="skills-table">
@@ -865,7 +905,7 @@
           </div>
 
           <div class="compound-callout">
-            <p><strong>The compounding effect:</strong> Unlike NDIS hourly billing, aged care revenue compounds. Clients stay an average of <strong>2&ndash;3 years</strong>. As your portfolio grows, existing clients generate recurring income while new referrals stack on top. Classification upgrades increase per-client revenue over time.</p>
+            <p><strong>Two levers, not one:</strong> In aged care, you grow revenue two ways &mdash; adding new clients <em>and</em> increasing utilisation across your existing book. Clients stay an average of <strong>2&ndash;3 years</strong>, generating recurring income while new referrals stack on top. Classification upgrades increase per-client revenue over time. It's portfolio growth with a built-in multiplier.</p>
           </div>
         </div>
       </div>
@@ -873,18 +913,68 @@
   </section>
 
   <!-- ══════════════════════════════════════════
-       SLIDE 7 — CALCULATOR
+       SLIDE 7 — CALCULATOR (INLINE)
   ══════════════════════════════════════════ -->
   <section id="calculator" data-slide-num="07">
     <div class="section-inner">
       <h2 class="section-title">Model Your Numbers</h2>
       <p class="section-subtitle">Plug in your scenario &mdash; see how revenue compounds over 24 months</p>
 
-      <div class="calculator-embed">
-        <iframe src="https://future-focus-phi.vercel.app/calculator.html" title="Revenue Calculator" loading="lazy"></iframe>
+      <div class="calc-kpi-strip">
+        <div class="calc-kpi-card"><div class="calc-kpi-label">24-Month Revenue</div><div class="calc-kpi-value" id="calcKpiRevenue">&mdash;</div><div class="calc-kpi-sub" id="calcKpiRevenueSub">SaH cumulative</div></div>
+        <div class="calc-kpi-card"><div class="calc-kpi-label">Monthly at M24</div><div class="calc-kpi-value" id="calcKpiMonthly">&mdash;</div></div>
+        <div class="calc-kpi-card"><div class="calc-kpi-label">Total Clients at M24</div><div class="calc-kpi-value" id="calcKpiClients">&mdash;</div></div>
+        <div class="calc-kpi-card"><div class="calc-kpi-label">vs Old HCP Model</div><div class="calc-kpi-value" id="calcKpiDelta">&mdash;</div><div class="calc-kpi-sub" id="calcKpiDeltaSub"></div></div>
       </div>
-      <div class="calculator-link">
-        <a href="https://future-focus-phi.vercel.app/calculator.html" target="_blank" rel="noopener">Open full calculator in new tab &rarr;</a>
+
+      <div class="calc-config">
+        <div id="calcConfigSummary" class="calc-config-summary"></div>
+        <div class="calc-config-grid">
+          <div class="calc-config-item">
+            <label>Initial Clients (from Trilogy)</label>
+            <input type="number" id="calcInitialClients" value="50" min="0" max="500" step="1">
+          </div>
+          <div class="calc-config-item">
+            <label>Monthly New Clients</label>
+            <input type="number" id="calcMonthlyNew" value="5" min="0" max="50" step="1">
+          </div>
+          <div class="calc-config-item">
+            <label>Coordination Fee %</label>
+            <div class="calc-slider-row">
+              <input type="range" id="calcFeeSlider" min="20" max="30" step="1" value="20">
+              <input type="number" id="calcFeeNum" min="20" max="30" step="1" value="20">
+              <span style="font-size:12px;color:var(--slate);">%</span>
+            </div>
+          </div>
+          <div class="calc-config-item">
+            <label>Utilisation Rate %</label>
+            <div class="calc-slider-row">
+              <input type="range" id="calcUtilSlider" min="50" max="100" step="5" value="70">
+              <input type="number" id="calcUtilNum" min="50" max="100" step="5" value="70">
+              <span style="font-size:12px;color:var(--slate);">%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-section-label">Monthly Projection</div>
+      <div class="calc-table-wrap" style="overflow-x:auto;">
+        <table class="calc-table" id="calcSahTable">
+          <thead><tr><th>Month</th><th>New</th><th>Total</th><th>Monthly Funding</th><th>Services Consumed</th><th>Coord. Revenue</th><th>Cumulative</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="calc-section-label">Revenue Trajectory</div>
+      <div class="calc-chart-wrap">
+        <svg id="calcChart" viewBox="0 0 860 320" style="width:100%;height:auto;"></svg>
+      </div>
+
+      <div class="calc-actions">
+        <button class="calc-export-btn excel" onclick="exportCalcToExcel()">
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Export to Excel
+        </button>
       </div>
     </div>
   </section>
@@ -894,8 +984,8 @@
   ══════════════════════════════════════════ -->
   <section id="revenue" data-slide-num="08">
     <div class="section-inner">
-      <h2 class="section-title">Revenue That Compounds</h2>
-      <p class="section-subtitle">Unlike NDIS hourly billing, aged care revenue grows every month as your portfolio builds</p>
+      <h2 class="section-title">Revenue That Accelerates</h2>
+      <p class="section-subtitle">Two growth levers &mdash; client acquisition and utilisation &mdash; mean your revenue accelerates as the portfolio builds</p>
 
       <div class="revenue-table-wrapper">
         <table class="revenue-table">
@@ -917,28 +1007,67 @@
       </div>
 
       <div class="compound-box">
-        <h4>Why Revenue Compounds (Not Just Grows)</h4>
-        <p>In NDIS, revenue is linear &mdash; you bill by the hour, rates are frozen, and each client requires active work to generate income. In aged care, revenue <strong>compounds</strong>: clients stay 2&ndash;3 years on average, generating recurring monthly income. As new clients join, they stack on top of existing ones. Classification upgrades increase per-client revenue over time. Your fee grows with the client's budget &mdash; not against a rate freeze.</p>
+        <h4>Two Levers to Grow Revenue</h4>
+        <p>In NDIS, you have one lever &mdash; add more clients and bill more hours. In aged care, you have <strong>two</strong>: grow your client base <em>and</em> increase utilisation across your existing book. Clients stay 2&ndash;3 years on average, generating recurring monthly income. As new clients join, they stack on top of existing ones. Classification upgrades increase per-client revenue over time. Your fee grows with the client's budget &mdash; not against a rate freeze.</p>
         <span class="compound-stat">50 clients in Year 1 &rarr; 150+ by Year 2 &rarr; $565K+ recurring annual revenue</span>
       </div>
 
       <div class="comparison-cards">
         <div class="card comparison-card ndis">
-          <h4>NDIS Coordination (Linear)</h4>
-          <p>Frozen hourly rates since 2019. Revenue capped by billable hours. Plans shrinking 15&ndash;25%. <strong>55.7% of providers reporting losses.</strong></p>
+          <h4>NDIS Coordination (One Lever)</h4>
+          <p>Add clients and bill hours &mdash; but rates are frozen since 2019, plans shrinking 15&ndash;25%. Growth comes from volume alone. <strong>55.7% of providers reporting losses.</strong></p>
         </div>
         <div class="card comparison-card aged-care">
-          <h4>Aged Care Coordination (Compounding)</h4>
-          <p>% of growing budgets. Clients stay years. Classification upgrades increase value. Market growing 6.4% CAGR. <strong>Uncapped.</strong></p>
+          <h4>Aged Care Coordination (Two Levers)</h4>
+          <p>Grow your client base <em>and</em> increase utilisation. Clients stay years, classification upgrades lift per-client revenue, market growing 6.4% CAGR. <strong>Two ways to grow, not one.</strong></p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════
-       SLIDE 9 — SOCIAL PROOF
+       SLIDE 9 — PREMIUM MARKET POSITIONING
   ══════════════════════════════════════════ -->
-  <section id="proof" data-slide-num="09">
+  <section id="positioning" data-dark data-slide-num="09">
+    <div class="section-inner">
+      <h2 class="section-title" style="color:var(--white);">Position as Premium From Day One</h2>
+      <p class="section-subtitle" style="color:var(--light-teal);">Your higher-qualified team isn't a cost problem &mdash; it's your competitive edge</p>
+
+      <div class="card-grid" style="margin-bottom:28px;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:28px;margin-bottom:8px;">&#9733;</div>
+          <h4 style="font-family:var(--font-heading);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;">Quality Position</h4>
+          <p style="font-size:14px;color:var(--charcoal);line-height:1.6;">Differentiate on service standards, responsiveness, and care planning depth. Attract clients who want more than a basic coordinator.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:28px;margin-bottom:8px;">&#9764;</div>
+          <h4 style="font-family:var(--font-heading);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;">Clinical Position</h4>
+          <p style="font-size:14px;color:var(--charcoal);line-height:1.6;">Your team manages complex NDIS clients every day. That clinical capability commands premium in aged care &mdash; especially for higher-classification clients.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:28px;margin-bottom:8px;">&#9830;</div>
+          <h4 style="font-family:var(--font-heading);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;">Premium Service</h4>
+          <p style="font-size:14px;color:var(--charcoal);line-height:1.6;">Offer a concierge-level experience &mdash; smaller caseloads, deeper relationships, better outcomes. Premium clients stay longer and refer more.</p>
+        </div>
+      </div>
+
+      <div style="background:rgba(2,127,126,0.15);border:1px solid rgba(2,127,126,0.3);border-radius:16px;padding:24px 32px;margin-bottom:20px;">
+        <h4 style="font-family:var(--font-heading);font-size:16px;font-weight:700;color:var(--white);margin-bottom:10px;">Trilogy's pricing model makes this possible</h4>
+        <p style="font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin:0;">Our pricing matches your service provision model to <strong style="color:var(--light-teal);">book, cohort, or per-client pricing</strong>. Your SCHADS award staff who manage complex NDIS participants are overqualified for standard aged care &mdash; that's the premium. Higher-need clients attract higher classifications and higher revenue per client. You're not recovering costs &mdash; you're charging for capability.</p>
+      </div>
+
+      <div class="skill-pills" style="justify-content:center;">
+        <span class="skill-pill" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">Higher-qualified staff = higher-value clients</span>
+        <span class="skill-pill" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">Pricing matched to your service model</span>
+        <span class="skill-pill" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">Premium retention &amp; referral pathways</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 10 — SOCIAL PROOF (RENUMBERED)
+  ══════════════════════════════════════════ -->
+  <section id="proof" data-slide-num="10">
     <div class="section-inner">
       <h2 class="section-title">Partners Who Made the Move</h2>
       <p class="section-subtitle">NDIS providers who added aged care through Trilogy &mdash; real results</p>
@@ -1030,9 +1159,9 @@
   </section>
 
   <!-- ══════════════════════════════════════════
-       SLIDE 10 — THE ENGINE (DEPARTMENTS)
+       SLIDE 11 — THE ENGINE (DEPARTMENTS)
   ══════════════════════════════════════════ -->
-  <section id="experts" data-slide-num="10">
+  <section id="experts" data-slide-num="11">
     <div class="section-inner">
       <h2 class="section-title">The Engine Behind 300+ Partners</h2>
       <p class="section-subtitle">These departments already support 15,000+ clients &mdash; yours plug straight in</p>
@@ -1085,9 +1214,9 @@
   </section>
 
   <!-- ══════════════════════════════════════════
-       SLIDE 11 — THE PARTNERSHIP MODEL
+       SLIDE 12 — THE PARTNERSHIP MODEL
   ══════════════════════════════════════════ -->
-  <section id="programme" data-dark data-slide-num="11">
+  <section id="programme" data-dark data-slide-num="12">
 
     <div class="section-inner">
       <h2 class="section-title">The Growth Alliance</h2>
@@ -1142,9 +1271,9 @@
   </section>
 
   <!-- ══════════════════════════════════════════
-       SLIDE 11 — ONBOARDING TIMELINE
+       SLIDE 13 — ONBOARDING TIMELINE
   ══════════════════════════════════════════ -->
-  <section id="timeline" data-slide-num="12">
+  <section id="timeline" data-slide-num="13">
     <div class="section-inner">
       <h2 class="section-title">From Agreement to First Clients in 4 Weeks</h2>
       <p class="section-subtitle">Future Focus coordinates care. Trilogy handles everything else.</p>
@@ -1201,17 +1330,17 @@
   </section>
 
   <!-- ══════════════════════════════════════════
-       SLIDE 12 — NEXT STEPS
+       SLIDE 14 — NEXT STEPS
   ══════════════════════════════════════════ -->
-  <section id="cta" data-dark data-slide-num="13">
+  <section id="cta" data-dark data-slide-num="14">
     <div class="section-inner">
       <h2 class="section-title">Let's Build This Together</h2>
-      <p class="cta-subtitle">Luke will kick off the partnership. Your dedicated Senior Partnership Manager will work with you week-to-week to make Support at Home work for Future Focus.</p>
+      <p class="cta-subtitle">Nick will drive your growth strategy from day one. Your dedicated Senior Partnership Manager will work with you week-to-week to make Support at Home work for Future Focus.</p>
 
       <div class="cta-buttons">
-        <a href="mailto:luket@trilogycare.com.au" class="cta-btn email">
+        <a href="mailto:nickl@trilogycare.com.au" class="cta-btn email">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-          luket@trilogycare.com.au
+          nickl@trilogycare.com.au
         </a>
         <a href="tel:1300459190" class="cta-btn phone">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -1230,12 +1359,160 @@
 
   </div><!-- /.deck -->
 
+  <!-- ── Inline Calculator Logic ── -->
+  <script>
+  (function(){
+    var PERSONAS=[
+      {name:"Tay Tay Williams",monthlyFunding:3154},
+      {name:"Margaret O'Brien",monthlyFunding:4781},
+      {name:"Bruce Martin",monthlyFunding:1831},
+      {name:"Aunty Mavis Doolan",monthlyFunding:3308},
+      {name:"George Rossi",monthlyFunding:4846},
+      {name:"Lynne Fox",monthlyFunding:6509}
+    ];
+    var BLENDED=PERSONAS.reduce(function(s,p){return s+p.monthlyFunding;},0)/PERSONAS.length;
+    var HCP_RATE=0.11;
+    var st={initialClients:50,monthlyNew:5,feePercent:20,utilRate:70};
+    var fmt=new Intl.NumberFormat("en-AU",{style:"currency",currency:"AUD",minimumFractionDigits:0,maximumFractionDigits:0});
+
+    function calc(){
+      var months=[],cum=0,cumH=0,tc=0;
+      for(var i=0;i<24;i++){
+        var nc=i===0?st.initialClients:st.monthlyNew;
+        tc+=nc;
+        var fund=tc*BLENDED,svc=fund*(st.utilRate/100);
+        var rev=svc*(st.feePercent/100),hcp=fund*HCP_RATE;
+        cum+=rev;cumH+=hcp;
+        months.push({m:i+1,nc:nc,tc:tc,fund:fund,svc:svc,rev:rev,cum:cum,hcp:hcp,cumH:cumH});
+      }
+      return months;
+    }
+
+    function renderKPIs(d){
+      var m24=d[23];
+      document.getElementById("calcKpiRevenue").textContent=fmt.format(m24.cum);
+      document.getElementById("calcKpiMonthly").textContent=fmt.format(m24.rev);
+      document.getElementById("calcKpiClients").textContent=m24.tc.toLocaleString("en-AU");
+      var diff=m24.cum-m24.cumH,pct=m24.cumH>0?((diff/m24.cumH)*100).toFixed(0):0;
+      document.getElementById("calcKpiDelta").textContent=(diff>=0?"+":"")+pct+"%";
+      document.getElementById("calcKpiDelta").style.color=diff>=0?"var(--teal)":"var(--coral)";
+      document.getElementById("calcKpiDeltaSub").textContent=(diff>=0?"+":"")+fmt.format(diff)+" more";
+    }
+
+    function renderTable(d){
+      var tb=document.querySelector("#calcSahTable tbody");
+      tb.innerHTML=d.map(function(r){
+        return "<tr><td>"+r.m+"</td><td>"+r.nc+"</td><td>"+r.tc+"</td><td>"+fmt.format(r.fund)+"</td><td>"+fmt.format(r.svc)+"</td><td>"+fmt.format(r.rev)+"</td><td>"+fmt.format(r.cum)+"</td></tr>";
+      }).join("");
+    }
+
+    function renderChart(d){
+      var svg=document.getElementById("calcChart");
+      var W=860,H=320,pad={top:40,right:24,bottom:45,left:75};
+      var pW=W-pad.left-pad.right,pH=H-pad.top-pad.bottom;
+      var cr=st.feePercent/100,bu=st.utilRate;
+      var steps=[bu];for(var s=1;s<=2;s++){var n=bu+s*5;if(n<=100)steps.push(n);}
+      var scenData=steps.map(function(u){return d.map(function(r){return r.fund*(u/100)*cr;});});
+      var allV=[];scenData.forEach(function(s){s.forEach(function(v){allV.push(v);});});
+      var mx=Math.max.apply(null,allV);var yM=mx>0?Math.ceil(mx/5000)*5000:5000;
+      function x(i){return pad.left+(i/23)*pW;}
+      function y(v){return pad.top+pH-(v/yM)*pH;}
+      var bl=pad.top+pH;
+      var cols=["#027F7E","#43C0BE","#9DD7D6"],lw=[2.5,1.5,1.5],ld=["0","5,3","5,3"];
+      var html='<defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#027F7E" stop-opacity="0.12"/><stop offset="100%" stop-color="#027F7E" stop-opacity="0.01"/></linearGradient></defs>';
+      var yt=5;
+      for(var i=0;i<=yt;i++){var v=(yM/yt)*i,yp=y(v);html+='<line x1="'+pad.left+'" y1="'+yp+'" x2="'+(W-pad.right)+'" y2="'+yp+'" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="'+(i===0?"0":"3,3")+'"/><text x="'+(pad.left-8)+'" y="'+(yp+4)+'" text-anchor="end" font-size="10" fill="#9ca3af">'+fmt.format(v)+"</text>";}
+      html+='<line x1="'+pad.left+'" y1="'+bl+'" x2="'+(W-pad.right)+'" y2="'+bl+'" stroke="#d1d5db" stroke-width="1"/>';
+      for(var i=0;i<24;i++){if(i%3===0||i===23)html+='<text x="'+x(i)+'" y="'+(bl+16)+'" text-anchor="middle" font-size="10" fill="#9ca3af">'+(i+1)+"</text>";}
+      var lines="";
+      for(var si=steps.length-1;si>=1;si--){var sd=scenData[si];var p=sd.map(function(v,i){return(i===0?"M":"L")+x(i)+","+y(v);}).join(" ");lines+='<path d="'+p+'" fill="none" stroke="'+cols[si]+'" stroke-width="'+lw[si]+'" stroke-dasharray="'+ld[si]+'"/>';lines+='<text x="'+(x(23)+6)+'" y="'+(y(sd[23])+4)+'" font-size="9" fill="'+cols[si]+'" font-weight="600">'+steps[si]+"%</text>";}
+      var bd=scenData[0];var bp=bd.map(function(v,i){return(i===0?"M":"L")+x(i)+","+y(v);}).join(" ");var ba=bp+" L"+x(23)+","+bl+" L"+x(0)+","+bl+" Z";
+      lines='<path d="'+ba+'" fill="url(#cg)"/>'+lines+'<path d="'+bp+'" fill="none" stroke="'+cols[0]+'" stroke-width="'+lw[0]+'"/>';
+      var dots=bd.map(function(v,i){return'<circle cx="'+x(i)+'" cy="'+y(v)+'" r="3" fill="#fff" stroke="'+cols[0]+'" stroke-width="1.5"><title>M'+(i+1)+": "+fmt.format(v)+"</title></circle>";}).join("");
+      lines+='<text x="'+(x(23)+6)+'" y="'+(y(bd[23])+4)+'" font-size="9" fill="'+cols[0]+'" font-weight="700">'+steps[0]+"%</text>";
+      html+=lines+dots;
+      html+='<text x="'+(pad.left+pW/2)+'" y="'+(H-5)+'" text-anchor="middle" font-size="11" fill="#9ca3af">Month</text>';
+      html+='<text x="14" y="'+(pad.top+pH/2)+'" text-anchor="middle" font-size="11" fill="#9ca3af" transform="rotate(-90,14,'+(pad.top+pH/2)+')">Monthly Revenue</text>';
+      svg.innerHTML=html;
+    }
+
+    function updateSummary(){
+      var t24=st.initialClients+(st.monthlyNew*23);
+      document.getElementById("calcConfigSummary").innerHTML="<strong>"+st.initialClients+"</strong> initial + <strong>"+st.monthlyNew+"/month</strong> growth &bull; <strong>"+st.feePercent+"%</strong> coordination fee &bull; <strong>"+st.utilRate+"%</strong> utilisation &bull; <strong>"+t24+"</strong> total at month 24";
+    }
+
+    function updateAll(){var d=calc();renderKPIs(d);renderTable(d);renderChart(d);updateSummary();}
+
+    function sync(sId,nId,key){
+      var sl=document.getElementById(sId),nm=document.getElementById(nId);
+      var mn=Number(sl.min),mx=Number(sl.max);
+      sl.addEventListener("input",function(){nm.value=sl.value;st[key]=Number(sl.value);updateAll();});
+      nm.addEventListener("input",function(){var v=Math.min(mx,Math.max(mn,Number(nm.value)||mn));nm.value=v;sl.value=v;st[key]=v;updateAll();});
+    }
+    sync("calcFeeSlider","calcFeeNum","feePercent");
+    sync("calcUtilSlider","calcUtilNum","utilRate");
+    document.getElementById("calcInitialClients").addEventListener("input",function(e){st.initialClients=Number(e.target.value)||0;updateAll();});
+    document.getElementById("calcMonthlyNew").addEventListener("input",function(e){st.monthlyNew=Number(e.target.value)||0;updateAll();});
+
+    window.exportCalcToExcel=function(){
+      if(typeof XLSX==="undefined"){alert("Excel library still loading. Please try again.");return;}
+      var d=calc();
+      var wb=XLSX.utils.book_new();
+
+      var sum=[
+        ["Future Focus \u00d7 Trilogy Care \u2014 Revenue Projection"],
+        [],
+        ["Configuration"],
+        ["Initial Clients",st.initialClients],
+        ["Monthly New Clients",st.monthlyNew],
+        ["Coordination Fee %",st.feePercent+"%"],
+        ["Utilisation Rate %",st.utilRate+"%"],
+        [],
+        ["Key Metrics"],
+        ["24-Month Cumulative Revenue",d[23].cum],
+        ["Monthly Revenue at Month 24",d[23].rev],
+        ["Total Clients at Month 24",d[23].tc],
+        ["24-Month Revenue (Old HCP Model)",d[23].cumH],
+        ["SaH vs HCP Advantage",d[23].cum-d[23].cumH]
+      ];
+      var ws1=XLSX.utils.aoa_to_sheet(sum);
+      ws1["!cols"]=[{wch:32},{wch:20}];
+      for(var r=9;r<=13;r++){var c=XLSX.utils.encode_cell({r:r,c:1});if(ws1[c])ws1[c].z="$#,##0";}
+      XLSX.utils.book_append_sheet(wb,ws1,"Summary");
+
+      var rows=[["Month","New Clients","Total Clients","Monthly Funding","Services Consumed","Coordination Revenue","Cumulative Revenue"]];
+      d.forEach(function(r){rows.push([r.m,r.nc,r.tc,r.fund,r.svc,r.rev,r.cum]);});
+      var ws2=XLSX.utils.aoa_to_sheet(rows);
+      ws2["!cols"]=[{wch:8},{wch:13},{wch:13},{wch:17},{wch:19},{wch:21},{wch:21}];
+      for(var r=1;r<=24;r++){for(var c=3;c<=6;c++){var cell=XLSX.utils.encode_cell({r:r,c:c});if(ws2[cell])ws2[cell].z="$#,##0";}}
+      XLSX.utils.book_append_sheet(wb,ws2,"Monthly Projection");
+
+      var sens=[["Utilisation Sensitivity \u2014 Monthly Revenue at Month 24"],["Utilisation %","Monthly Revenue","Annual Equivalent","24-Month Cumulative"]];
+      for(var u=50;u<=100;u+=5){
+        var tc24=d[23].tc,fund24=tc24*BLENDED;
+        var mRev=fund24*(u/100)*(st.feePercent/100);
+        var cumR=0,tcc=0;
+        for(var i=0;i<24;i++){tcc+=(i===0?st.initialClients:st.monthlyNew);cumR+=tcc*BLENDED*(u/100)*(st.feePercent/100);}
+        sens.push([u+"%",mRev,mRev*12,cumR]);
+      }
+      var ws3=XLSX.utils.aoa_to_sheet(sens);
+      ws3["!cols"]=[{wch:16},{wch:18},{wch:18},{wch:22}];
+      for(var r=2;r<sens.length;r++){for(var c=1;c<=3;c++){var cell=XLSX.utils.encode_cell({r:r,c:c});if(ws3[cell])ws3[cell].z="$#,##0";}}
+      XLSX.utils.book_append_sheet(wb,ws3,"Sensitivity");
+
+      XLSX.writeFile(wb,"Future-Focus-Revenue-Calculator.xlsx");
+    };
+
+    updateAll();
+  })();
+  </script>
+
   <!-- ── Presenter Panel ── -->
   <div class="presenter-panel" id="presenterPanel">
     <div class="pp-header">
       <div class="pp-header-left">
         <span class="pp-badge">PRESENTER VIEW</span>
-        <span class="pp-slide-count" id="ppSlideCount">1 / 13</span>
+        <span class="pp-slide-count" id="ppSlideCount">1 / 14</span>
       </div>
       <button class="pp-close" id="ppClose">&times;</button>
     </div>
@@ -1313,17 +1590,25 @@
         'calculator': {
           title: 'Calculator — MAKE IT REAL',
           onScreen: 'Embedded interactive calculator',
-          script: 'Keeley, let\'s make this real for Future Focus specifically. I\'ll plug in 50 starting clients — that\'s your foundation portfolio. You can adjust the fee percentage, growth rate, and see how revenue compounds over 24 months. <b>Hand her the keyboard or screen share — let her drive.</b>',
+          script: 'Keeley, let\'s make this real for Future Focus specifically. The calculator is right here — 50 starting clients is your foundation portfolio. You can adjust the fee percentage, utilisation rate, and see how revenue compounds over 24 months. <b>Scroll down through the projections and chart. Let her play with the sliders. When she\'s ready, hit Export to Excel so she can take the numbers away.</b>',
           pivots: ['After she plays with it: "How does that look for your business?"', 'If the numbers land: "And remember — that\'s just one of your 9 locations."'],
           ifTheyAsk: ['"Can I keep this?" → "Absolutely — I\'ll send you the link. Play with it in your own time."', '"What\'s the fee percentage?" → "Typically 10-15%, agreed in your price book. We set that up together in Week 2."'],
           nextUp: 'The full revenue picture at scale'
         },
         'revenue': {
-          title: 'Compounding Revenue — THE NUMBERS',
-          onScreen: 'Revenue table (50 highlighted) + compound box + NDIS vs AC comparison',
-          script: 'Here\'s the full revenue picture at scale. Start with 50 clients — $188K to $283K. Grow to 100 — $377K to $565K. At 250 clients across your 9 locations, you\'re looking at <b>$942K to $1.41 million per year</b>. And here\'s the key difference from NDIS: this <b>compounds</b>. NDIS is linear — you bill hours, rates are frozen. In aged care, every client generates recurring monthly income. New clients stack on top. Classification upgrades increase per-client value. There\'s no cap, no rate freeze, and the market is growing 6.4% annually.',
+          title: 'Two Levers — THE NUMBERS',
+          onScreen: 'Revenue table (50 highlighted) + two-levers box + NDIS vs AC comparison',
+          script: 'Here\'s the full revenue picture at scale. Start with 50 clients — $188K to $283K. Grow to 100 — $377K to $565K. At 250 clients across your 9 locations, you\'re looking at <b>$942K to $1.41 million per year</b>. And here\'s the key difference: in aged care you have <b>two levers</b>. In NDIS, you grow by adding clients and billing more hours — one lever. In aged care, you grow your client base <b>and</b> increase utilisation across your existing book. New clients stack on top. Classification upgrades lift per-client value. There\'s no cap, no rate freeze, and the market is growing 6.4% annually.',
           pivots: ['Reference their scale: "With 9 locations, even 25-30 clients per location gets you to 250. That\'s $1.4M per year."'],
           ifTheyAsk: ['"Is that realistic?" → "Based on actual partner data — you\'ll see the case studies next."'],
+          nextUp: 'Premium market positioning'
+        },
+        'positioning': {
+          title: 'Premium Market Positioning',
+          onScreen: '3 positioning options (Quality, Clinical, Premium) + Trilogy pricing model callout + 3 pills',
+          script: 'Keeley, I know one of your concerns is whether your SCHADS award staff — your higher-qualified team — can be recovered against in aged care coordination. Here\'s the thing: <b>that\'s your competitive edge, not your cost problem</b>. You can position as quality, clinical, or premium service. Trilogy\'s pricing model lets you match your service provision to <b>book, cohort, or per-client pricing</b>. Your team manages complex NDIS participants every day — they\'re overqualified for standard aged care. That\'s the premium. Higher-need clients attract higher classifications and higher revenue per client. You\'re not recovering costs — you\'re charging for capability.',
+          pivots: ['If she raises the SCHADS cost concern directly: "Exactly — and this is why it matters. Your team commands a premium because they deliver a premium service."', 'Reference her staffing: "Most aged care coordinators don\'t have your team\'s clinical depth. That\'s why premium positioning is available to you and not to everyone."'],
+          ifTheyAsk: ['"How does per-client pricing work?" → "We set up your price book together. You can price by the book, by cohort, or individually per client — matched to the service your team delivers."', '"Will lower-classification clients still work for us?" → "Yes — premium positioning doesn\'t mean only high-classification clients. It means you can charge appropriately for the quality of coordination you deliver."'],
           nextUp: 'Social proof — partners who\'ve done this'
         },
         'proof': {
@@ -1361,7 +1646,7 @@
         'cta': {
           title: 'Close — Next Steps',
           onScreen: 'Contact details + urgency message + calculator link',
-          script: 'Keeley, based on everything we\'ve discussed — Future Focus has the coordination expertise, the multi-state footprint, and the team. Trilogy has the platform, the clients, and the infrastructure. Together, this is a genuine growth alliance. The next step is a <b>deeper discovery session</b> where we map out which of your 9 locations we start with, allocate the 50 foundation clients, and introduce you to your Senior Partnership Manager. I\'ll kick this off personally and then hand over to the team who\'ll work with you week-to-week.',
+          script: 'Keeley, based on everything we\'ve discussed — Future Focus has the coordination expertise, the multi-state footprint, and the team. Trilogy has the platform, the clients, and the infrastructure. Together, this is a genuine growth alliance. The next step is a <b>deeper discovery session</b> where we map out which of your 9 locations we start with, allocate the 50 foundation clients, and introduce you to your Senior Partnership Manager. <b>Nick</b> will drive the growth strategy from here and the team will work with you week-to-week.',
           pivots: ['Close: "What questions do you have?"', 'Then: "Shall we lock in that discovery session? I have availability [specific dates]."', 'If she wants to model numbers: "I\'ll send you the calculator link — you can play with the scenarios in your own time."'],
           ifTheyAsk: ['"Can I think about it?" → "Of course. I\'ll send you the deck and calculator link. Have a look in your own time and I\'ll follow up [specific day]."'],
           nextUp: 'End of presentation'
