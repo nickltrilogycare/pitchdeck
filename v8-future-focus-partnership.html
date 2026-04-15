@@ -1051,14 +1051,51 @@
         </div>
       </div>
 
-      <div style="background:rgba(2,127,126,0.15);border:1px solid rgba(2,127,126,0.3);border-radius:16px;padding:24px 32px;margin-bottom:20px;">
-        <h4 style="font-family:var(--font-heading);font-size:16px;font-weight:700;color:var(--white);margin-bottom:10px;">Trilogy's pricing model makes this possible</h4>
-        <p style="font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;margin:0;">Our pricing matches your service provision model to <strong style="color:var(--light-teal);">book, cohort, or per-client pricing</strong>. Your SCHADS award staff who manage complex NDIS participants are overqualified for standard aged care &mdash; that's the premium. Higher-need clients attract higher classifications and higher revenue per client. You're not recovering costs &mdash; you're charging for capability.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:20px;">
+        <!-- Left: Strata tiers visual -->
+        <div style="background:rgba(2,127,126,0.12);border:1px solid rgba(2,127,126,0.25);border-radius:16px;padding:24px 28px;">
+          <h4 style="font-family:var(--font-heading);font-size:15px;font-weight:700;color:var(--light-teal);margin-bottom:16px;letter-spacing:1px;text-transform:uppercase;">Strata-Based Pricing</h4>
+          <!-- Tier bars -->
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="width:100px;font-size:13px;color:rgba(255,255,255,0.55);font-weight:500;text-align:right;flex-shrink:0;">Low needs</span>
+              <div style="flex:1;height:36px;background:rgba(255,255,255,0.05);border-radius:8px;overflow:hidden;position:relative;">
+                <div style="width:50%;height:100%;background:var(--teal);border-radius:8px;display:flex;align-items:center;padding:0 14px;">
+                  <span style="font-size:13px;font-weight:700;color:white;">20%</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="width:100px;font-size:13px;color:rgba(255,255,255,0.55);font-weight:500;text-align:right;flex-shrink:0;">Medium needs</span>
+              <div style="flex:1;height:36px;background:rgba(255,255,255,0.05);border-radius:8px;overflow:hidden;position:relative;">
+                <div style="width:66%;height:100%;background:var(--gold);border-radius:8px;display:flex;align-items:center;padding:0 14px;">
+                  <span style="font-size:13px;font-weight:700;color:white;">25%</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="width:100px;font-size:13px;color:rgba(255,255,255,0.55);font-weight:500;text-align:right;flex-shrink:0;">High needs</span>
+              <div style="flex:1;height:36px;background:rgba(255,255,255,0.05);border-radius:8px;overflow:hidden;position:relative;">
+                <div style="width:85%;height:100%;background:var(--coral);border-radius:8px;display:flex;align-items:center;padding:0 14px;">
+                  <span style="font-size:13px;font-weight:700;color:white;">30%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:14px;margin-bottom:0;line-height:1.5;">Coordination fee scales with client complexity. Higher-need clients attract higher fees &mdash; matching your staffing cost to revenue.</p>
+        </div>
+
+        <!-- Right: Explanatory text -->
+        <div style="display:flex;flex-direction:column;justify-content:center;">
+          <h4 style="font-family:var(--font-heading);font-size:17px;font-weight:700;color:var(--white);margin-bottom:12px;">Trilogy's pricing model makes this possible</h4>
+          <p style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.7;margin:0 0 12px 0;">Your SCHADS award staff who manage complex NDIS participants are overqualified for standard aged care &mdash; <strong style="color:var(--light-teal);">that's the premium</strong>. A strata-based approach means your fee scales with client needs: the more complex the client, the higher your coordination fee.</p>
+          <p style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.7;margin:0;">Higher-need clients attract higher classifications <em>and</em> higher coordination fees. You're not recovering costs &mdash; you're <strong style="color:var(--light-teal);">charging for capability</strong>.</p>
+        </div>
       </div>
 
       <div class="skill-pills" style="justify-content:center;">
-        <span class="skill-pill" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">Higher-qualified staff = higher-value clients</span>
-        <span class="skill-pill" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">Pricing matched to your service model</span>
+        <span class="skill-pill" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">Fee scales with client complexity</span>
+        <span class="skill-pill" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">Enterprise-exclusive pricing model</span>
         <span class="skill-pill" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">Premium retention &amp; referral pathways</span>
       </div>
     </div>
@@ -1605,10 +1642,10 @@
         },
         'positioning': {
           title: 'Premium Market Positioning',
-          onScreen: '3 positioning options (Quality, Clinical, Premium) + Trilogy pricing model callout + 3 pills',
-          script: 'Keeley, I know one of your concerns is whether your SCHADS award staff — your higher-qualified team — can be recovered against in aged care coordination. Here\'s the thing: <b>that\'s your competitive edge, not your cost problem</b>. You can position as quality, clinical, or premium service. Trilogy\'s pricing model lets you match your service provision to <b>book, cohort, or per-client pricing</b>. Your team manages complex NDIS participants every day — they\'re overqualified for standard aged care. That\'s the premium. Higher-need clients attract higher classifications and higher revenue per client. You\'re not recovering costs — you\'re charging for capability.',
-          pivots: ['If she raises the SCHADS cost concern directly: "Exactly — and this is why it matters. Your team commands a premium because they deliver a premium service."', 'Reference her staffing: "Most aged care coordinators don\'t have your team\'s clinical depth. That\'s why premium positioning is available to you and not to everyone."'],
-          ifTheyAsk: ['"How does per-client pricing work?" → "We set up your price book together. You can price by the book, by cohort, or individually per client — matched to the service your team delivers."', '"Will lower-classification clients still work for us?" → "Yes — premium positioning doesn\'t mean only high-classification clients. It means you can charge appropriately for the quality of coordination you deliver."'],
+          onScreen: '3 positioning cards + strata-based pricing visual (20/25/30%) + pricing model explanation',
+          script: 'Keeley, I know one of your concerns is whether your SCHADS award staff — your higher-qualified team — can be recovered against in aged care coordination. Here\'s the thing: <b>that\'s your competitive edge, not your cost problem</b>. You can position as quality, clinical, or premium service. And here\'s how the pricing works — we can offer you a <b>strata-based approach</b>. Low-needs clients at 20%, medium at 25%, high-needs at 30%. Your fee scales with client complexity. The more complex the client — the ones your team are best at — the higher the coordination fee. Your team manages complex NDIS participants every day. That capability commands a premium in aged care. You\'re not recovering costs — you\'re <b>charging for capability</b>.',
+          pivots: ['If she raises the SCHADS cost concern directly: "Exactly — and this is why the strata model matters. Your high-need clients attract higher fees that match your staffing costs."', 'Reference her staffing: "Most aged care coordinators don\'t have your team\'s clinical depth. That\'s why this tiered pricing is available to you — it\'s an enterprise-level arrangement."', 'If she asks about the 20/25/30%: "These are indicative — we\'d set the exact tiers together in your price book based on your staffing model."'],
+          ifTheyAsk: ['"How does strata pricing work day-to-day?" → "Each client is classified by needs level. The coordination fee is set in your price book at the corresponding tier. Simple and transparent."', '"Will lower-classification clients still work for us?" → "Absolutely — even at 20% on lower-needs clients, the margin works. And as clients\' needs increase, so does your fee. The portfolio balances itself."', '"Do other partners get this?" → "This is an enterprise arrangement — your scale and staffing model warrants it. It\'s not something we offer to every partner."'],
           nextUp: 'Social proof — partners who\'ve done this'
         },
         'proof': {
